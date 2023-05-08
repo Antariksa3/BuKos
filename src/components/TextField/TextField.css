@@ -1,0 +1,27 @@
+.text-field{
+    padding: 0 10rem;
+    margin-bottom: .5rem;
+  }
+  
+  .text-field-label{
+    color: #737D8C;
+    font-weight: 600;
+  }
+  
+  .text-field-input{
+    padding: .75rem 1rem;
+    width: 26.5rem;
+    border-radius: .75rem;
+    color: #2A323C;
+    text-decoration-color: #2A323C;
+    outline: none;
+    border: 2px solid #CDD6E1;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    margin: .5rem 0;
+  }
+  
+  .text-field-input:focus{
+    border: 2px solid #737D8C;
+  }
+  

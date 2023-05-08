@@ -1,0 +1,99 @@
+.home{
+    height: 100vh;
+    background-color: #101010;
+    padding: 0 100px;
+}
+
+::-webkit-scrollbar {
+    width: .6rem;
+    background-color: hsl(219, 4%, 16%);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsl(219, 4%, 24%);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(219, 4%, 32%);
+}
+
+.dashboard{
+    display: flex;
+    margin-top: 3rem;
+    margin-bottom: 13.75rem;
+}
+
+.home h1{
+    color: white;
+    font-weight: 700;
+    font-size: 4rem;
+    width: 500px;
+    z-index: 10;
+}
+
+.home h3{
+    color: #727272;
+    font-weight: 500;
+    font-size: 1.5rem;
+    width: 700px;
+}
+
+.circle{
+    /* background-color: hsla(219, 33%, 32%, .5); */
+    background-image: linear-gradient(to top right, rgba(131, 75, 255, 1), rgba(16, 16, 16, 1));
+    filter: blur(112px);
+    border-radius: 50%;
+    position:absolute;
+    z-index: 1;
+}
+
+.shape-big{
+    width: 200px;
+    height: 200px;
+    left: 3rem;
+    top: 6rem;
+}
+
+.shape-small{
+    width: 150px;
+    height: 150px;
+    left: 55rem;
+    top: 32rem;
+}
+
+.dashboard-image{
+    margin-left: 10rem;
+    /* margin: ; */
+    width: 100%;
+    height: auto;
+    /* left: 100rem; */
+}
+
+.benefit{
+    /* margin-top: 8.75rem; */
+    display: flex;
+}
+
+.benefit-image{
+    margin-right: 3rem;
+}
+
+.benefit-desc h2{
+    color: #0C0C1D;
+    width: 100%;
+    font-weight: 600;
+    font-size: 2.75rem;
+}
+
+.benefit-desc h4{
+    color: #0C0C1D;
+    font-weight: 500;
+    width: 80%;
+    margin-bottom: 2rem;
+}
+
+.benefit-cards{
+    display: flex;
+}

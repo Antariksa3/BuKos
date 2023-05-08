@@ -1,0 +1,29 @@
+.benefit-card{
+    background-color: #f4f4f4;
+    width: 200px;
+    height: 180px;
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    transition: .3s;
+    margin-right: 1.5rem;
+}
+
+.benefit-card h4{
+    color: #0C0C1D;
+    font-weight: 600;
+    transition: .5s;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+}
+
+.benefit-card:hover{
+    background-color: #0C0C1D;
+    color: white;
+}
+.benefit-card:hover h4{
+    /* background-color: #0C0C1D; */
+    color: white;
+}

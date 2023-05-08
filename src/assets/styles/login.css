@@ -1,0 +1,88 @@
+.wrapper {
+    display: flex;
+    max-height: 100vh;
+}
+
+.left {
+    background-color: #834BFF;
+    width: 50%;
+    /* min-height: 100vh; */
+    background-image: url(../images/overlay-shape-img.svg);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.logo1 {
+    margin: 3rem 0 2rem 3rem;
+}
+
+.image h1 {
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+}
+
+.img1 {
+    width: 100%;
+    height: 400px;
+}
+
+.right {
+    background-color: white;
+    width: 50%;
+    min-height: 100vh;
+}
+
+.form-login{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo2{
+    display: block;
+    margin: 0 auto .5rem ;
+}
+
+.form-login h1 {
+    margin: 0 auto;
+    text-align: center;
+    color: #2A323C;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.form-login h4{
+    margin: 0 auto;
+    text-align: center;
+    color: #737D8C;
+    font-weight: 400;
+}
+
+.form-login span{
+    color: #0085FF;
+    cursor: pointer;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+}
+
+.form-login span:hover{
+    text-decoration: underline;
+}
+
+.button-back{
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    background-color: white;
+    color: #834BFF;
+    border-style: none;
+    align-items: center;
+    cursor: pointer;
+    transition: all .5s;
+    margin: 5rem 3rem ;
+}
+
+.button-back:hover{
+    background-color: rgb(225, 225, 225);
+}
