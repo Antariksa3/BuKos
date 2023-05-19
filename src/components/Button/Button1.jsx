@@ -3,7 +3,7 @@ import './Button1.css'
 
 const Button1 = (props) => {
     return(
-        <div className="button">
+        <div className="button1">
             <button className='button-input'>{props.button}</button>
         </div>
     )

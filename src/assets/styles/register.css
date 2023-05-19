@@ -63,8 +63,8 @@
 .form-register span{
     color: #0085FF;
     cursor: pointer;
-    transition: 0.5s;
-    -webkit-transition: 0.5s;
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
 }
 
 .form-register span:hover{

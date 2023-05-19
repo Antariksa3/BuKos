@@ -1,10 +1,10 @@
-.button2{
+.button4{
     padding: 0;
 }
 
-.button-more{
-    padding: 1rem 1.5rem;
-    width: 12rem;
+.button-detail{
+    padding: .75rem 1.5rem;
+    width: 22rem;
     border-radius: .75rem;
     color: #fff;
     background-color: #834BFF;
@@ -12,10 +12,9 @@
     transition: 0.5s ease-in-out;
     -webkit-transition: 0.5s ease-in-out;
     cursor: pointer;
-    margin-top: 5rem;
     font-size: 1rem;
 }
 
-.button-more:hover{
+.button-detail:hover{
     background-color: #7130ff;
 }

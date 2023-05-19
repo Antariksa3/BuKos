@@ -3,8 +3,7 @@ import './App.css';
 import Login from './pages/login';
 import Register from './pages/register';
 import Home from './pages/home';
-import NavBar from './layouts/Navbar/Navbar';
-import SearchBar from './components/SearchBar/SearchBar';
+import ListKos from './pages/list';
 
 const App = () => {
   return (
@@ -13,7 +12,7 @@ const App = () => {
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
-        <Route path='/test2' element={<SearchBar/>}/>
+        <Route path='/listkos' element={<ListKos/>}/>
       </Routes>
     </Router>
   );

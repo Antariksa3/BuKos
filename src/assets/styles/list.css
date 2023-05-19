@@ -1,0 +1,26 @@
+::-webkit-scrollbar {
+    width: .6rem;
+    background-color: hsl(219, 4%, 16%);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsl(219, 4%, 24%);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(219, 4%, 32%);
+}
+
+.list-kost{
+    padding: 10rem 100px;
+}
+
+.list-cards{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    row-gap: 2rem;
+    column-gap: 1rem;
+    
+}

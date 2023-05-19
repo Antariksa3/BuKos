@@ -1,17 +1,10 @@
-.background-glass{
-    display: flex;
-    padding: .5rem;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: .5rem;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.7px);
-    -webkit-backdrop-filter: blur(4.7px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+.search-wrapper{
+    width: 20rem;
+    margin-left: 2rem;
 }
 
 .input-wrapper{
-    background-color: white;
+    background-color: #f1f1f1;
     width: 100%;
     border-radius: .5rem;
     height: 3rem;
