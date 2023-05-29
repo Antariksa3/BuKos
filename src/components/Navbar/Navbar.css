@@ -32,6 +32,7 @@
     color: #a5a5a5;
     text-decoration: none;
     transition: .5s ease-in-out;
+    cursor: pointer;
 }
 
 .nav-item a:hover{
@@ -57,10 +58,6 @@
 
 .button-login:hover{
     background-color: #7130ff;
-}
-
-body.active-modal {
-    overflow-y: hidden;
 }
 
 .modal, .overlay {

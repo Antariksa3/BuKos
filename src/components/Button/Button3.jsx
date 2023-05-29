@@ -1,6 +1,6 @@
 import '../../App.css'
 import './Button3.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 
 const Button3 = (props) => {
@@ -8,7 +8,9 @@ const Button3 = (props) => {
 
     return(
         <div className="button3">
-            <button className='button-show' onClick={() => navigate('/listkos')}>{props.button}</button>
+            <Link to='/listkos'>
+                <button className='button-show' >{props.button}</button>
+            </Link>
         </div>
     )
 }

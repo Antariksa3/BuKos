@@ -59,10 +59,6 @@
     background-color: #7130ff;
 }
 
-body.active-modal {
-    overflow-y: hidden;
-}
-
 .modal, .overlay {
     width: 100vw;
     height: 100vh;

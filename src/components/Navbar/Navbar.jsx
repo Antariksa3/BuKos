@@ -1,10 +1,10 @@
 import './Navbar.css'
-import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/images/logo.svg'
 import close from '../../assets/icons/close.svg'
 import React, {useState} from 'react'
 import SearchBar from '../../components/SearchBar/SearchBar'
-
+import {Link} from 'react-scroll'
+import { useNavigate } from 'react-router-dom'
 
 const NavBar = () =>{
     const navigate = useNavigate()
@@ -37,7 +37,7 @@ const NavBar = () =>{
             {/* <SearchBar/> */}
             <ul className='nav-menu'>
                 <li className='nav-item'>
-                    <a href="#">Cari Kos</a>
+                    <Link to="popular" spy={true} smooth={true} offset={-50} duration={500}>Cari Kos</Link>
                 </li>
                 <li className='nav-item'>
                     <a href="#">Layanan</a>

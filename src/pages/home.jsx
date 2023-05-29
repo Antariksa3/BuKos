@@ -66,7 +66,7 @@ const Home = () =>{
                     </div>
                 </div>
             </div>
-            <div className="popular section">
+            <div className="popular section" id='popular'>
                 <div className="popular-content">
                     <div className="popular-header">
                         <h2>Kos Terpopuler</h2>

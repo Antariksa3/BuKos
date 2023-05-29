@@ -1,10 +1,10 @@
-.button2{
+.button6{
     padding: 0;
 }
 
-.button-more{
-    padding: 1rem 1.5rem;
-    width: 12rem;
+.button-filter{
+    padding: .75rem 1.5rem;
+    width: 100%;
     border-radius: .75rem;
     color: #fff;
     background-color: #834BFF;
@@ -12,10 +12,9 @@
     transition: 0.5s ease-in-out;
     -webkit-transition: 0.5s ease-in-out;
     cursor: pointer;
-    margin-top: 2rem;
     font-size: 1rem;
 }
 
-.button-more:hover{
+.button-filter:hover{
     background-color: #7130ff;
 }

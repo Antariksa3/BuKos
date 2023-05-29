@@ -78,16 +78,20 @@
 }
 
 .benefit{
-    margin-top: 3rem;
+    /* margin-top: 2rem; */
+    padding-top: 4rem;
     height: 100%;
 }
 
 .benefit-content{
     display: flex;
+    justify-content: center;
 }
 
 .benefit-images{
     margin-right: 1rem;
+    height: 100%;
+    margin: auto 0;
 }
 
 .benefit-image{
@@ -95,7 +99,12 @@
     -webkit-box-shadow: 0px 0px 15px 5px rgba(29,29,29,0.2);
     -moz-box-shadow: 0px 0px 15px 5px rgba(29,29,29,0.2);
     border-radius: 1rem;
-    height: 90%;
+    height: 80%;
+    width: 90%;
+}
+
+.benefit-desc{
+    width: 60%;
 }
 
 .benefit-desc h2{
@@ -118,6 +127,8 @@
 
 .popular{
     margin: 1rem 0;
+    /* padding: 7rem 100px 0 100px; */
+    padding-top: 4rem;
 }
 
 .popular h2{
@@ -148,7 +159,7 @@
 .review{
     height: 1000px;
     background-color: #0C0C1D;
-    margin-top: 5rem;
+    margin-top: 6rem;
     background-image: url(../images/reviewVector.svg), url(../images/reviewVectoralt.svg);
     background-repeat: no-repeat;
     background-position: left top, right bottom;
