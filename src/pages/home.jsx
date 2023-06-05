@@ -5,6 +5,7 @@ import { faHouseUser, faCommentDots, faRupiahSign } from '@fortawesome/free-soli
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow } from 'swiper'
+import { Link } from 'react-scroll'
 
 // import Styles
 import '../App.css'
@@ -42,14 +43,21 @@ const Home = () =>{
                     <div className="dashboard-title">
                         <h1>Temukan Kos Yang Paling Cocok</h1>
                         <h3>Temukan kos yang sesuai dengan Anda dan lupakan semua kesulitan dalam menemukan tempat tinggal</h3>
-                        <SearchBar/>
+                        {/* <SearchBar/> */}
                     </div>
                     <div className="dashboard-image">
                         <img src={dashboard1} alt="dashboard-image" />
                     </div>
+                    <div className="scroll-down-container">
+                    <Link to="benefit" spy={true} smooth={true} offset={-50} duration={250}>
+                        <a href="" class="scrollDown">
+                            <span></span>
+                        </a>
+                    </Link>
+                    </div>
                 </div>
             </div>
-            <div className="benefit section">
+            <div className="benefit section" id='benefit'>
                 <div className="benefit-content">
                     <div className="benefit-images">
                         <img src={benefit1} alt="benefit-image" className='benefit-image'/>
@@ -111,12 +119,12 @@ const Home = () =>{
                         <SwiperSlide><ReviewCard user='Dimas Begas' icon={faThumbsDown} review='Pelayanan pelanggan sangat buruk. Saya mengirimkan keluhan beberapa kali namun tidak ada respons yang diberikan. Sangat kecewa.'/></SwiperSlide>
                         <SwiperSlide><ReviewCard user='Dimas Gusgus' icon={faThumbsUp} review='Pelayanan ramah dan profesional. Saya mendapatkan bantuan yang sangat baik dari tim customer service dalam memilih Kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
                         <SwiperSlide><ReviewCard user='Dimdim' icon={faThumbsDown} review='Pelayanan sangat lambat. Saya mengirimkan keluhan namun tidak ada tanggapan. Saya sangat kecewa dengan pelayanan pelanggan yang diberikan.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas anjay mabar profesional sional slebew' icon={faThumbsUp} review='Saya sangat senang dengan layanan yang diberikan oleh website ini. Saya berhasil menemukan kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
+                        <SwiperSlide><ReviewCard user='Dimas profesional sional slebew' icon={faThumbsUp} review='Saya sangat senang dengan layanan yang diberikan oleh website ini. Saya berhasil menemukan kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
                         <SwiperSlide><ReviewCard user='Dimas Bagus' icon={faThumbsUp} review='Tanpa BuKos, Saya tidak akan menemukan Kos tepat waktu. Tanpa BuKos saya sangat kesulitan mencari Kos yang nyaman.'/></SwiperSlide>
                         <SwiperSlide><ReviewCard user='Dimas Begas' icon={faThumbsDown} review='Pelayanan pelanggan sangat buruk. Saya mengirimkan keluhan beberapa kali namun tidak ada respons yang diberikan. Sangat kecewa.'/></SwiperSlide>
                         <SwiperSlide><ReviewCard user='Dimas Gusgus' icon={faThumbsUp} review='Pelayanan ramah dan profesional. Saya mendapatkan bantuan yang sangat baik dari tim customer service dalam memilih Kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
                         <SwiperSlide><ReviewCard user='Dimdim' icon={faThumbsDown} review='Pelayanan sangat lambat. Saya mengirimkan keluhan namun tidak ada tanggapan. Saya sangat kecewa dengan pelayanan pelanggan yang diberikan.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas anjay mabar profesional sional slebew' icon={faThumbsUp} review='Saya sangat senang dengan layanan yang diberikan oleh website ini. Saya berhasil menemukan kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
+                        <SwiperSlide><ReviewCard user='Dimas profesional sional slebew' icon={faThumbsUp} review='Saya sangat senang dengan layanan yang diberikan oleh website ini. Saya berhasil menemukan kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
                     </Swiper>
                     </div>
                 </div>
@@ -132,7 +140,6 @@ const Home = () =>{
             <ScrollUp />
         </>
     )
-
 }
 
 export default Home

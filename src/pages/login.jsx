@@ -4,7 +4,7 @@ import img1 from '../assets/images/img1.svg';
 import logo1 from '../assets/images/logo1.svg';
 import logo2 from '../assets/images/logo2.svg';
 import TextField from '../components/TextField/TextField';
-import Button1 from '../components/Button/Button1';
+import ButtonRegister from '../components/Button/ButtonRegister';
 import { useNavigate } from 'react-router-dom';
 import apiurl from '../api'
 import axios from 'axios'
@@ -63,7 +63,7 @@ const Login = () =>{
                     <form onSubmit={onSubmit}>
                         <TextField htmlFor='email' label='Email atau Nomor Handphone' type='email' name='email' inputId='email' placeholder='Email atau Nomor Handphone'   />
                         <TextField htmlFor='password' label='Password' type='password' name='password' inputId='password' placeholder='Minimal 8 Karakter'  />
-                        <Button1 button="Login" />
+                        <ButtonRegister button="Login" />
                     </form>
                     <h4>Belum punya akun? <span onClick={() => navigate('/register')}>Daftar disini</span></h4>
                 </div>

@@ -1,7 +1,7 @@
 import '../../App.css'
-import './Button1.css'
+import './ButtonRegister.css'
 
-const Button1 = (props) => {
+const ButtonRegister = (props) => {
     return(
         <div className="button1">
             <button className='button-input'>{props.button}</button>
@@ -9,4 +9,4 @@ const Button1 = (props) => {
     )
 }
 
-export default Button1
+export default ButtonRegister

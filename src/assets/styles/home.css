@@ -1,3 +1,4 @@
+
 .section{
     padding: 0 100px;
 }
@@ -75,6 +76,80 @@
     width: 100%;
     height: auto;
     user-select: none;
+}
+
+.scroll-down-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrollDown {
+    width: 45px;
+    height: 70px;
+    border: #fff solid 2px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.scrollDown span {
+    background-color: #fff;
+    width: 5px;
+    height: 10px;
+    border-radius: 30px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.scrollDown span::before {
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    transform: translateY(-10px) rotate(135deg);
+    left: -6px;
+    margin-top: 10px;
+    opacity: 0;
+    animation: ani 1.8s infinite linear;
+}
+
+.scrollDown span::after {
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    transform: translateY(-10px) rotate(135deg);
+    left: -6px;
+    margin-top: 10px;
+    opacity: 0;
+
+    animation: ani 1.8s infinite linear;
+    animation-delay: 0.8s;
+}
+
+@keyframes ani {
+    0% {
+        margin-top: 10px;
+        opacity: 0;
+    }
+
+    50% {
+        margin-top: 25px;
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: 40px;
+        opacity: 0;
+    }
 }
 
 .benefit{
