@@ -27,7 +27,6 @@ const ListKos = () =>{
             <NavbarList />
             <div className="list-kost" id='list-kost'>
                 <div className="list-content">
-                    {/* <div className="list-header"></div> */}
                     <div className={fixed ? 'list-filter list-fixed' : 'list-filter'}>
                         <div className="filter-location">
                             <label htmlFor="">Pilih Lokasi</label>
@@ -36,8 +35,11 @@ const ListKos = () =>{
                                 <option value="1">Bacin</option>
                                 <option value="2">Besito</option>
                                 <option value="3">Demaan</option>
-                                <option value="4">Bacin</option>
-                                <option value="5">Bacin</option>
+                                <option value="4">Jepang</option>
+                                <option value="5">Getas</option>
+                                <option value="6">Ngembal</option>
+                                <option value="7">Nganguk</option>
+                                <option value="8">Purwosari</option>
                             </select>
                         </div>
                         <div className="filter-type">

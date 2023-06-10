@@ -28,7 +28,7 @@
     /* align-items: center; */
 }
 
-.nav-item a{
+.nav-link{
     color: #a5a5a5;
     text-decoration: none;
     transition: .5s ease-in-out;
@@ -127,4 +127,57 @@
 
 .login-role-selection:hover{
     background-color: #7130ff;
+}
+
+.profile-image{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    left: 85%;
+    display: flex;
+    flex-direction: column;
+    margin-top: .5rem;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+
+    background: rgba(12, 12, 29, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(12, 12, 29, 0.25);
+}
+
+.dropdown-content.open {
+    opacity: 1;
+}
+
+.dropdown-link {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.dropdown-button {
+    background-color: #f14f5d;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.dropdown-button:hover{
+    background-color: #e44a57;
 }

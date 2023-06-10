@@ -13,7 +13,7 @@ const ReviewCard = (props) =>{
             <span></span>
             <div className="review-user">
                 <div className="review-user-profile">
-                    <img src={reviewUser} alt="" />
+                    <img src={reviewUser} className='review-user-profile-pict'/>
                     <h4>{props.user}</h4>
                 </div>
                 <FontAwesomeIcon icon={props.icon} className='review-like'/>

@@ -1,14 +1,22 @@
+//import Library
+import { useNavigate } from 'react-router-dom';
+import { useRef, useState, useEffect } from 'react'
+import axios from 'axios';
+import { api } from '../api/api';
+
+//import Styles
 import '../App.css';
 import '../assets/styles/register.css';
+
+//import Components
+import TextField from '../components/TextField/TextField';
+import ButtonRegister from '../components/Button/ButtonRegister';
+import Popup from '../components/Popup/Popup';
+
+//import Assets
 import img1 from '../assets/images/img1.svg';
 import logo1 from '../assets/images/logo1.svg';
 import logo2 from '../assets/images/logo2.svg';
-import TextField from '../components/TextField/TextField';
-import { useNavigate } from 'react-router-dom';
-import { useRef, useState, useEffect } from 'react';
-import ButtonRegister from '../components/Button/ButtonRegister';
-import axios from 'axios';
-import api from '../api/api';
 
 const fullNameRegex  = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 const phoneNumberRegex = /^(08|\+628)\d{9,11}$/;
@@ -17,7 +25,7 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$
 
 const Register = () => {
     const navigate = useNavigate()
-    const nameRef = useRef()
+    const userRef = useRef()
     const errRef = useRef()
 
     const [name, setName] = useState('');
@@ -31,7 +39,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
-    
+
     const [password, setPassword] = useState('');
     const [validPassword, setValidPassword] = useState(false);
     const [passwordFocus, setPasswordFocus] = useState(false);
@@ -39,12 +47,17 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [validConfirm, setValidConfirm] = useState(false);
     const [confirmFocus, setConfirmFocus] = useState(false);
-    
+
+    const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
+
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
+    const [errors, setErrors] = useState({});
+    // const [error, setError] = useState(null);
+    // const [retry, setRetry] = useState(false);
 
     // useEffect(() =>{
-    //     nameRef.current.focus();
+    //     userRef.current.focus();
     // }, [])
 
     //Nama Lengkap
@@ -82,61 +95,104 @@ const Register = () => {
         // console.log(confirmPassword);
     },[password, confirmPassword])
 
-    useEffect (() =>{
-        setErrMsg('');
-    }, [name, password, confirmPassword])
-    const [csrfToken, setCsrfToken] = useState('');
-
     useEffect(() => {
-        const metaTag = document.querySelector('meta[name="csrf-token"]');
-        if (metaTag) {
-            setCsrfToken(metaTag.content);
+        setErrMsg('');
+    }, [name, phone, email, password, confirmPassword])
+
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupType, setPopupType] = useState('');
+    const [popupMessage, setPopupMessage] = useState('');
+
+    const handlePopupOpen = (type, message) => {
+        setPopupType(type);
+        setPopupMessage(message);
+        setShowPopup(true);
+    };
+
+    const handlePopupClose = () => {
+        setShowPopup(false);
+    };
+
+    const validateForm = () => {
+        let formIsValid = true;
+        const newErrors = {};
+    
+        if (!name) {
+            newErrors.name = 'Nama lengkap harus diisi';
+            formIsValid = false;
+        } else if (!/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(name)) {
+            newErrors.name = 'Nama lengkap tidak valid';
+            formIsValid = false;
         }
-    }, []);
+        
+        if (!email) {
+            newErrors.email = 'Email harus diisi';
+            formIsValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            newErrors.email = 'Email tidak valid';
+            formIsValid = false;
+        }
+        
+        if (!phone) {
+            newErrors.phone = 'Nomor telepon harus diisi';
+            formIsValid = false;
+        } else if (!/^(08|\+628)\d{9,11}$/.test(phone)) {
+            newErrors.phone = 'Nomor telepon tidak valid';
+            formIsValid = false;
+        }
+        
+        if (!password) {
+            newErrors.password = 'Password harus diisi';
+            formIsValid = false;
+        } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
+            newErrors.password = 'Password harus memiliki setidaknya 8 karakter, termasuk satu huruf besar, satu huruf kecil, satu angka, dan satu karakter khusus';
+            formIsValid = false;
+        }
+        
+        if (!confirmPassword) {
+            newErrors.confirmPassword = 'Konfirmasi password harus diisi';
+            formIsValid = false;
+        } else if (confirmPassword !== password) {
+            newErrors.confirmPassword = 'Konfirmasi password tidak cocok dengan password';
+            formIsValid = false;
+        }
+    
+        setErrors(newErrors);
+        return formIsValid;
+    };
 
     const handleRegister = async (e) => {
         e.preventDefault()
-        if (password !== confirmPassword) {
-            console.log("Password and Confirm Password don't match");
+        if (!validateForm()) {
             return;
         }
+        try {
+            const response = await axios.post(api()+'/register', {
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
+                confirm_password: confirmPassword,
+            },);
+                setShowSuccessPopup(true);
+                console.log(response.data);
+            } catch (error) {
+                setShowErrorPopup(true);
+            }
+    };
+
+    const handleSuccessPopupClose = () => {
+        setShowSuccessPopup(false);
+        navigate('/login');
+    };
     
-        // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
-
-        // Lakukan permintaan ke server dengan menggunakan Axios
-        // const response = await fetch(api() + '/register', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //         'X-CSRF-TOKEN': csrfToken, // Menambahkan token CSRF ke header
-        //     },
-        //     body: JSON.stringify({
-        //         name: name,
-        //         email: email,
-        //         phone: phone,
-        //         password: password,
-        //         confirm_password: confirmPassword,
-
-        //     })
-        // });   
-        // console.log(response);
-        axios
-            .post(api()+'/register', {
-            name: name,
-            email: email,
-            phone: phone,
-            password: password,
-            confirm_password: confirmPassword,
-            },)
-            .then((response) => {
-            // Tangani respons dari server jika registrasi berhasil
-            console.log(response.data);
-            })
-            .catch((error) => {
-            // Tangani respons dari server jika registrasi gagal
-            console.log(error);
-        });
+    const handleErrorPopupClose = () => {
+        setShowErrorPopup(false);
+    };
+    
+    const handleRetryRegister = () => {
+        setShowErrorPopup(false);
+        handleRegister();
     };
 
     return(
@@ -152,6 +208,7 @@ const Register = () => {
             <div className="right">
                 <div className="form-register">
                     <img src={logo2} alt="logo2" className='logo2' />
+                    
                     <h1>Selamat Datang</h1>
                         <form onSubmit={handleRegister}>
                             <TextField 
@@ -161,8 +218,10 @@ const Register = () => {
                             name='nama' 
                             inputId='nama' 
                             placeholder='Masukkan nama lengkap sesuai identitas'
+                            value={name}
                             onChange={(e) => setName(e.target.value)}
                             />
+                            {/* {errors.name && <span className='error-message'>{errors.name}</span>} */}
                             <TextField 
                             htmlFor='nohp' 
                             label='Nomor Handphone' 
@@ -173,6 +232,7 @@ const Register = () => {
                             onChange={(e) => setPhoneNumber(e.target.value)}
                             maxLength="10"
                             />
+                            {/* {errors.phone && <span className='error-message'>{errors.phone}</span>} */}
                             <TextField 
                             htmlFor='email' 
                             label='Email' 
@@ -182,6 +242,7 @@ const Register = () => {
                             placeholder='Masukkan email'
                             onChange={(e) => setEmail(e.target.value)}
                             />
+                            {/* {errors.email && <span className='error-message'>{errors.email}</span>} */}
                             <TextField 
                             htmlFor='password' 
                             label='Password' 
@@ -191,6 +252,7 @@ const Register = () => {
                             placeholder='Minimal 8 Karakter'
                             onChange={(e) => setPassword(e.target.value)}
                             />
+                            {/* {errors.password && <span className='error-message'>{errors.password}</span>} */}
                             <TextField 
                             htmlFor='conpass' 
                             label='Konfirmasi Password' 
@@ -200,11 +262,38 @@ const Register = () => {
                             placeholder='Masukkan kembali password'
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             />
+                            {/* {errors.confirmPassword && <span className='error-message'>{errors.confirmPassword}</span>} */}
                             <ButtonRegister button="Daftar" disabled={!validName || !validPhone || !validEmail || !validPassword || !validConfirm ? true : false}/>
                     </form>
-                    <h4>Sudah memiliki akun? <span onClick={() => navigate('/login')}>Login sekarang</span></h4>
+                    <h4>Sudah memiliki akun? <span className='login-now' onClick={() => navigate('/login')}>Login sekarang</span></h4>
                 </div>
             </div>
+                {/* <Popup
+                show={showPopup}
+                type={popupType}
+                message={popupMessage}
+                onClose={handlePopupClose}
+                /> */}
+
+            {showSuccessPopup && (
+                    <Popup
+                    type="success"
+                    message="Selamat! Akun Anda telah berhasil dibuat."
+                    onClose={handleSuccessPopupClose}
+                    >
+                    <button onClick={handleSuccessPopupClose}>Lanjut ke Halaman Login</button>
+                    </Popup>
+                )}
+
+            {showErrorPopup && (
+                <Popup
+                type="error"
+                message="Registrasi gagal. Silakan coba lagi."
+                onClose={handleErrorPopupClose}
+                >
+                <button onClick={handleRetryRegister}>Coba Lagi</button>
+                </Popup>
+            )}
         </div>
     )
 }

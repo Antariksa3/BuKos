@@ -39,6 +39,7 @@
     font-size: 4rem;
     width: 500px;
     z-index: 10;
+    position: relative;
 }
 
 .dashboard h3{
@@ -76,6 +77,7 @@
     width: 100%;
     height: auto;
     user-select: none;
+    z-index: 10;
 }
 
 .scroll-down-container {

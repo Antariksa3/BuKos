@@ -1,46 +1,41 @@
+// import Library
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { useState, useContext} from 'react'
+import { api } from '../api/api'
+import { AuthContext } from '../auth/AuthContext'
+
+// import Styles
 import '../App.css';
 import '../assets/styles/login.css';
+
+// import Components
+import TextField from '../components/TextField/TextField';
+import ButtonRegister from '../components/Button/ButtonRegister';
+
+// import Assets
 import img1 from '../assets/images/img1.svg';
 import logo1 from '../assets/images/logo1.svg';
 import logo2 from '../assets/images/logo2.svg';
-import TextField from '../components/TextField/TextField';
-import ButtonRegister from '../components/Button/ButtonRegister';
-import { useNavigate } from 'react-router-dom';
-import apiurl from '../api'
-import axios from 'axios'
-import { useState } from 'react';
 
 const Login = () =>{
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const {
-    //     register,
-    //     handleSubmit,
-    //     formState: { errors },
-    // } = useForm();
 
-    const onSubmit = async (data) => {
-        // e.preventDefault()
-        const formData = new FormData();
-        formData.append("email", data.email);
-        formData.append("password", data.password);
-        await axios({
-            method: "post",
-            url: apiurl() + "login",
-            data: formData,
-            headers: {
-            "Content-Type": "multipart/form-data",
-            },
-        })
-            .then((response) => {
-            console.log(response);
-            localStorage.setItem("token", response.data.data.token);
-            navigate("/");
-        })
-        .catch((error) => {
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(api() + '/login', {
+                email: email,
+                password: password,
+            });
+            const token = response.data.token;
+            localStorage.setItem('token', token);
+            navigate('/');
+        } catch (error) {
             console.log(error);
-        });
+        }
     };
 
 
@@ -60,9 +55,25 @@ const Login = () =>{
                     <h1>Selamat Datang Kembali</h1>
                     <h4>Selamat datang kembali! <br /> Silakan login dengan akun yang Anda Daftarkan</h4>
                     <br />
-                    <form onSubmit={onSubmit}>
-                        <TextField htmlFor='email' label='Email atau Nomor Handphone' type='email' name='email' inputId='email' placeholder='Email atau Nomor Handphone'   />
-                        <TextField htmlFor='password' label='Password' type='password' name='password' inputId='password' placeholder='Minimal 8 Karakter'  />
+                    <form onSubmit={handleLogin}>
+                        <TextField 
+                        htmlFor='email' 
+                        label='Email atau Nomor Handphone'
+                        type='email' 
+                        name='email' 
+                        inputId='email' 
+                        placeholder='Email atau Nomor Handphone'
+                        onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <TextField 
+                        htmlFor='password' 
+                        label='Password' 
+                        type='password' 
+                        name='password' 
+                        inputId='password' 
+                        placeholder='Minimal 8 Karakter'
+                        onChange={(e) => setPassword(e.target.value)}
+                        />
                         <ButtonRegister button="Login" />
                     </form>
                     <h4>Belum punya akun? <span onClick={() => navigate('/register')}>Daftar disini</span></h4>

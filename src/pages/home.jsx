@@ -22,16 +22,22 @@ import Button3 from '../components/Button/Button3'
 import SearchBar1 from '../components/SearchBar/SearchBar1'
 import PopularCard from '../components/PopularCard/PopularCard'
 import ReviewCard from '../components/ReviewCard/ReviewCard'
-
-// import Assets
-import dashboard1 from '../assets/images/dashboard1.svg'
-import benefit1 from '../assets/images/benefit1.svg'
 import Button5 from '../components/Button/Button5'
 import Footer from '../components/Footer/Footer'
 import ScrollUp from '../components/ScrollUp/ScrollUp'
 
+// import Assets
+import dashboard1 from '../assets/images/dashboard1.svg'
+import benefit1 from '../assets/images/benefit1.svg'
+import { useEffect } from 'react'
+import { getReviewUser, api } from '../api/api'
+
 const Home = () =>{
     // const navigate = useNavigate()
+
+    useEffect(() =>{
+        getReviewUser()
+    }, [])
     
     return(
         <>
@@ -49,10 +55,8 @@ const Home = () =>{
                         <img src={dashboard1} alt="dashboard-image" />
                     </div>
                     <div className="scroll-down-container">
-                    <Link to="benefit" spy={true} smooth={true} offset={-50} duration={250}>
-                        <a href="" class="scrollDown">
-                            <span></span>
-                        </a>
+                    <Link to="benefit" className="scrollDown" spy={true} smooth={true} offset={-50} duration={250}>
+                        <span></span>
                     </Link>
                     </div>
                 </div>
@@ -80,7 +84,7 @@ const Home = () =>{
                         <h2>Kos Terpopuler</h2>
                         <div className="popular-search">
                             <Button3 button='Lihat Semua'/>
-                            <SearchBar1 />
+                            {/* <SearchBar1 /> */}
                         </div>
                     </div>
                     <div className="popular-cards">
