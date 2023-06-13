@@ -1,8 +1,8 @@
-import './Navbar.css'
+import './NavbarDetail.css'
 import logo from '../../assets/images/logo.svg'
 import close from '../../assets/icons/close.svg'
 import React, {useState} from 'react'
-import SearchBar from '../../components/SearchBar/SearchBar'
+import SearchBar from '../SearchBar/SearchBar'
 import {Link} from 'react-scroll'
 import { useNavigate } from 'react-router-dom'
 
@@ -33,7 +33,7 @@ const NavBar = () =>{
 
     return(
         <nav className={color ? 'nav fixed' : 'nav'}>
-            <a href=""className='nav-logo'><img src={logo} alt="logo" /></a>
+            <a href=""className='nav-logo'><img src={logo} alt="logo" onClick={() => navigate('/')} /></a>
             {/* <SearchBar/> */}
             <ul className='nav-menu'>
                 <li className='nav-item'>
@@ -42,7 +42,7 @@ const NavBar = () =>{
                 <li className='nav-item'>
                     <a href="#">Layanan</a>
                 </li>
-                <li className='nav-item' onClick={() => navigate('/profile/kosansaya')}>
+                <li className='nav-item'>
                     <a href="#">Syarat & Ketentuan</a>
                 </li>
                 <button className='button-login' onClick={toggleModal}>Masuk</button>
