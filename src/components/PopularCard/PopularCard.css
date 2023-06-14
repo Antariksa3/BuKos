@@ -1,0 +1,89 @@
+.popular-card{
+    background-color: #f4f4f4;
+    width: 400px;
+    height: 450px;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    transition: .2s ease-in-out;
+    margin-right: 1.5rem;
+    box-shadow: 0px 0px 25px 15px rgba(189,189,189,0.3);
+    -webkit-box-shadow: 0px 0px 25px 15px rgba(189,189,189,0.3);
+    -moz-box-shadow: 0px 0px 25px 15px rgba(189,189,189,0.3);
+    transition: .3s all ease-in-out;
+
+}
+
+.popular-card:hover{
+    transform: scale(1.025);
+    background-color: #e5dafe;
+}
+
+.popular-image{
+    height: 250px;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.popular-kos-image{
+    width: 350px;
+    height: 250px;
+    border-radius: 1rem;
+    transition: .5s all ease-in-out;
+}
+
+/* .popular-kos-image:hover {
+    transform: scale(1.1);
+} */
+
+.popular-owner{
+    transform: translateY(-125%);
+    display: flex;
+    margin-left: 1rem;
+    box-shadow: 0px 10px 15px 5px rgba(29,29,29,0.2);
+    -webkit-box-shadow: 0px 10px 15px 5px rgba(29,29,29,0.2);
+    -moz-box-shadow: 0px 10px 15px 5px rgba(29,29,29,0.2);
+}
+
+.popular-owner h4{
+    color: white;
+    font-weight: 600;
+    margin-left: .5rem;
+}
+
+.popular-kos h4{
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    margin-top: .5rem;
+}
+
+.popular-location{
+    display: flex;
+    margin-top: .5rem;
+}
+
+.popular-location h4{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #737D8C;
+    margin: auto;
+    margin-left: .5rem;
+}
+
+.popular-location-icon{
+    color: #737D8C;
+    margin: auto 0;
+}
+
+.popular-price{
+    margin-bottom: .5rem;
+}
+
+.popular-price h4{
+    color: #2A323C;
+}
+
+.popular-price span{
+    font-size: 1rem;
+    font-weight: 500;
+}

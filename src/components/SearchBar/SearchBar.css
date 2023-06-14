@@ -1,5 +1,13 @@
 .background-glass{
     display: flex;
+    padding: .5rem;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: .5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.7px);
+    -webkit-backdrop-filter: blur(4.7px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .input-wrapper{
@@ -40,20 +48,9 @@
     padding: .5rem 2.5rem;
     margin-left: .75rem;
     cursor: pointer;
-    transition: .5s;
+    transition: .5s ease-in-out;
 }
 
 .search-button:hover{
     background-color: #7130ff;
-}
-
-.background-glass{
-    padding: .5rem;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: .5rem;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.7px);
-    -webkit-backdrop-filter: blur(4.7px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
 }

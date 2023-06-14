@@ -3,17 +3,24 @@ import './App.css';
 import Login from './pages/login';
 import Register from './pages/register';
 import Home from './pages/home';
-import NavBar from './layouts/Navbar/Navbar';
-import SearchBar from './components/SearchBar/SearchBar';
+import ListKos from './pages/list';
+import NotFoundPage from './pages/notFound';
+import Detail from './pages/detail';
+import Profile from './pages/profile';
+import Pembayaran from './pages/pembayaran';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route exact path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
-        <Route path='/test2' element={<SearchBar/>}/>
+        <Route path='/listkos' element={<ListKos/>}/>
+        <Route path='/detail' element={<Detail/>}/>
+        <Route path='/profile/*' element={<Profile/>}/>
+        <Route path='/pembayaran' element={<Pembayaran/>}/>
+        <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
     </Router>
   );

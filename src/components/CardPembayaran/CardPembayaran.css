@@ -1,0 +1,153 @@
+.card-page-pembayaran {
+    width: 400px;
+    height: auto;
+    width: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #FFFFFF;
+box-shadow: 0px -2px 40px rgba(0, 0, 0, 0.04), 0px 16px 40px rgba(0, 0, 0, 0.06);
+border-radius: 8px;
+}
+
+.bagian-atas-card {
+    display: flex;
+    gap: 20px;
+}
+
+.bagian-atas-card img {
+    width: 170px;
+    height: 120px;
+    border-radius: 5px;
+}
+
+.bagian-atas-card-title {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+.bagian-atas-card-title h5 {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+height: 0;
+margin-top: 10px;
+/* identical to box height, or 150% */
+
+color: #404040;
+}
+
+.bagian-atas-card-title h3 {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+height: 0;
+/* or 144% */
+margin-top: 0px;
+color: #383746;
+
+}
+
+.bagian-atas-card-title p {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 20px;
+/* or 143% */
+
+color: #757575;
+
+}
+
+.garis-pembatas-card {
+    height: 1px;
+border-bottom: 2px solid #E8E8E8;
+}
+
+.bagian-bawah-card-title{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bagian-bawah-card-title h1 {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+height: 0;
+/* or 144% */
+margin-top: 0px;
+color: #383746;
+
+}
+
+.bagian-bawah-card-title p {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 20px;
+margin-top: 20px;
+/* or 143% */
+
+color: #383746;
+
+}
+
+.detail-card-pembayaran {
+
+}
+
+.card-biaya-sewa {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-biaya-sewa a{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* or 143% */
+    
+    color: #383746;
+}
+
+.card-deposit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.deposit-dan-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-total-pembayaran {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.card-total-pembayaran h2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: -5px;
+    height: 10px;
+    /* identical to box height, or 133% */
+    
+
+    
+    color: #834bff;
+
+}

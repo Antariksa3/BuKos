@@ -1,58 +1,44 @@
-.nav{
-    /* background-color: blue; */
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: .5rem 0;
+.button5{
+    padding: 0;
 }
 
-.nav-menu{
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    list-style: none;
-}
-
-.nav-item{
-    margin: auto 1.5rem auto 0;
-    /* align-items: center; */
-}
-
-.nav-item a{
-    color: #a5a5a5;
-    text-decoration: none;
-    transition: .5s;
-}
-
-.nav-item a:hover{
-    color: white;
-}
-
-.nav-logo{
-    height: 3rem;
-}
-
-.button-login{
-    padding: .5rem 1rem;
-    border-radius: .5rem;
-    background-color: #834BFF;
-    color: white;
+.button-start{
+    padding: .75rem 1.5rem;
+    width: 100%;
+    border-radius: 3rem;
+    color: #0C0C1D;
+    background-color: white;
     border-style: none;
-    align-items: center;
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
     cursor: pointer;
-    transition: all .5s;
-    height: 3rem;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0 auto;
 }
 
-.button-login:hover{
-    background-color: #7130ff;
+.button-start:hover{
+    background-color: #e5e5e5;
+    transform: scale(.98);
 }
 
-body.active-modal {
+.background-glass-button{
+    display: flex;
+    padding: .5rem;
+    margin: 0 auto;
+    width: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.7px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* .review .active-modal {
     overflow-y: hidden;
 }
 
-.modal, .overlay {
+.modal-start, .overlay-start {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -87,18 +73,6 @@ body.active-modal {
     background-color: transparent;
     border-style: none;
 }
-/* 
-.close-modal:hover{
-    animation: rotate 1s;
-}
-
-@keyframes rotate{
-    from{
-        transform: rotate(0deg);
-    } to {
-        transform: rotate(90deg);
-    }
-} */
 
 .login-role-selection{
     background-color: #834BFF;
@@ -116,4 +90,4 @@ body.active-modal {
 
 .login-role-selection:hover{
     background-color: #7130ff;
-}
+} */

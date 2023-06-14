@@ -1,0 +1,142 @@
+
+.komentar * {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Poppins";
+}
+
+.komentar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.komentar-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.pengguna {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.komen-pengguna {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.komen-pengguna img {
+  width: 50px;
+  height: 50px;
+}
+
+.info-pengguna {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-pengguna h3 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+  color: #383746;
+}
+.info-pengguna p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+
+  display: flex;
+  align-items: center;
+
+  color: #383746;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  width: 57.17px;
+  height: 32px;
+  left: 607.83px;
+  top: 0px;
+
+  background: #ffffff;
+  box-shadow: inset 0px 0px 0px 1px #dadada;
+  border-radius: 4px;
+}
+
+.komen-rate {
+  align-items: center;
+  display: flex;
+  gap: 400px;
+}
+
+.balasan {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sekat {
+  width: 2px;
+  height: 150px;
+
+  background: #e8e8e8;
+}
+
+.isi-balasan {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.balasan-atas {
+  display: flex;
+  flex-direction: column;
+}
+
+.balasan-atas h3 {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+color: #303030;
+}
+
+.balasan-atas p {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 24px;
+/* or 150% */
+
+display: flex;
+align-items: center;
+
+color: #404040;
+}
+
+.balasan-bawah {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 24px;
+
+color: #404040;
+}

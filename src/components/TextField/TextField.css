@@ -10,13 +10,13 @@
   
   .text-field-input{
     padding: .75rem 1rem;
-    width: 26.5rem;
+    width: 100%;
     border-radius: .75rem;
     color: #2A323C;
     text-decoration-color: #2A323C;
     outline: none;
     border: 2px solid #CDD6E1;
-    transition: 0.25s;
+    transition: 0.25s ease-in-out;
     -webkit-transition: 0.25s;
     margin: .5rem 0;
   }
