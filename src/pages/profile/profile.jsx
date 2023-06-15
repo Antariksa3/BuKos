@@ -1,17 +1,24 @@
+// import Library
 import React from 'react'
-import '../assets/styles/profile.css'
 import { Icon } from '@iconify/react';
-import NavbarDetail from '../components/Navbar/NavbarDetail'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import EditProfilePhotoWidget from '../components/EditFoto/EditFoto'
-import KosSaya from '../assets/images/ic_kost_o.svg'
-import Sidebar from '../components/Sidebar/Sidebar';
+
+// import Styles
+import '../../assets/styles/profile.css'
+
+// import Components
+import NavbarDetail from '../../components/Navbar/NavbarDetail'
+import EditProfilePhotoWidget from '../../components/EditFoto/EditFoto'
+import Sidebar from '../../components/Sidebar/Sidebar';
 import KosanSaya from './kosanSaya';
 import RiwayatBooking from './riwayatBooking';
 import RiwayatKos from './riwayatKos';
 import RiwayatTransaksi from './riwayatTransaksi';
 import Verifikasi from './verifikasiAkun';
 import Pengaturan from './pengaturanAkun';
+
+// import Assets
+import KosSaya from '../../assets/icons/ic_kost_o.svg'
 
 
 function Profile() {

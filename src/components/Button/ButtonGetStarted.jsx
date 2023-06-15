@@ -1,10 +1,10 @@
 import '../../App.css'
-import './Button5.css'
+import './ButtonGetStarted.css'
 import { useNavigate } from 'react-router-dom'
 import close from '../../assets/icons/close.svg'
 import React, {useState} from 'react'
 
-const Button5 = () => {
+const ButtonGetStarted = () => {
     const navigate = useNavigate()
     const [modal, setModal] = useState(false);
 
@@ -19,7 +19,7 @@ const Button5 = () => {
     // }
 
     return(
-        <div className="button5">
+        <div className="buttonGetStarted">
             <div className="background-glass-button">
             <button className='button-start'>Mulai Sekarang</button>
             {/* {modal && (
@@ -43,4 +43,4 @@ const Button5 = () => {
     )
 }
 
-export default Button5
+export default ButtonGetStarted

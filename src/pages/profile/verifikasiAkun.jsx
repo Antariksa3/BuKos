@@ -1,8 +1,17 @@
+// import Library
 import React from 'react'
-import Tagihan from '../assets/images/ic_booking_succeed.png'
-import Keamanan from '../assets/images/ic_payment.png'
-import Cashless from '../assets/images/ic_disbursement_funds.png'
 import { useNavigate } from 'react-router-dom'
+
+// import Styles
+
+// import Components
+
+// import Assets
+import Tagihan from '../../assets/icons/ic_booking_succeed.png'
+import Keamanan from '../../assets/icons/ic_payment.png'
+import Cashless from '../../assets/icons/ic_disbursement_funds.png'
+
+
 
 function Verifikasi() {
     const navigate = useNavigate()

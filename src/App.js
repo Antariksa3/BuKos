@@ -6,7 +6,7 @@ import Home from './pages/home';
 import ListKos from './pages/list';
 import NotFoundPage from './pages/notFound';
 import Detail from './pages/detail';
-import Profile from './pages/profile';
+import Profile from './pages/profile/profile';
 import Pembayaran from './pages/pembayaran';
 
 const App = () => {

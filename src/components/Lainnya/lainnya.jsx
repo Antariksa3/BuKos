@@ -2,8 +2,8 @@ import './lainnya.css';
 import React from "react"
 import { Icon } from '@iconify/react';
 import Contoh from '../../assets/images/BgFjxmDl-540x720.jpg.png'
-import spek from '../../assets/images/lebar-ruang.png';
-import pasutri from '../../assets/images/pasutri.png';
+import spek from '../../assets/icons/lebar-ruang.png';
+import pasutri from '../../assets/icons/pasutri.png';
 import img2 from '../../assets/images/j8hydwG2-540x720.jpg.png';
 
 

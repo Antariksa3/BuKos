@@ -1,26 +1,35 @@
+// import Library
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Icon } from "@iconify/react";
+
+// import Styles
 import '../assets/styles/detail.css'
-import NavBar from '../components/Navbar/NavbarDetail'
+
+// import Components
 import Footer from '../components/Footer/Footer'
+import Komentar from '../components/Komentar/komentar';
+import Lainnya from '../components/Lainnya/lainnya';
+import ScrollUp from '../components/ScrollUp/ScrollUp'
+import NavbarDetail from '../components/Navbar/NavbarDetail';
+
+// import Assets
 import img1 from '../assets/images/div.detail-photo__left.png';
 import img2 from '../assets/images/j8hydwG2-540x720.jpg.png';
 import img3 from '../assets/images/BgFjxmDl-540x720.jpg.png';
 import pp from '../assets/images/pp.png';
 import bulat from '../assets/images/logo-bulat.png';
-import spek from '../assets/images/lebar-ruang.png';
-import pasutri from '../assets/images/pasutri.png';
-import Komentar from '../components/Komentar/komentar';
-import Lainnya from '../components/Lainnya/lainnya';
-import ScrollUp from '../components/ScrollUp/ScrollUp'
+import spek from '../assets/icons/lebar-ruang.png';
+import pasutri from '../assets/icons/pasutri.png';
+
+
 
 function Detail() {
   const navigate = useNavigate()
   return (
     <div className="detail-page-main" >
             <header>
-            <NavBar/>
+            <NavbarDetail/>
             </header>
         <div className="detail-page-content">
 

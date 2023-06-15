@@ -1,5 +1,12 @@
+// import Library
+import React, {useEffect, useState} from 'react'
+import { getProduct } from '../api/api'
+
+// import Styles
 import '../App.css'
 import '../assets/styles/list.css'
+
+// import Components
 import Footer from '../components/Footer/Footer'
 import ListKosCard from '../components/ListKosCard/ListKosCard'
 import NavbarList from '../components/Navbar/NavbarList'
@@ -7,9 +14,10 @@ import PopularCard from '../components/PopularCard/PopularCard'
 import SearchBar1 from '../components/SearchBar/SearchBar1'
 import FilterSearch from '../components/SearchBar/FilterSearch'
 import Button6 from '../components/Button/Button6'
-import React, {useEffect, useState} from 'react'
 import ScrollUp from '../components/ScrollUp/ScrollUp'
-import { getProduct } from '../api/api'
+
+// import Assets
+
 
 const ListKos = () =>{
     const [fixed, setFixed] = useState (false)

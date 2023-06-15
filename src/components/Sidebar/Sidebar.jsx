@@ -1,21 +1,26 @@
+// import Library
 import React from 'react'
-import './Sidebar.css'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import EditProfilePhotoWidget from '../EditFoto/EditFoto'
-import KosanSaya from '../../pages/kosanSaya'
-import DraftBooking from '../../pages/riwayatBooking'
-import RiwayatBooking from '../../pages/riwayatBooking'
-import RiwayatKos from '../../pages/riwayatKos'
-import RiwayatTransaksi from '../../pages/riwayatTransaksi'
-import VerifikasiAkun from '../../pages/verifikasiAkun'
-import PengaturanAkun from '../../pages/pengaturanAkun'
-import KostSaya from '../../assets/images/ic_kost_o.svg'
-import HistoryBooking from '../../assets/images/ic_waiting-list_o.svg'
-import HistoryKos from '../../assets/images/ic_history-kost_o.svg'
-import HistoryTransaksi from '../../assets/images/ic_history-transaction_o.svg'
-import VerifAkun from '../../assets/images/ic_verifikasi-akun_o.svg'
-import SettingAkun from '../../assets/images/ic_setting-gear.svg'
 
+// import Styles
+import './Sidebar.css'
+
+// import Components
+import EditProfilePhotoWidget from '../EditFoto/EditFoto'
+import KosanSaya from '../../pages/profile/kosanSaya'
+import RiwayatBooking from '../../pages/profile/riwayatBooking'
+import RiwayatKos from '../../pages/profile/riwayatKos'
+import RiwayatTransaksi from '../../pages/profile/riwayatTransaksi'
+import VerifikasiAkun from '../../pages/profile/verifikasiAkun'
+import PengaturanAkun from '../../pages/profile/pengaturanAkun'
+
+// import Assets
+import KostSaya from '../../assets/icons/ic_kost_o.svg'
+import HistoryBooking from '../../assets/icons/ic_waiting-list_o.svg'
+import HistoryKos from '../../assets/icons/ic_history-kost_o.svg'
+import HistoryTransaksi from '../../assets/icons/ic_history-transaction_o.svg'
+import VerifAkun from '../../assets/icons/ic_verifikasi-akun_o.svg'
+import SettingAkun from '../../assets/icons/ic_setting-gear.svg'
 
 
 function Sidebar() {
