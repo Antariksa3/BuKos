@@ -1,17 +1,158 @@
 import React from 'react'
 import '../assets/styles/notFound.css'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link} from 'react-router-dom'
 
-const NotFoundPage = () =>{
-    return(
-        <div className="not-found-background">
-            <div className="not-found-page">
-                <h1>404 Not Found</h1>
-                <p>The requested page does not exist.</p>
-                <Link to="/" className="back-button">Back to Homepage</Link>
-            </div>
+function notFound() {
+
+const navigate = useNavigate;
+
+  return (
+    <div>
+      <div class="container container-star">
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-1"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+  <div class="star-2"></div>
+</div>
+<div class="container container-bird">
+  <div class="bird bird-anim">
+    <div class="bird-container">
+      <div class="wing wing-left">
+        <div class="wing-left-top"></div>
+      </div>
+      <div class="wing wing-right">
+        <div class="wing-right-top"></div>
+      </div>
+    </div>
+  </div>
+  <div class="bird bird-anim">
+    <div class="bird-container">
+      <div class="wing wing-left">
+        <div class="wing-left-top"></div>
+      </div>
+      <div class="wing wing-right">
+        <div class="wing-right-top"></div>
+      </div>
+    </div>
+  </div>
+  <div class="bird bird-anim">
+    <div class="bird-container">
+      <div class="wing wing-left">
+        <div class="wing-left-top"></div>
+      </div>
+      <div class="wing wing-right">
+        <div class="wing-right-top"></div>
+      </div>
+    </div>
+  </div>
+  <div class="bird bird-anim">
+    <div class="bird-container">
+      <div class="wing wing-left">
+        <div class="wing-left-top"></div>
+      </div>
+      <div class="wing wing-right">
+        <div class="wing-right-top"></div>
+      </div>
+    </div>
+  </div>
+  <div class="bird bird-anim">
+    <div class="bird-container">
+      <div class="wing wing-left">
+        <div class="wing-left-top"></div>
+      </div>
+      <div class="wing wing-right">
+        <div class="wing-right-top"></div>
+      </div>
+    </div>
+  </div>
+  <div class="bird bird-anim">
+    <div class="bird-container">
+      <div class="wing wing-left">
+        <div class="wing-left-top"></div>
+      </div>
+      <div class="wing wing-right">
+        <div class="wing-right-top"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container-title">
+    <div class="title">
+      <div class="number">4</div>
+      <div class="moon">
+        <div class="face">
+          <div class="mouth"></div>
+          <div class="eyes">
+            <div class="eye-left"></div>
+            <div class="eye-right"></div>
+          </div>
         </div>
-    )
+      </div>
+      <div class="number">4</div>
+    </div>
+    <div class="subtitle">Oops. Sepertinya terdapat masalah pada tautan anda.</div>
+    <Link to={'/'}>
+        <button >Kembali</button>
+    </Link>
+  </div>
+</div>
+    </div>
+  )
 }
 
-export default NotFoundPage;
+export default notFound

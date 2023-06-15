@@ -82,7 +82,7 @@ const NavBar = () =>{
                         <img src={profileImage} alt="Profile" className="profile-image" onClick={toggleDropdown} />
                         {dropdownOpen && (
                             <div className="dropdown-content open">
-                                <Link to="/profile" onClick={toggleDropdown} className="dropdown-link">
+                                <Link to="/profile/kosansaya" onClick={toggleDropdown} className="dropdown-link">
                                     Profile
                                 </Link>
                                 <button onClick={handleLogout} className="dropdown-button">
