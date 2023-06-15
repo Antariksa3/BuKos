@@ -3,7 +3,7 @@ import popularImage from '../../assets/images/popular1.svg'
 import popularOwner from '../../assets/images/popularOwner1.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import Button4 from '../Button/Button4'
+import Button4 from '../Button/ButtonDetail'
 
 
 const ListKosCard = (product) =>{

@@ -1,14 +1,25 @@
+// import Library
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
+import React, {useState} from 'react'
+
+// import Styles
 import './NavbarDetail.css'
+
+// import Components
+import SearchBar from '../../components/SearchBar/SearchBar'
+
+// import Assets
 import logo from '../../assets/images/logo.svg'
 import close from '../../assets/icons/close.svg'
-import React, {useState} from 'react'
-import SearchBar from '../SearchBar/SearchBar'
-import {Link} from 'react-scroll'
-import { useNavigate } from 'react-router-dom'
+import profileImage from '../../assets/images/reviewUser1.svg'
 
-const NavBar = () =>{
+
+const NavbarDetail = () =>{
     const navigate = useNavigate()
     const [modal, setModal] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(hasToken());
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [role, setRole] = useState('');
 
     const toggleModal = () => {
         setModal(!modal);
@@ -20,42 +31,70 @@ const NavBar = () =>{
         document.body.classList.remove('active-modal')
     }
 
-    const [color, setColor] = useState(false)
-    const changeColor = () =>{
-        if (window.scrollY >= 50){
-            setColor(true)
-        } else {
-            setColor(false)
-        }
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        window.location.reload();
+        navigate('/');
+    };
+    
+    function hasToken() {
+        const token = localStorage.getItem('token');
+        return !!token;
     }
 
-    window.addEventListener('scroll', changeColor)
+    const handleRoleSelection = (selectedRole) => {
+        setRole(selectedRole);
+        navigate('/login', { state: { role: selectedRole } });
+    };
 
     return(
-        <nav className={color ? 'nav fixed' : 'nav'}>
-            <a href=""className='nav-logo'><img src={logo} alt="logo" onClick={() => navigate('/')} /></a>
-            {/* <SearchBar/> */}
-            <ul className='nav-menu'>
-                <li className='nav-item'>
-                    <Link to="popular" spy={true} smooth={true} offset={-50} duration={500}>Cari Kos</Link>
+        <nav className='navDetail'>
+            <a onClick={() => navigate('/')} className='navDetail-logo'><img src={logo} alt="logo" /></a>
+            <ul className='navDetail-menu'>
+                <li className='navDetail-item'>
+                    <a href="#" className='nav-link'>Cari Kos</a>
                 </li>
-                <li className='nav-item'>
-                    <a href="#">Layanan</a>
+                <li className='navDetail-item'>
+                    <a href="#" className='nav-link'>Layanan</a>
                 </li>
-                <li className='nav-item'>
-                    <a href="#">Syarat & Ketentuan</a>
+                <li className='navDetail-item'>
+                    <a href="#" className='nav-link'>Syarat & Ketentuan</a>
                 </li>
-                <button className='button-login' onClick={toggleModal}>Masuk</button>
+                {isLoggedIn ? (
+                <li className='nav-item'>
+                    <div className="dropdown">
+                        <img src={profileImage} alt="Profile" className="profile-image" onClick={toggleDropdown} />
+                        {dropdownOpen && (
+                            <div className="dropdown-content open">
+                                <RouterLink to="/profile/kosansaya" onClick={toggleDropdown} className="dropdown-link">
+                                    Profile
+                                </RouterLink>
+                                <button onClick={handleLogout} className="dropdown-button">
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </li>
+                ) : (
+                <li className='nav-item'>
+                    <button className='button-login' onClick={toggleModal}>Masuk</button>
+                </li>
+                )}
                 {modal && (
                     <div className="modal">
                         <div onClick={toggleModal} className="overlay"></div>
                             <div className="modal-content">
                                 <h2>Masuk ke Bukos</h2>
                                 <p>Saya ingin masuk sebagai</p>
-                                <div className='login-role-selection' onClick={() => navigate('/register')}>
+                                <div className='login-role-selection' onClick={() => handleRoleSelection('pencari')}>
                                     <p>Pencari Kos</p>
                                 </div>
-                                <div className='login-role-selection' onClick={() => navigate('/login')}>
+                                <div className='login-role-selection' onClick={() => handleRoleSelection('pemilik')}>
                                     <p>Pemilik Kos</p>
                                 </div>
                                 <button className="close-modal" onClick={toggleModal} ><img src={close} alt="close"/></button>
@@ -67,4 +106,4 @@ const NavBar = () =>{
     )
 }
 
-export default NavBar
+export default NavbarDetail

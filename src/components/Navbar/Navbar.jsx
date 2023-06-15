@@ -1,7 +1,7 @@
 // import Library
 import React, { useState, useContext } from 'react'
-import {Link} from 'react-scroll'
-import { useNavigate } from 'react-router-dom'
+import { Link as ScrollLink } from 'react-scroll'
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
 
 // import Styles
 import './Navbar.css'
@@ -65,10 +65,10 @@ const NavBar = () =>{
 
     return(
         <nav className={color ? 'nav fixed' : 'nav'}>
-            <a href=""className='nav-logo'><img src={logo} alt="logo" /></a>
+            <a href="" className='nav-logo'><img src={logo} alt="logo" /></a>
             <ul className='nav-menu'>
                 <li className='nav-item'>
-                    <Link to="popular" spy={true} smooth={true} offset={-50} duration={500} className='nav-link'>Cari Kos</Link>
+                    <ScrollLink to="popular" spy={true} smooth={true} offset={-50} duration={500} className='nav-link'>Cari Kos</ScrollLink>
                 </li>
                 <li className='nav-item'>
                     <a href="#" className='nav-link'>Layanan</a>
@@ -82,9 +82,9 @@ const NavBar = () =>{
                         <img src={profileImage} alt="Profile" className="profile-image" onClick={toggleDropdown} />
                         {dropdownOpen && (
                             <div className="dropdown-content open">
-                                <Link to="/profile/kosansaya" onClick={toggleDropdown} className="dropdown-link">
+                                <RouterLink to="/profile/kosansaya" onClick={toggleDropdown} className="dropdown-link">
                                     Profile
-                                </Link>
+                                </RouterLink>
                                 <button onClick={handleLogout} className="dropdown-button">
                                     Logout
                                 </button>
@@ -99,7 +99,7 @@ const NavBar = () =>{
                 )}
                 {modal && (
                     <div className="modal">
-                        <div onClick={toggleModal} className="overlay"></div>
+                        <div onClick={toggleModal} className="overlay-login"></div>
                         <div className="modal-content">
                             <h2>Masuk ke Bukos</h2>
                             <p>Saya ingin masuk sebagai</p>

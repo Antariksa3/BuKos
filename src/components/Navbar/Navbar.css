@@ -60,7 +60,7 @@
     background-color: #7130ff;
 }
 
-.modal, .overlay {
+.modal, .overlay-login {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -71,7 +71,7 @@
     z-index: 1;
 }
 
-.overlay {
+.overlay-login {
     background: rgba(0, 0, 0, 0.5);
 }
 

@@ -5,7 +5,9 @@ import { faHouseUser, faCommentDots, faRupiahSign } from '@fortawesome/free-soli
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow } from 'swiper'
-import { Link } from 'react-scroll'
+import { Link as ScrollLink } from 'react-scroll'
+import { useEffect, useState } from 'react'
+import { getReviewUser, api } from '../api/api'
 
 // import Styles
 import '../App.css'
@@ -17,20 +19,18 @@ import 'swiper/css/effect-coverflow'
 import NavBar from '../components/Navbar/Navbar'
 import SearchBar from '../components/SearchBar/SearchBar'
 import BenefitCard from '../components/BenefitCard/BenefitCard'
-import Button2 from '../components/Button/Button2'
-import Button3 from '../components/Button/Button3'
+import ButtonMore from '../components/Button/ButtonMore'
+import ButtonSeeAll from '../components/Button/ButtonSeeAll'
 import SearchBar1 from '../components/SearchBar/SearchBar1'
 import PopularCard from '../components/PopularCard/PopularCard'
 import ReviewCard from '../components/ReviewCard/ReviewCard'
-import Button5 from '../components/Button/Button5'
+import ButtonGetStarted from '../components/Button/ButtonGetStarted'
 import Footer from '../components/Footer/Footer'
 import ScrollUp from '../components/ScrollUp/ScrollUp'
 
 // import Assets
 import dashboard1 from '../assets/images/dashboard1.svg'
 import benefit1 from '../assets/images/benefit1.svg'
-import { useEffect, useState } from 'react'
-import { getReviewUser, api } from '../api/api'
 
 const Home = () =>{
     // const navigate = useNavigate()
@@ -88,9 +88,9 @@ const Home = () =>{
                         <img src={dashboard1} alt="dashboard-image" />
                     </div>
                     <div className="scroll-down-container">
-                    <Link to="benefit" className="scrollDown" spy={true} smooth={true} offset={-50} duration={250}>
+                    <ScrollLink to="benefit" className="scrollDown" spy={true} smooth={true} offset={-50} duration={250}>
                         <span></span>
-                    </Link>
+                    </ScrollLink>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@ const Home = () =>{
                             <BenefitCard icon={faCommentDots} benefitText='Chat sebelum menyewa'/>
                             <BenefitCard icon={faRupiahSign} benefitText='Pembayaran lebih muda'/>
                         </div>
-                        <Button2 button='Lebih Lanjut'/>
+                        <ButtonMore button='Lebih Lanjut'/>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ const Home = () =>{
                     <div className="popular-header">
                         <h2>Kos Terpopuler</h2>
                         <div className="popular-search">
-                            <Button3 button='Lihat Semua'/>
+                            <ButtonSeeAll button='Lihat Semua'/>
                             {/* <SearchBar1 /> */}
                         </div>
                     </div>
@@ -145,7 +145,7 @@ const Home = () =>{
                     <div className="get-started">
                         <h2>Dengan BuKos Anda dapat menemukan Kos yang Anda butuhkan</h2>
                         <h4>BuKos memudahkan pembeli untuk mulai mencari Kos impian mereka dengan mudah dan cepat</h4><br />
-                        <Button5 />
+                        <ButtonGetStarted />
                     </div>
             </div>
             <Footer />

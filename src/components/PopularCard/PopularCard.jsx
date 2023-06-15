@@ -3,13 +3,12 @@ import popularImage from '../../assets/images/popular1.svg'
 import popularOwner from '../../assets/images/popularOwner1.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import Button4 from '../Button/Button4'
+import ButtonDetail from '../Button/ButtonDetail'
 import { useNavigate } from 'react-router-dom'
 
 
 const PopularCard = () =>{
     const navigate = useNavigate()
-
 
     return(
     <div className='popular-card' onClick={() => navigate('/detail')}>
@@ -30,7 +29,7 @@ const PopularCard = () =>{
                 <h4>Rp1.200.000/<span>Bulan</span></h4>
             </div>
         </div>
-        <Button4 button='Lebih Rinci' onClick={() => navigate('/detail')}/>
+        <ButtonDetail button='Lebih Rinci' onClick={() => navigate('/detail')}/>
     </div>
     )
 }

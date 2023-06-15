@@ -1,10 +1,10 @@
-.button2{
+.buttonMore{
     padding: 0;
 }
 
-.button-show{
-    padding: .75rem 1.5rem;
-    width: 10rem;
+.button-more{
+    padding: 1rem 1.5rem;
+    width: 12rem;
     border-radius: .75rem;
     color: #fff;
     background-color: #834BFF;
@@ -12,10 +12,10 @@
     transition: 0.5s ease-in-out;
     -webkit-transition: 0.5s ease-in-out;
     cursor: pointer;
-    /* margin: 2.5rem 0; */
+    margin-top: 2rem;
     font-size: 1rem;
 }
 
-.button-show:hover{
+.button-more:hover{
     background-color: #7130ff;
 }
