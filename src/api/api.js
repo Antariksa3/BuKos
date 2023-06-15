@@ -1,6 +1,19 @@
-import axios from "axios";
+import axios from "axios"
 
-const api = () =>{
-    return 'https://b1d9-43-252-106-218.ngrok-free.app/api'
+const apiUrl = process.env.REACT_APP_API_URL;
+const apiKey = process.env.REACT_APP_API_KEY;
+
+export const api = () =>{
+    return 'http://127.0.0.1:8000/api'
 }
-export default api
+
+export const getReviewUser = async () => {
+    const review = await axios.get(`${apiUrl}/api/review`)
+    return review.data.reviews
+}
+
+export const getProduct = async () => {
+    const product = await axios.get(`${apiUrl}/api/product`)
+    // console.log({productList: product})
+    return product.data.products
+}

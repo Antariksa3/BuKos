@@ -1,14 +1,22 @@
+//import Library
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useRef, useState, useEffect } from 'react'
+import axios from 'axios';
+import { api } from '../api/api';
+
+//import Styles
 import '../App.css';
 import '../assets/styles/register.css';
+
+//import Components
+import TextField from '../components/TextField/TextField';
+import ButtonRegister from '../components/Button/ButtonRegister';
+import Popup from '../components/Popup/Popup';
+
+//import Assets
 import img1 from '../assets/images/img1.svg';
 import logo1 from '../assets/images/logo1.svg';
 import logo2 from '../assets/images/logo2.svg';
-import TextField from '../components/TextField/TextField';
-import { useNavigate } from 'react-router-dom';
-import { useRef, useState, useEffect } from 'react';
-import ButtonRegister from '../components/Button/ButtonRegister';
-import axios from 'axios';
-import api from '../api/api';
 
 const fullNameRegex  = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 const phoneNumberRegex = /^(08|\+628)\d{9,11}$/;
@@ -17,8 +25,8 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$
 
 const Register = () => {
     const navigate = useNavigate()
-    const nameRef = useRef()
-    const errRef = useRef()
+    const location = useLocation()
+    const selectedRole = location.state ? location.state.role : ''
 
     const [name, setName] = useState('');
     const [validName, setValidName] = useState(false);
@@ -31,7 +39,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
-    
+
     const [password, setPassword] = useState('');
     const [validPassword, setValidPassword] = useState(false);
     const [passwordFocus, setPasswordFocus] = useState(false);
@@ -39,104 +47,81 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [validConfirm, setValidConfirm] = useState(false);
     const [confirmFocus, setConfirmFocus] = useState(false);
-    
+
+    const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
+
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
+    const [errors, setErrors] = useState({});
+    // const [error, setError] = useState(null);
+    // const [retry, setRetry] = useState(false);
 
     // useEffect(() =>{
-    //     nameRef.current.focus();
+    //     userRef.current.focus();
     // }, [])
 
     //Nama Lengkap
     useEffect(() =>{
         const result = fullNameRegex.test(name);
-        // console.log(result);
-        // console.log(name);
         setValidName(result);
     },[name])
 
     // Nomor Telpon
     useEffect(() =>{
         const result = phoneNumberRegex.test(phone);
-        // console.log(result);
-        // console.log(phone);
         setValidPhone(result);
     },[phone])
     
     // email
     useEffect(() =>{
         const result = emailRegex.test(email);
-        // console.log(result);
-        // console.log(email);
         setValidEmail(result);
     },[email])
 
     // password
     useEffect(() =>{
         const result = passwordRegex.test(password);
-        // console.log(result);
-        // console.log(password);
         setValidPassword(result);
         const match = password === confirmPassword;
         setValidConfirm(match);
-        // console.log(confirmPassword);
     },[password, confirmPassword])
 
-    useEffect (() =>{
-        setErrMsg('');
-    }, [name, password, confirmPassword])
-    const [csrfToken, setCsrfToken] = useState('');
-
     useEffect(() => {
-        const metaTag = document.querySelector('meta[name="csrf-token"]');
-        if (metaTag) {
-            setCsrfToken(metaTag.content);
-        }
-    }, []);
+        setErrMsg('');
+    }, [name, phone, email, password, confirmPassword])
 
     const handleRegister = async (e) => {
         e.preventDefault()
-        if (password !== confirmPassword) {
-            console.log("Password and Confirm Password don't match");
-            return;
+
+        let endpoint = '/register';
+
+        if (selectedRole === 'pencari') {
+        endpoint = '/register/user';
+        } else if (selectedRole === 'pemilik') {
+        endpoint = '/register/pemilik';
         }
+        
+        try {
+            const response = await axios.post(api()+ endpoint, {
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
+                confirm_password: confirmPassword,
+            },);
+                setShowSuccessPopup(true);
+            } catch (error) {
+                setShowErrorPopup(true);
+            }
+    };
+
+    const handleSuccessPopupClose = () => {
+        setShowSuccessPopup(false);
+        navigate('/login');
+    };
     
-        // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
-
-        // Lakukan permintaan ke server dengan menggunakan Axios
-        // const response = await fetch(api() + '/register', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //         'X-CSRF-TOKEN': csrfToken, // Menambahkan token CSRF ke header
-        //     },
-        //     body: JSON.stringify({
-        //         name: name,
-        //         email: email,
-        //         phone: phone,
-        //         password: password,
-        //         confirm_password: confirmPassword,
-
-        //     })
-        // });   
-        // console.log(response);
-        axios
-            .post(api()+'/register', {
-            name: name,
-            email: email,
-            phone: phone,
-            password: password,
-            confirm_password: confirmPassword,
-            },)
-            .then((response) => {
-            // Tangani respons dari server jika registrasi berhasil
-            console.log(response.data);
-            })
-            .catch((error) => {
-            // Tangani respons dari server jika registrasi gagal
-            console.log(error);
-        });
+    const handleErrorPopupClose = () => {
+        setShowErrorPopup(false);
     };
 
     return(
@@ -161,6 +146,7 @@ const Register = () => {
                             name='nama' 
                             inputId='nama' 
                             placeholder='Masukkan nama lengkap sesuai identitas'
+                            value={name}
                             onChange={(e) => setName(e.target.value)}
                             />
                             <TextField 
@@ -202,9 +188,23 @@ const Register = () => {
                             />
                             <ButtonRegister button="Daftar" disabled={!validName || !validPhone || !validEmail || !validPassword || !validConfirm ? true : false}/>
                     </form>
-                    <h4>Sudah memiliki akun? <span onClick={() => navigate('/login')}>Login sekarang</span></h4>
+                    <h4>Sudah memiliki akun? <span className='login-now' onClick={() => navigate('/login', { state: { role: selectedRole } })}>Login sekarang</span></h4>
                 </div>
             </div>
+            {showSuccessPopup && (
+                <Popup
+                    type="success"
+                    message="Selamat! Akun Anda telah berhasil dibuat."
+                    onClose={handleSuccessPopupClose}
+                />
+            )}
+            {showErrorPopup && (
+                <Popup
+                    type="error"
+                    message="Registrasi gagal. Silakan coba lagi."
+                    onClose={handleErrorPopupClose}
+                />
+            )}
         </div>
     )
 }

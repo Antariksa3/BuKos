@@ -100,3 +100,9 @@
     color: white;
     text-decoration: underline;
 }
+
+.contact-icon{
+    color: white;
+    margin-right: .5rem;
+    font-size: 1.25rem;
+}
