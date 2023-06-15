@@ -1,5 +1,5 @@
 //import Library
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useRef, useState, useEffect } from 'react'
 import axios from 'axios';
 import { api } from '../api/api';
@@ -25,8 +25,8 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$
 
 const Register = () => {
     const navigate = useNavigate()
-    const userRef = useRef()
-    const errRef = useRef()
+    const location = useLocation()
+    const selectedRole = location.state ? location.state.role : ''
 
     const [name, setName] = useState('');
     const [validName, setValidName] = useState(false);
@@ -63,111 +63,46 @@ const Register = () => {
     //Nama Lengkap
     useEffect(() =>{
         const result = fullNameRegex.test(name);
-        // console.log(result);
-        // console.log(name);
         setValidName(result);
     },[name])
 
     // Nomor Telpon
     useEffect(() =>{
         const result = phoneNumberRegex.test(phone);
-        // console.log(result);
-        // console.log(phone);
         setValidPhone(result);
     },[phone])
     
     // email
     useEffect(() =>{
         const result = emailRegex.test(email);
-        // console.log(result);
-        // console.log(email);
         setValidEmail(result);
     },[email])
 
     // password
     useEffect(() =>{
         const result = passwordRegex.test(password);
-        // console.log(result);
-        // console.log(password);
         setValidPassword(result);
         const match = password === confirmPassword;
         setValidConfirm(match);
-        // console.log(confirmPassword);
     },[password, confirmPassword])
 
     useEffect(() => {
         setErrMsg('');
     }, [name, phone, email, password, confirmPassword])
 
-    const [showPopup, setShowPopup] = useState(false);
-    const [popupType, setPopupType] = useState('');
-    const [popupMessage, setPopupMessage] = useState('');
-
-    const handlePopupOpen = (type, message) => {
-        setPopupType(type);
-        setPopupMessage(message);
-        setShowPopup(true);
-    };
-
-    const handlePopupClose = () => {
-        setShowPopup(false);
-    };
-
-    const validateForm = () => {
-        let formIsValid = true;
-        const newErrors = {};
-    
-        if (!name) {
-            newErrors.name = 'Nama lengkap harus diisi';
-            formIsValid = false;
-        } else if (!/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(name)) {
-            newErrors.name = 'Nama lengkap tidak valid';
-            formIsValid = false;
-        }
-        
-        if (!email) {
-            newErrors.email = 'Email harus diisi';
-            formIsValid = false;
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            newErrors.email = 'Email tidak valid';
-            formIsValid = false;
-        }
-        
-        if (!phone) {
-            newErrors.phone = 'Nomor telepon harus diisi';
-            formIsValid = false;
-        } else if (!/^(08|\+628)\d{9,11}$/.test(phone)) {
-            newErrors.phone = 'Nomor telepon tidak valid';
-            formIsValid = false;
-        }
-        
-        if (!password) {
-            newErrors.password = 'Password harus diisi';
-            formIsValid = false;
-        } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
-            newErrors.password = 'Password harus memiliki setidaknya 8 karakter, termasuk satu huruf besar, satu huruf kecil, satu angka, dan satu karakter khusus';
-            formIsValid = false;
-        }
-        
-        if (!confirmPassword) {
-            newErrors.confirmPassword = 'Konfirmasi password harus diisi';
-            formIsValid = false;
-        } else if (confirmPassword !== password) {
-            newErrors.confirmPassword = 'Konfirmasi password tidak cocok dengan password';
-            formIsValid = false;
-        }
-    
-        setErrors(newErrors);
-        return formIsValid;
-    };
-
     const handleRegister = async (e) => {
         e.preventDefault()
-        if (!validateForm()) {
-            return;
+
+        let endpoint = '/register';
+
+        if (selectedRole === 'pencari') {
+        endpoint = '/register/user';
+        } else if (selectedRole === 'pemilik') {
+        endpoint = '/register/pemilik';
         }
+        
         try {
-            const response = await axios.post(api()+'/register', {
+            const response = await axios.post(api()+ endpoint, {
                 name: name,
                 email: email,
                 phone: phone,
@@ -175,7 +110,6 @@ const Register = () => {
                 confirm_password: confirmPassword,
             },);
                 setShowSuccessPopup(true);
-                console.log(response.data);
             } catch (error) {
                 setShowErrorPopup(true);
             }
@@ -188,11 +122,6 @@ const Register = () => {
     
     const handleErrorPopupClose = () => {
         setShowErrorPopup(false);
-    };
-    
-    const handleRetryRegister = () => {
-        setShowErrorPopup(false);
-        handleRegister();
     };
 
     return(
@@ -208,7 +137,6 @@ const Register = () => {
             <div className="right">
                 <div className="form-register">
                     <img src={logo2} alt="logo2" className='logo2' />
-                    
                     <h1>Selamat Datang</h1>
                         <form onSubmit={handleRegister}>
                             <TextField 
@@ -221,7 +149,6 @@ const Register = () => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             />
-                            {/* {errors.name && <span className='error-message'>{errors.name}</span>} */}
                             <TextField 
                             htmlFor='nohp' 
                             label='Nomor Handphone' 
@@ -232,7 +159,6 @@ const Register = () => {
                             onChange={(e) => setPhoneNumber(e.target.value)}
                             maxLength="10"
                             />
-                            {/* {errors.phone && <span className='error-message'>{errors.phone}</span>} */}
                             <TextField 
                             htmlFor='email' 
                             label='Email' 
@@ -242,7 +168,6 @@ const Register = () => {
                             placeholder='Masukkan email'
                             onChange={(e) => setEmail(e.target.value)}
                             />
-                            {/* {errors.email && <span className='error-message'>{errors.email}</span>} */}
                             <TextField 
                             htmlFor='password' 
                             label='Password' 
@@ -252,7 +177,6 @@ const Register = () => {
                             placeholder='Minimal 8 Karakter'
                             onChange={(e) => setPassword(e.target.value)}
                             />
-                            {/* {errors.password && <span className='error-message'>{errors.password}</span>} */}
                             <TextField 
                             htmlFor='conpass' 
                             label='Konfirmasi Password' 
@@ -262,37 +186,24 @@ const Register = () => {
                             placeholder='Masukkan kembali password'
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             />
-                            {/* {errors.confirmPassword && <span className='error-message'>{errors.confirmPassword}</span>} */}
                             <ButtonRegister button="Daftar" disabled={!validName || !validPhone || !validEmail || !validPassword || !validConfirm ? true : false}/>
                     </form>
-                    <h4>Sudah memiliki akun? <span className='login-now' onClick={() => navigate('/login')}>Login sekarang</span></h4>
+                    <h4>Sudah memiliki akun? <span className='login-now' onClick={() => navigate('/login', { state: { role: selectedRole } })}>Login sekarang</span></h4>
                 </div>
             </div>
-                {/* <Popup
-                show={showPopup}
-                type={popupType}
-                message={popupMessage}
-                onClose={handlePopupClose}
-                /> */}
-
             {showSuccessPopup && (
-                    <Popup
+                <Popup
                     type="success"
                     message="Selamat! Akun Anda telah berhasil dibuat."
                     onClose={handleSuccessPopupClose}
-                    >
-                    <button onClick={handleSuccessPopupClose}>Lanjut ke Halaman Login</button>
-                    </Popup>
-                )}
-
+                />
+            )}
             {showErrorPopup && (
                 <Popup
-                type="error"
-                message="Registrasi gagal. Silakan coba lagi."
-                onClose={handleErrorPopupClose}
-                >
-                <button onClick={handleRetryRegister}>Coba Lagi</button>
-                </Popup>
+                    type="error"
+                    message="Registrasi gagal. Silakan coba lagi."
+                    onClose={handleErrorPopupClose}
+                />
             )}
         </div>
     )

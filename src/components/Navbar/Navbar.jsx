@@ -20,6 +20,7 @@ const NavBar = () =>{
     const [modal, setModal] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(hasToken());
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [role, setRole] = useState('');
 
     const toggleModal = () => {
         setModal(!modal);
@@ -39,6 +40,8 @@ const NavBar = () =>{
         }
     }
 
+    window.addEventListener('scroll', changeColor)
+
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
@@ -54,12 +57,15 @@ const NavBar = () =>{
         return !!token;
     }
 
-    window.addEventListener('scroll', changeColor)
+    const handleRoleSelection = (selectedRole) => {
+        setRole(selectedRole);
+        navigate('/login', { state: { role: selectedRole } });
+    };
+
 
     return(
         <nav className={color ? 'nav fixed' : 'nav'}>
             <a href=""className='nav-logo'><img src={logo} alt="logo" /></a>
-            {/* <SearchBar/> */}
             <ul className='nav-menu'>
                 <li className='nav-item'>
                     <Link to="popular" spy={true} smooth={true} offset={-50} duration={500} className='nav-link'>Cari Kos</Link>
@@ -73,9 +79,6 @@ const NavBar = () =>{
                 {isLoggedIn ? (
                 <li className='nav-item'>
                     <div className="dropdown">
-                        {/* <button className="button-dropdown" onClick={toggleDropdown}>
-                            Profile
-                        </button> */}
                         <img src={profileImage} alt="Profile" className="profile-image" onClick={toggleDropdown} />
                         {dropdownOpen && (
                             <div className="dropdown-content open">
@@ -100,10 +103,10 @@ const NavBar = () =>{
                         <div className="modal-content">
                             <h2>Masuk ke Bukos</h2>
                             <p>Saya ingin masuk sebagai</p>
-                            <div className='login-role-selection' onClick={() => navigate('/register')}>
+                            <div className='login-role-selection' onClick={() => handleRoleSelection('pencari')}>
                                 <p>Pencari Kos</p>
                             </div>
-                            <div className='login-role-selection' onClick={() => navigate('/login')}>
+                            <div className='login-role-selection' onClick={() => handleRoleSelection('pemilik')}>
                                 <p>Pemilik Kos</p>
                             </div>
                             <button className="close-modal" onClick={toggleModal} ><img src={close} alt="close"/></button>

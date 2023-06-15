@@ -1,5 +1,5 @@
 // import Library
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios'
 import { useState, useContext} from 'react'
 import { api } from '../api/api'
@@ -22,17 +22,30 @@ const Login = () =>{
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const location = useLocation();
+    const selectedRole = location.state ? location.state.role : '';
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        let endpoint = '/login';
+
+        if (selectedRole === 'pencari') {
+            endpoint = '/login/user';
+        } else if (selectedRole === 'pemilik') {
+            endpoint = '/login/pemilik';
+        }
+
         try {
-            const response = await axios.post(api() + '/login', {
+            const response = await axios.post(api() + endpoint, {
                 email: email,
                 password: password,
             });
             const token = response.data.token;
             localStorage.setItem('token', token);
-            navigate('/');
+            navigate('/'
+            // , { state: { role } }
+            );
         } catch (error) {
             console.log(error);
         }
@@ -76,7 +89,7 @@ const Login = () =>{
                         />
                         <ButtonRegister button="Login" />
                     </form>
-                    <h4>Belum punya akun? <span onClick={() => navigate('/register')}>Daftar disini</span></h4>
+                    <h4>Belum punya akun? <span onClick={() => navigate('/register', { state: { role: selectedRole } })}>Daftar disini</span></h4>
                 </div>
             </div>
         </div>

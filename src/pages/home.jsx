@@ -10,7 +10,7 @@ import { Link } from 'react-scroll'
 // import Styles
 import '../App.css'
 import '../assets/styles/home.css'
-import 'swiper/css'
+import 'swiper/swiper-bundle.css'
 import 'swiper/css/effect-coverflow'
 
 // import Components
@@ -29,16 +29,49 @@ import ScrollUp from '../components/ScrollUp/ScrollUp'
 // import Assets
 import dashboard1 from '../assets/images/dashboard1.svg'
 import benefit1 from '../assets/images/benefit1.svg'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getReviewUser, api } from '../api/api'
 
 const Home = () =>{
     // const navigate = useNavigate()
+    const [reviewsUser, setReviewsUser] = useState([])
 
     useEffect(() =>{
-        getReviewUser()
+        getReviewUser().then((review) => {
+            setReviewsUser(review)
+        })
     }, [])
-    
+
+    const UserReviewList = () => {
+        return (
+            <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                loop={true}
+                slidesPerView={2.75}
+                coverflowEffect={{
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 2.5,
+                }}
+                modules={[EffectCoverflow]}
+                className="swiper_container"
+            >
+                {reviewsUser.map((review, i) => (
+                <SwiperSlide key={i}>
+                    <ReviewCard
+                    user={review.nama_review}
+                    icon={faThumbsUp}
+                    review={review.review_desc}
+                    />
+                </SwiperSlide>
+                ))}
+            </Swiper>
+            )
+        }
+
     return(
         <>
             <div className="dashboard section">
@@ -104,32 +137,7 @@ const Home = () =>{
                     <h4>Sebagian besar pengguna kami memberi kami umpan balik mengenai layanan. Anda dapat melihat komentar mereka di bawah ini Ikuti kesenangan mereka dengan bergabung dengan anggota lain segera!</h4>
                     </div>
                     <div className="swipers">
-                        <Swiper
-                        effect={'coverflow'}
-                        grabCursor={true}
-                        centeredSlides={true}
-                        loop={true}
-                        slidesPerView={2.75}
-                        coverflowEffect={{
-                            rotate: 0,
-                            stretch: 0,
-                            depth: 100,
-                            modifier: 2.5,
-                        }}
-                        modules={[EffectCoverflow]}
-                        className="swiper_container"
-                        >
-                        <SwiperSlide><ReviewCard user='Dimas Bagus' icon={faThumbsUp} review='Tanpa BuKos, Saya tidak akan menemukan Kos tepat waktu. Tanpa BuKos saya sangat kesulitan mencari Kos yang nyaman.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas Begas' icon={faThumbsDown} review='Pelayanan pelanggan sangat buruk. Saya mengirimkan keluhan beberapa kali namun tidak ada respons yang diberikan. Sangat kecewa.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas Gusgus' icon={faThumbsUp} review='Pelayanan ramah dan profesional. Saya mendapatkan bantuan yang sangat baik dari tim customer service dalam memilih Kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimdim' icon={faThumbsDown} review='Pelayanan sangat lambat. Saya mengirimkan keluhan namun tidak ada tanggapan. Saya sangat kecewa dengan pelayanan pelanggan yang diberikan.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas profesional sional slebew' icon={faThumbsUp} review='Saya sangat senang dengan layanan yang diberikan oleh website ini. Saya berhasil menemukan kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas Bagus' icon={faThumbsUp} review='Tanpa BuKos, Saya tidak akan menemukan Kos tepat waktu. Tanpa BuKos saya sangat kesulitan mencari Kos yang nyaman.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas Begas' icon={faThumbsDown} review='Pelayanan pelanggan sangat buruk. Saya mengirimkan keluhan beberapa kali namun tidak ada respons yang diberikan. Sangat kecewa.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas Gusgus' icon={faThumbsUp} review='Pelayanan ramah dan profesional. Saya mendapatkan bantuan yang sangat baik dari tim customer service dalam memilih Kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimdim' icon={faThumbsDown} review='Pelayanan sangat lambat. Saya mengirimkan keluhan namun tidak ada tanggapan. Saya sangat kecewa dengan pelayanan pelanggan yang diberikan.'/></SwiperSlide>
-                        <SwiperSlide><ReviewCard user='Dimas profesional sional slebew' icon={faThumbsUp} review='Saya sangat senang dengan layanan yang diberikan oleh website ini. Saya berhasil menemukan kos yang sesuai dengan kebutuhan saya.'/></SwiperSlide>
-                    </Swiper>
+                        <UserReviewList />
                     </div>
                 </div>
             </div>

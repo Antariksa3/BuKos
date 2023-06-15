@@ -7,11 +7,37 @@ import PopularCard from '../components/PopularCard/PopularCard'
 import SearchBar1 from '../components/SearchBar/SearchBar1'
 import FilterSearch from '../components/SearchBar/FilterSearch'
 import Button6 from '../components/Button/Button6'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import ScrollUp from '../components/ScrollUp/ScrollUp'
+import { getProduct } from '../api/api'
 
 const ListKos = () =>{
-    const [fixed, setFixed] = useState(false)
+    const [fixed, setFixed] = useState (false)
+    const [products, setProduct] = useState ([])
+
+    useEffect(() =>{
+        getProduct().then((product) => {
+            setProduct(product)
+        })
+    }, [])
+
+    const ProductList = () => {
+        return products.map((product, i) => {
+            return(
+                <ListKosCard
+                key={i}
+                pemilik={product.nama_pemilik}
+                nama_kos={product.nama_kos}
+                lokasi={product.lokasi_kos}
+                harga={product.harga_kos}
+                gambar={`http://127.0.0.1:8000/${product.foto_kos}`}
+                />
+            )
+        })
+    }
+
+    // console.log({product: product})
+
     const changeFixed = () =>{
         if (window.scrollY >= 45){
             setFixed(true)
@@ -59,15 +85,39 @@ const ListKos = () =>{
                         </div>
                     </div>
                     <div className={fixed ? 'list-cards cards-fixed' : 'list-cards'}>
-                        <ListKosCard />
-                        <ListKosCard />
-                        <ListKosCard />
-                        <ListKosCard />
-                        <ListKosCard />
-                        <ListKosCard />
-                        <ListKosCard />
-                        <ListKosCard />
-                        <ListKosCard />
+                        <ProductList />
+                        {/* 
+                        <ListKosCard 
+                        pemilik='Dimas' 
+                        nama_kos='Kos Basyir'
+                        lokasi='Jl. Raya Jurang'
+                        harga='1.000.000'
+                        />
+                        <ListKosCard 
+                        pemilik='Dimas' 
+                        nama_kos='Kos Basyir'
+                        lokasi='Jl. Raya Jurang'
+                        harga='1.000.000'
+                        />
+                        <ListKosCard 
+                        pemilik='Dimas' 
+                        nama_kos='Kos Basyir'
+                        lokasi='Jl. Raya Jurang'
+                        harga='1.000.000'
+                        />
+                        <ListKosCard 
+                        pemilik='Dimas' 
+                        nama_kos='Kos Basyir'
+                        lokasi='Jl. Raya Jurang'
+                        harga='1.000.000'
+                        />
+                        <ListKosCard 
+                        pemilik='Dimas' 
+                        nama_kos='Kos Basyir'
+                        lokasi='Jl. Raya Jurang'
+                        harga='1.000.000'
+                        /> 
+                        */}
                     </div>
                 </div>
             </div>

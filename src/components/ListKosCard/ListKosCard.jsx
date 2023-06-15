@@ -6,24 +6,24 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import Button4 from '../Button/Button4'
 
 
-const ListKosCard = () =>{
+const ListKosCard = (product) =>{
     return(
     <div className='listkos-card'>
         <div className="listkos-image">
-            <img src={popularImage} alt="listkos-image" className='listkos-kos-image'/>
+            <img src={product.gambar} alt="gambar kos" className='listkos-kos-image'/>
             <div className="listkos-owner">
-                <img src={popularOwner} alt="" />
-                <h4>Bu Marni</h4>
+                <img src={popularOwner} className='owner-image' />
+                <h4>{product.pemilik}</h4>
             </div>
         </div>
         <div className="listkos-kos">
-            <h4>Kos Permata Bunda</h4>
+            <h4>{product.nama_kos}</h4>
             <div className="listkos-location">
                 <FontAwesomeIcon icon={faLocationDot} className='listkos-location-icon'/>
-                <h4>Jl. Jurang, Besito</h4>
+                <h4>{product.lokasi}</h4>
             </div>
             <div className="listkos-price">
-                <h4>Rp1.200.000/<span>Bulan</span></h4>
+                <h4>Rp{product.harga}/<span>Bulan</span></h4>
             </div>
         </div>
         <Button4 button='Lebih Rinci'/>
