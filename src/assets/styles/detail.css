@@ -1,248 +1,1023 @@
 .detail-page-content {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    padding-top: 100px;
-  }
-  
-  .con-content1 {
-    display: flex;
-    /* width: 100vw; */
-    gap: 6px;
-    padding: 0px 100px;
-  }
-  
-  .con-content2 {
-    padding: 50px 100px;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    /* width: 100vw; */
-    gap: 6px;
-  }
-  
-  .con-content1-left {
-  }
-  
-  .con-content1-left img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .con-content1-right {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  @media only screen and (max-width: 991px) {
-    .con-content1 {
-      flex-direction: column;
-    }
-  }
-  
-  .con-content1-right img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .con-content2-right {
-  }
-  
-  .con-content2-left {
-    max-width: 750px;
-  }
-  
-  .con-content2-left h1 {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 36px;
-    /* or 129% */
-    color: #383746;
-  }
-  
-  .isi-harga-detail {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .harga {
-    padding: auto;
-    display: flex;
-    flex-direction: column;
-    width: 420px;
-    height: 315px;
-    background: #ffffff;
-    align-items: center;
-    box-shadow: 0px -2px 40px rgba(0, 0, 0, 0.04),
-      0px 16px 40px rgba(0, 0, 0, 0.06);
-    border-radius: 8px;
-    padding-right: 25px;
-    padding-top: 20px;
-  }
-  
-.button-harga-detail {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 100px;
 }
 
-  .nominal {
-    display: flex;
+.con-content1 {
+  display: flex;
+  /* width: 100vw; */
+  gap: 6px;
+  padding: 0px 100px;
+}
+
+.con-content2 {
+  padding: 50px 100px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* width: 100vw; */
+  gap: 6px;
+}
+
+.con-content1-left {
+}
+
+.con-content1-left img {
+  width: 100%;
+  height: auto;
+}
+
+.con-content1-right {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media only screen and (max-width: 991px) {
+  .con-content1 {
     flex-direction: column;
   }
-  
-  .nominal p {
-    margin-left: 33px;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    /* identical to box height, or 143% */
-    color: #757575;
-    text-decoration: line-through;
-    margin-bottom: -10px;
-  }
-  
-  .nominal h1 {
-    margin-left: 33px;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 29px;
-    /* identical to box height */
-    color: #303030;
-    margin-bottom: -5px;
-  }
-  
-  .tanggal-mulai {
-    display: flex;
-    gap: 23px;
-  }
-  
-  .mulai-kos {
-    padding: 16px;
-    margin-left: 33px;
-    width: 164px;
-    height: 50px;
-    background: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #dadada;
-    border-radius: 4px;
-  }
-  
-  .mulai-kos p {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 19px;
-    color: #949494;
-  }
-  
-  .perbulan {
-    padding-right: 16px;
-    width: 164px;
-    height: 50px;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #dadada;
-    border-radius: 4px;
-  }
-  
-  .perbulan p {
-    margin-left: 16px;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 19px;
-    color: #949494;
-  }
-  
-  .tanya-pemilik {
-    margin-left: 33px;
-    margin-bottom: -20px;
-    width: 350px;
-    height: 50px;
-    font-size: 12px;
-    font-weight: 600;
-    background: none;
-    color: #834bff;
-    border: 2px solid #834bff;
-    border-radius: 4px;
-  }
-  
-  .ajukan-sewa {
-    margin-left: 33px;
-    margin-bottom: 3px;
-    width: 350px;
-    height: 50px;
-    font-size: 12px;
-    font-weight: 600;
-    color: white;
-    border-style: none;
-    background: #834bff;
-    border-radius: 4px;
-  }
-  
-  .promo {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px -2px 40px rgba(0, 0, 0, 0.04),
+}
+
+.con-content1-right img {
+  width: 100%;
+  height: auto;
+}
+
+.con-content2-right {
+}
+
+.con-content2-left {
+  max-width: 750px;
+}
+
+.title-nama-kos h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 36px;
+  /* or 129% */
+  color: #383746;
+}
+
+.isi-harga-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.harga {
+  padding: auto;
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  height: 315px;
+  background: #ffffff;
+  align-items: center;
+  box-shadow: 0px -2px 40px rgba(0, 0, 0, 0.04),
     0px 16px 40px rgba(0, 0, 0, 0.06);
   border-radius: 8px;
-  margin-top: 20px
-  
-  }
-  
-  .isi-promo {
-    margin-bottom: 20px;
-  }
-  
-  .isi-promo h1 {
-    font-size: 20px;
-    color: #404040;
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
-  
-  .isi-promo h4 {
-    font-size: 14px;
-    color: #808080;
-    margin-bottom: 10px;
-  }
-  
-  .isi-promo p {
-    font-size: 14px;
-    color: #808080;
-    margin-bottom: 0;
-  }
-  
-  .promo a {
-    display: inline-block;
-    background-color: #404040;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  
-  .promo a:hover {
-    background-color: #834bff;
-  }
-  
-  
+  padding-right: 25px;
+  padding-top: 20px;
+}
+
+.button-harga-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.nominal {
+  display: flex;
+  flex-direction: column;
+}
+
+.nominal p {
+  margin-left: 33px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+  color: #757575;
+  text-decoration: line-through;
+  margin-bottom: -10px;
+}
+
+.nominal h1 {
+  margin-left: 33px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 29px;
+  /* identical to box height */
+  color: #303030;
+  margin-bottom: -5px;
+}
+
+.tanggal-mulai {
+  display: flex;
+  gap: 23px;
+}
+
+.mulai-kos {
+  padding: 16px;
+  margin-left: 33px;
+  width: 164px;
+  height: 50px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+}
+
+.mulai-kos p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #949494;
+}
+
+.perbulan {
+  padding-right: 16px;
+  width: 164px;
+  height: 50px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+}
+
+.perbulan p {
+  margin-left: 16px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #949494;
+}
+
+.tanya-pemilik {
+  margin-left: 33px;
+  margin-bottom: -20px;
+  width: 350px;
+  height: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  background: none;
+  color: #834bff;
+  border: 2px solid #834bff;
+  border-radius: 4px;
+}
+
+.ajukan-sewa {
+  margin-left: 33px;
+  margin-bottom: 3px;
+  width: 350px;
+  height: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  border-style: none;
+  background: #834bff;
+  border-radius: 4px;
+}
+
+.promo {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px -2px 40px rgba(0, 0, 0, 0.04),
+    0px 16px 40px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.isi-promo {
+  margin-bottom: 20px;
+}
+
+.isi-promo h1 {
+  font-size: 20px;
+  color: #404040;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.isi-promo h4 {
+  font-size: 14px;
+  color: #808080;
+  margin-bottom: 10px;
+}
+
+.isi-promo p {
+  font-size: 14px;
+  color: #808080;
+  margin-bottom: 0;
+}
+
+.promo a {
+  display: inline-block;
+  background-color: #404040;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.promo a:hover {
+  background-color: #834bff;
+}
+
+.tentang-kos {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  align-content: center;
+}
+
+.jenis {
+  display: flex;
+  padding: 3px 9.27px 3px 9px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #dadada;
+}
+
+.jenis p {
+  color: #404040;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  margin: 0px;
+}
+
+.lokasi {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  margin-left: 20px;
+}
+
+.rating {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  margin-left: 20px;
+}
+
+.transaksi {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  margin-left: 20px;
+}
+
+.bawah-tentang {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sisa {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sisa span {
+  color: #da3438;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: medium;
+  line-height: 20px;
+}
+
+.save-share {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.save {
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 6px;
+
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 0px 0px 1px #e8e8e8 inset;
+}
+
+.save p {
+  color: #404040;
+  text-align: center;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  margin: 0px;
+  font-weight: 500;
+  line-height: 24px; /* 171.429% */
+}
+
+.share {
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 6px;
+
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 0px 0px 1px #e8e8e8 inset;
+}
+
+.share p {
+  color: #404040;
+  text-align: center;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  margin: 0px;
+  font-weight: 500;
+  line-height: 24px; /* 171.429% */
+}
+
+.garis {
+  width: auto;
+  border-bottom: 2px solid #e8e8e8;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.isi-profil {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.isi-profil-text h1 {
+  color: #303030;
+  font-family: Lato;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 140% */
+}
+
+.isi-profil-text span {
+  color: #757575;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 175% */
+}
+
+.isi-profil-text p {
+  color: #404040;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 175% */
+}
+
+.isi-profil-foto {
+  width: 56px;
+  height: 56px;
+  margin-right: 20px;
+}
+
+.keuntungan h1 {
+  color: #383746;
+  font-family: Lato;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.isi-keuntungan {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.keuntungan1 {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.keuntungan1 img {
+  width: 40px;
+  height: 40px;
+}
+
+.text-keuntungan1 h3 {
+  color: #303030;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px; /* 100% */
+}
+
+.text-keuntungan1 p {
+  color: #757575;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.refund {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.text-refund {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-refund h3 {
+  color: #303030;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0;
+}
+
+.text-refund p {
+  color: #757575;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.text-refund a {
+  color: #404040;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.spesifikasi {
+  display: flex;
+  flex-direction: column;
+}
+
+.spesifikasi h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.isi-spesifikasi1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.isi-spesifikasi2 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.fasilitas-kamar img {
+  width: 40px;
+  height: 40px;
+}
+
+.fasilitas-kamar h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.isi-fasilitas {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fasilitas-kiri {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fasilitas-kanan {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.isi-fasilitas1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.kamar-mandi img {
+  width: 40px;
+  height: 40px;
+}
+
+.kamar-mandi h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.kamar-mandi-kiri {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.kamar-mandi-kanan {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.isi-kamar-mandi {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kamar-mandi1 {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.aturan h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.aturan img {
+  width: 40px;
+  height: 40px;
+}
+
+.isi-aturan {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aturan1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.informasi h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.informasi a {
+  color: #303030;
+text-align: center;
+font-family: Lato;
+font-size: 16px;
+font-style: normal;
+
+line-height: 24px; /* 150% */
+text-decoration-line: underline;
+}
+
+.card-rekomendasi {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.card-arrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrow-kanan {
+  border-radius: 20px;
+background: #FFF;
+display: flex;
+padding: 15px;
+align-items: flex-start;
+box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08), 0px -1px 4px 0px rgba(0, 0, 0, 0.04);
+}
+.arrow-kiri {
+  border-radius: 20px;
+background: #FFF;
+display: flex;
+padding: 15px;
+align-items: flex-start;
+box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08), 0px -1px 4px 0px rgba(0, 0, 0, 0.04);
+}
+
+.isi-card {
+  display: flex;
+  gap: 20px;
+}
+
+.card1 {
+  padding: 20px;
+  border-radius: 8px;
+background: rgba(255, 255, 255, 0.00);
+box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08), 0px -1px 4px 0px rgba(0, 0, 0, 0.04);
+}
+
+.card1 img {
+  width: 250px;
+height: 128px;
+margin-bottom: 5px;
+}
+
+.text-card1 h6{
+  color: #949494;
+font-family: 'Lato';
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 20px; /* 142.857% */
+margin: 0px;
+}
+
+.text-card1 h3 {
+  color: #303030;
+font-family: 'Lato';
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 26px; /* 144.444% */
+margin: 0px;
+margin-top: 5px;
+}
+
+.text-card1 p {
+  color: #404040;
+font-family: 'Lato';
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+max-width: 250px;
+margin: 0px;
+}
+
+.inti-card1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.inti1-card1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.inti1-card1 img{
+  width: 30px;
+  height: 30px;
+}
+
+.card-harga p {
+  color: #757575;
+font-family: 'Poppins';
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 18px; /* 150% */
+margin: 0px;
+margin-top: 20px;
+}
+
+.card-harga h3 {
+  color: #383746;
+font-family: 'Poppins';
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 24px; /* 150% */
+margin: 0px;
+}
+
+.card-harga span {
+  color: #383746;
+font-family: 'Poppins';
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+}
+
+.card-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button-card1 {
+  display: flex;
+padding: 8px 10px 8px 10px;
+align-items: center;
+justify-content: center;
+width: 120px;
+border-radius: 4px;
+background: #834BFF;
+border-style: none;
+color: #FFF;
+}
+
+.button-card2 {
+  display: flex;
+padding: 8px 23.03px 8px 22.97px;
+align-items: center;
+justify-content: center;
+width: 120px;
+border-radius: 4px;
+background: #834BFF;
+border-style: none;
+color: #FFF;
+}
+
+.fasilitas-umum h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.isi-fasilitas-umum {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.isi-fasilitas-umum img {
+  width: 40px;
+  height: 40px;
+}
+
+.umum1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.fasilitas-parkir img {
+  width: 40px;
+  height: 40px;
+}
+
+.fasilitas-parkir h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.isi-fasilitas-parkir {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.parkir1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.maps h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.alamat {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.alamat p {
+  color: #383746;
+  max-width: 500px;
+font-family: 'Poppins';
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+}
+
+.isi-maps iframe{
+  width: 665px;
+height: 360px;
+flex-shrink: 0;
+}
+
+
+.maps-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.button-tempat-terdekat {
+  display: flex;
+  padding: 8px 13.58px 8px 12px;
+  align-items: flex-start;
+  font-size: 12px;
+
+  border-radius: 18px;
+background: #FFF;
+box-shadow: 0px 0px 0px 1px #303030 inset;
+}
+
+.button-transportasi {
+  display: flex;
+padding: 8px 13.61px 8px 12px;
+align-items: flex-start;
+font-size: 12px;
+
+  border-radius: 18px;
+background: #FFF;
+box-shadow: 0px 0px 0px 1px #E8E8E8 inset;
+}
+
+.list-map {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.text-map {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-map h5 {
+  color: #383746;
+font-family: "Lato";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 24px; /* 150% */
+}
+
+.text-map p {
+  color: #949494;
+font-family: 'Lato';
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+}
+
+.syarat-sewa {
+  display: flex;
+  flex-direction: column;
+}
+
+.syarat-sewa h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+
+}
+
+.syarat1 {
+
+}
+
+.syarat2 {
+ display: flex;
+ align-items: center;
+ gap: 50px;
+}
+
+.terdekat{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.terjauh {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.title-review {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.title-review h1 {
+  color: #383746;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 32px; /* 133.333% */
+}
+
+.rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating-kiri1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rating-kanan1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

@@ -178,7 +178,7 @@ function Pembayaran() {
               <a href="#">Ubah</a>
             </div>
             <div className="isi_biaya_sewa">
-              <p>
+              <p> 
                 Rabu, 14 Juni 2024
               </p>
 
