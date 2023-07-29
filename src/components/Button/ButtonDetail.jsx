@@ -1,11 +1,14 @@
 import '../../App.css'
 import './ButtonDetail.css'
+import { Link as RouterLink } from 'react-router-dom'
 
 const ButtonDetail = (props) => {
-    return(
-        <div className="buttonDetail">
-            <button className='button-detail'>{props.button}</button>
-        </div>
+    return (
+        <RouterLink to='/detail'>
+            <div className="buttonDetail">
+                <button className='button-detail'>{props.button}</button>
+            </div>
+        </RouterLink>
     )
 }
 

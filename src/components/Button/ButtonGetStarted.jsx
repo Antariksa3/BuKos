@@ -1,8 +1,8 @@
 import '../../App.css'
 import './ButtonGetStarted.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import close from '../../assets/icons/close.svg'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 const ButtonGetStarted = () => {
     const navigate = useNavigate()
@@ -11,18 +11,22 @@ const ButtonGetStarted = () => {
     // const toggleModal = () => {
     //     setModal(!modal);
     // };
-    
+
     // if(modal) {
     //     document.body.classList.add('active-modal')
     // } else {
     //     document.body.classList.remove('active-modal')
     // }
 
-    return(
+    return (
         <div className="buttonGetStarted">
             <div className="background-glass-button">
-            <button className='button-start'>Mulai Sekarang</button>
-            {/* {modal && (
+                <RouterLink to="/listkos" className='button-start'>
+                    <button
+                        className='button-start'
+                    >Mulai Sekarang</button>
+                </RouterLink>
+                {/* {modal && (
                     <div className="modal-start">
                         <div onClick={toggleModal} className="overlay-start"></div>
                             <div className="modal-content">
