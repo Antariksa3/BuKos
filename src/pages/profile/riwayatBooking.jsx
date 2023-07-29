@@ -21,7 +21,7 @@ function RiwayatBooking() {
     // Logika atau pembaruan data lainnya berdasarkan halaman yang dipilih
   };
   const navigate = useNavigate();
-  
+
   return (
     <div className="isi-page-profile-kanan">
       <header>
@@ -33,7 +33,7 @@ function RiwayatBooking() {
             <img src={img1} alt="" />
             <div className="isi-card-riwayat-atas">
               <h4>Kost Singgahsini MnV Co-Living Tipe B Bendungan
-Hilir Jakarta Pusat 482539SH</h4>
+                Hilir Jakarta Pusat 482539SH</h4>
               <p>Tersedia 2 kamar - <span>Campur</span></p>
               <h4>Rp. 1.000.000 Per Bulan</h4>
             </div>
@@ -54,7 +54,7 @@ Hilir Jakarta Pusat 482539SH</h4>
             <img src={img1} alt="" />
             <div className="isi-card-riwayat-atas">
               <h4>Kost Singgahsini MnV Co-Living Tipe B Bendungan
-Hilir Jakarta Pusat 482539SH</h4>
+                Hilir Jakarta Pusat 482539SH</h4>
               <p>Tersedia 2 kamar - <span>Campur</span></p>
               <h4>Rp. 1.000.000 Per Bulan</h4>
             </div>
@@ -70,10 +70,7 @@ Hilir Jakarta Pusat 482539SH</h4>
             </div>
           </div>
         </div>
-        
-        
       </div>
-      
     </div>
   );
 }

@@ -1,8 +1,9 @@
-.buttonGetStarted{
+.buttonGetStarted {
     padding: 0;
 }
 
-.button-start{
+.button-start {
+    text-decoration: none;
     padding: .75rem 1.5rem;
     width: 100%;
     border-radius: 3rem;
@@ -17,12 +18,12 @@
     margin: 0 auto;
 }
 
-.button-start:hover{
+.button-start:hover {
     background-color: #e5e5e5;
     transform: scale(.98);
 }
 
-.background-glass-button{
+.background-glass-button {
     display: flex;
     padding: .5rem;
     margin: 0 auto;

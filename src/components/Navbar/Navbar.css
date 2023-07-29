@@ -11,40 +11,40 @@
     transition: all 0.4s ease-in-out;
 }
 
-.nav.fixed{
+.nav.fixed {
     background-color: #0c0c1d;
     box-shadow: 0 2px 4px hsla(0, 0%, 1%, 1);
     /* border-radius: 0 0 2rem 2rem; */
 }
 
-.nav-menu{
+.nav-list {
     display: grid;
     grid-template-columns: repeat(4, auto);
     list-style: none;
 }
 
-.nav-item{
+.nav-item {
     margin: auto 1.5rem auto 0;
     /* align-items: center; */
 }
 
-.nav-link{
+.nav-link {
     color: #a5a5a5;
     text-decoration: none;
     transition: .5s ease-in-out;
     cursor: pointer;
 }
 
-.nav-item a:hover{
+.nav-item a:hover {
     color: white;
 }
 
-.nav-logo{
-    height: 3rem;
+.nav-logo {
+    height: 100%;
     margin: auto 0;
 }
 
-.button-login{
+.button-login {
     padding: .5rem 1rem;
     border-radius: .5rem;
     background-color: #834BFF;
@@ -56,11 +56,12 @@
     height: 3rem;
 }
 
-.button-login:hover{
+.button-login:hover {
     background-color: #7130ff;
 }
 
-.modal, .overlay-login {
+.modal,
+.overlay-login {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -98,6 +99,7 @@
     background-color: transparent;
     border-style: none;
 }
+
 /* 
 .close-modal:hover{
     animation: rotate 1s;
@@ -111,7 +113,7 @@
     }
 } */
 
-.login-role-selection{
+.login-role-selection {
     background-color: #834BFF;
     padding: 1rem;
     width: 100%;
@@ -125,11 +127,11 @@
     font-weight: 500;
 }
 
-.login-role-selection:hover{
+.login-role-selection:hover {
     background-color: #7130ff;
 }
 
-.profile-image{
+.profile-image {
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -178,6 +180,140 @@
     transition: 0.5s ease-in-out;
 }
 
-.dropdown-button:hover{
+.dropdown-button:hover {
     background-color: #e44a57;
+}
+
+.toggle-menu {
+    color: white;
+    font-size: 1.75rem;
+    align-self: center;
+    cursor: pointer;
+}
+
+.close-menu {
+    font-size: 2rem;
+    color: white;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    cursor: pointer;
+}
+
+/*=============== BREAKPOINTS ===============*/
+
+/* Media Query 320px */
+@media screen and (max-width: 320px) {
+
+    /* Gaya-gaya di breakpoint 320px */
+
+}
+
+/* Media Query 480px */
+@media screen and (min-width: 321px) and (max-width: 480px) {
+
+    /* Gaya-gaya di breakpoint 480px */
+    /* .nav {
+        padding: 1rem 2rem;
+    } */
+
+    /* .nav-menu {
+        position: fixed;
+        background-color: hsla(0, 0%, 100%, .1);
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(96px);
+        transition: .3s;
+    } */
+
+    /* .show-menu {
+        right: 0;
+    } */
+
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        row-gap: 3rem;
+        padding-top: 9rem;
+    }
+
+    .nav-link {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .nav-logo {
+        height: 2rem;
+    }
+}
+
+/* Media Query 768px */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+
+    /* Gaya-gaya di breakpoint 768px */
+
+    .dropdown-content {
+        left: 78%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav {
+        padding: 1rem 2rem;
+    }
+
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        row-gap: 3rem;
+        padding-top: 9rem;
+    }
+
+    .nav-menu {
+        position: fixed;
+        background-color: hsla(0, 0%, 100%, .1);
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(96px);
+        transition: .3s;
+    }
+
+    .show-menu {
+        right: 0;
+    }
+}
+
+@media screen and (min-width: 769px) {
+
+    .toggle-menu,
+    .close-menu {
+        display: none;
+    }
+}
+
+/* Media Query 1024px */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+    /* Gaya-gaya di breakpoint 1024px */
+}
+
+/* Media Query 1280px */
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+    /* Gaya-gaya di breakpoint 1280px */
+}
+
+/* Media Query 1440px */
+@media screen and (min-width: 1281px) and (max-width: 1440px) {
+    /* Gaya-gaya di breakpoint 1440px */
+}
+
+/* Media Query paling besar */
+@media screen and (min-width: 1441px) {
+    /* Gaya-gaya di media query paling besar */
 }

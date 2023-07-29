@@ -1,8 +1,4 @@
-.button6{
-    padding: 0;
-}
-
-.button-filter{
+.button-filter {
     padding: .75rem 1.5rem;
     width: 100%;
     border-radius: .75rem;
@@ -15,6 +11,11 @@
     font-size: 1rem;
 }
 
-.button-filter:hover{
+.button-filter:hover {
     background-color: #7130ff;
+}
+
+.button-filter.disabled {
+    background-color: gray;
+    cursor: not-allowed;
 }

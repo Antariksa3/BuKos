@@ -5,29 +5,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import Button4 from '../Button/ButtonDetail'
 
+const ListKosCard = (product) => {
+    const formattedPrice = product.harga.toLocaleString('id-ID');
 
-const ListKosCard = (product) =>{
-    return(
-    <div className='listkos-card'>
-        <div className="listkos-image">
-            <img src={product.gambar} alt="gambar kos" className='listkos-kos-image'/>
-            <div className="listkos-owner">
-                <img src={popularOwner} className='owner-image' />
-                <h4>{product.pemilik}</h4>
+    return (
+        <div className='listkos-card'>
+            <div className="listkos-image">
+                <img src={product.gambar} alt="gambar kos" className='listkos-kos-image' />
+                <div className="listkos-owner">
+                    <img src={product.foto_pemilik} className='owner-image' />
+                    <h4>{product.pemilik}</h4>
+                </div>
             </div>
+            <div className="listkos-kos">
+                <h4>{product.nama_kos}</h4>
+                <div className="listkos-location">
+                    <FontAwesomeIcon icon={faLocationDot} className='listkos-location-icon' />
+                    <h4>{product.lokasi}</h4>
+                </div>
+                <div className="listkos-price">
+                    <h4>Rp{formattedPrice}/<span>Bulan</span></h4>
+                </div>
+            </div>
+            <Button4 button='Lebih Rinci' />
         </div>
-        <div className="listkos-kos">
-            <h4>{product.nama_kos}</h4>
-            <div className="listkos-location">
-                <FontAwesomeIcon icon={faLocationDot} className='listkos-location-icon'/>
-                <h4>{product.lokasi}</h4>
-            </div>
-            <div className="listkos-price">
-                <h4>Rp{product.harga}/<span>Bulan</span></h4>
-            </div>
-        </div>
-        <Button4 button='Lebih Rinci'/>
-    </div>
     )
 }
 
