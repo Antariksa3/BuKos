@@ -8,6 +8,8 @@ import NotFoundPage from './pages/notFound';
 import Detail from './pages/detail';
 import Profile from './pages/profile';
 import Pembayaran from './pages/pembayaran';
+import SyaratKetentuan from './pages/syaratKetentuan';
+import HubungiCs from './pages/hubungiCs';
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route path='/detail' element={<Detail/>}/>
         <Route path='/profile/*' element={<Profile/>}/>
         <Route path='/pembayaran' element={<Pembayaran/>}/>
+        <Route path='/syarat&ketentuan/*' element={<SyaratKetentuan/>}/>
+        <Route path='/hubungics' element={<HubungiCs/>}/>
         <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
     </Router>

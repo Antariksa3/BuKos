@@ -42,7 +42,7 @@ const NavBar = () =>{
                 <li className='nav-item'>
                     <a href="#">Layanan</a>
                 </li>
-                <li className='nav-item' onClick={() => navigate('/profile/kosansaya')}>
+                <li className='nav-item' onClick={() => navigate('/syarat&ketentuan/infoumum')}>
                     <a href="#">Syarat & Ketentuan</a>
                 </li>
                 <button className='button-login' onClick={toggleModal}>Masuk</button>

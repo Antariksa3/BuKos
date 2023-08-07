@@ -1,0 +1,35 @@
+.apakah-membantu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px 0px;
+}
+
+.apakah-membantu h1 {
+    color: #303030;
+font-family: Lato;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 28px; /* 140% */
+}
+
+.button-apakah {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.button-apakah button {
+    display: flex;
+width: 176px;
+align-items: center;
+padding: 8px;
+justify-content: center;
+
+border-radius: 4px;
+background: #FFF;
+border: none;
+box-shadow: 0px 0px 0px 1px #834BFF inset;
+}

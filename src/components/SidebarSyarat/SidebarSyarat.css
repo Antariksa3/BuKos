@@ -1,0 +1,83 @@
+.isi-page-profile-kiri {
+  width: 50%;
+height: 600px;
+  background: #FFFFFF;
+box-shadow: 0px -2px 40px rgba(0, 0, 0, 0.04), 0px 16px 40px rgba(0, 0, 0, 0.06);
+border-radius: 8px;
+display: flex;
+flex-direction: column;
+align-items: start;
+padding: 30px;
+gap: 5px;
+}
+
+.isi-profil-kiri-sk {
+  width: 100%;
+  max-width: 300px;
+}
+
+
+.list-profile-page  {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  gap: 15px;
+}
+
+.kosan-saya-sk {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0px -2px 40px rgba(0, 0, 0, 0.04), 0px 16px 40px rgba(0, 0, 0, 0.06);
+  border-radius: 0px 25px 25px 0px;
+  padding: 0 20px;
+}
+
+
+.kosan-saya-sk a{
+text-decoration: none ;
+}
+
+.pengaturan-profil {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0px -2px 40px rgba(0, 0, 0, 0.04), 0px 16px 40px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  padding: 0 24px;
+}
+
+.kosan-saya-sk p{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  /* or 143% */
+  
+  display: flex;
+  align-items: center;
+  
+  color: #757575;
+  
+}
+.pengaturan-profil p{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  /* or 143% */
+  
+  display: flex;
+  align-items: center;
+  
+  color: #757575;
+  
+}
