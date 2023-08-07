@@ -9,11 +9,11 @@ function Syarat() {
         <h1>Syarat dan Ketentuan Umum</h1>
 
         <p>
-          Halo, terima kasih telah mengunjungi situs web (website) mamikos.com
-          atau aplikasi Mamikos (selanjutnya disebut “platform”).
+          Halo, terima kasih telah mengunjungi situs web (website) BuKos.com
+          atau aplikasi BuKos (selanjutnya disebut “platform”).
         </p>
         <p>
-          Platform ini dimiliki dan dioperasikan oleh Mamikos dan afiliasinya
+          Platform ini dimiliki dan dioperasikan oleh BuKos dan afiliasinya
           (selanjutnya disebut, “Kami”). Kami menyarankan pendatang, pengguna,
           ataupun pengguna terdaftar (selanjutnya disebut “Anda”) untuk membaca
           Syarat dan Ketentuan ini secara berkala termasuk juga Kebijakan

@@ -38,11 +38,11 @@ const Kebijakan = () => {
         <h1>Kebijakan Privasi Bukos</h1>
 
         <p>
-          Halo, terima kasih telah mengunjungi situs web (website) mamikos.com
-          atau aplikasi Mamikos (selanjutnya disebut “platform”).
+          Halo, terima kasih telah mengunjungi situs web (website) BuKos.com
+          atau aplikasi BuKos (selanjutnya disebut “platform”).
         </p>
         <p>
-          Platform ini dimiliki dan dioperasikan oleh Mamikos dan afiliasinya
+          Platform ini dimiliki dan dioperasikan oleh BuKos dan afiliasinya
           (selanjutnya disebut, “Kami”). Kami sangat menghormati privasi atas
           Informasi Pribadi pendatang, pengguna, ataupun pengguna terdaftar
           (selanjutnya disebut “Anda”) dan ingin melindungi Informasi Pribadi
@@ -83,7 +83,7 @@ const Kebijakan = () => {
             a. Username / nama pengguna, termasuk nama asli dari Anda sesuai
             dengan tanda pengenal, b. Alamat email, c. Nomor telepon, d. Alamat
             tempat tinggal, e. Nomor identitas diri Anda, f. Nomor rekening bank
-            Anda, g. Identifikasi pengguna Mamikos termasuk kredensial log in,
+            Anda, g. Identifikasi pengguna BuKos termasuk kredensial log in,
             h. Data transaksi, termasuk semua detail pembayaran, reservasi, dan
             detail booking yang dilakukan melalui platform ini, i. Riwayat
             pemesanan, termasuk semua informasi booking di platform ini, j.
