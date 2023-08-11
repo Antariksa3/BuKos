@@ -1,7 +1,9 @@
 // import Library
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Icon } from "@iconify/react";
+import axios from 'axios';
+import { api, getProductDetail } from '../api/api';
 
 // import Styles
 import '../assets/styles/detail.css'
@@ -12,6 +14,9 @@ import Komentar from '../components/Komentar/komentar';
 import Lainnya from '../components/Lainnya/lainnya';
 import ScrollUp from '../components/ScrollUp/ScrollUp'
 import NavbarDetail from '../components/Navbar/NavbarDetail';
+import DetailImage from '../components/Detail/DetailImage/DetailImage'
+import HargaProduct from '../components/Detail/HargaProduct/HargaProduct';
+import PromoProduct from '../components/Detail/PromoProduct/PromoProduct';
 
 // import Assets
 import img1 from '../assets/images/div.detail-photo__left.png';
@@ -22,38 +27,77 @@ import bulat from '../assets/images/logo-bulat.png';
 import spek from '../assets/icons/lebar-ruang.png';
 import pasutri from '../assets/icons/pasutri.png';
 
+const Detail = () => {
 
+  const [product, setProduct] = useState(null);
+  const { productId } = useParams();
+  const token = localStorage.getItem('token');
+  const [isFavorite, setIsFavorite] = useState(false);
 
-function Detail() {
-  const navigate = useNavigate()
+  useEffect(() => {
+    getProductDetail(productId)
+      .then((product) => {
+        setProduct(product)
+        setIsFavorite(parseInt(product.favorite) === 1 || product.favorite === true);
+        console.log(product)
+      })
+  }, [productId])
+
+  const postFavoriteProduct = async (productId, NewIsFavorite) => {
+    try {
+      const response = await axios.post(`${api()}/product/${productId}/favorite`,
+        null,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+      setIsFavorite(NewIsFavorite)
+    } catch (error) {
+      console.error('Error posting favorite:', error.message);
+    }
+  };
+
+  const handleFavoriteProduct = () => {
+    const newIsFavorite = !isFavorite;
+    postFavoriteProduct(productId, newIsFavorite);
+  };
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
+
+  // const navigate = useNavigate();
+
   return (
-    <div className="detail-page-main" >
-            <header>
-            <NavbarDetail/>
-            </header>
-        <div className="detail-page-content">
-
-            <div className="con-content1">
-          <div className="con-content1-left">
-            <img className="img1" src={img1} alt="" />
-          </div>
-          <div className="con-content1-right">
-            <img className="img2" src={img2} alt="" />
-            <img className="img3" src={img3} alt="" />
-          </div>
-        </div>
+    // <div className=""></div>
+    <div className="detail-page-main" id='detail'>
+      <header>
+        <NavbarDetail />
+      </header>
+      <div className="detail-page-content">
+        <DetailImage
+          // img1={img1}
+          img1={`http://127.0.0.1:8000/${product.foto_kos}`}
+          img2={img2}
+          img3={img3}
+        />
         <div className="con-content2">
-        <div className="con-content2-left">
-            <div className="title-nama-kos">              
-            <h1>
-              Kost Singgahsini MnV Co-Living Tipe B Bendungan Hilir Jakarta
-              Pusat 482539SH
-            </h1>
+          <div className="con-content2-left">
+            <div className="title-nama-kos">
+              <h1>
+                {/* Kost Singgahsini MnV Co-Living Tipe B Bendungan Hilir Jakarta
+                Pusat 482539SH */}
+                {product.nama_kos}
+              </h1>
             </div>
-          
+
             <div className="tentang-kos">
               <div className="jenis">
-                <p>Campur</p>
+                <p>
+                  {/* Campur */}
+                  {product.tipe_kamar}
+                </p>
               </div>
               <div className="lokasi">
                 <Icon
@@ -61,7 +105,10 @@ function Detail() {
                   color="#383746"
                   height="20"
                 />
-                <p>Besito Gebog, Kudus</p>
+                <p>
+                  {/* Besito Gebog, Kudus */}
+                  {product.lokasi_kos}
+                </p>
               </div>
               <div className="rating">
                 <Icon icon="ic:round-star-rate" color="#834bff" height="20" />
@@ -92,10 +139,14 @@ function Detail() {
               </div>
 
               <div className="save-share">
-                <div className="save">
+                {/* <div className="save">
                   <Icon icon="wpf:like" color="#383746" height="15" />
                   <p>Simpan</p>
-                </div>
+                </div> */}
+                <button className="save" onClick={handleFavoriteProduct}>
+                  <Icon icon="wpf:like" color={isFavorite ? 'red' : '#383746'} height="15" />
+                  <p>Simpan</p>
+                </button>
                 <div className="share">
                   <Icon icon="ic:sharp-share" color="#383746" height="17" />
                   <p>Share</p>
@@ -105,7 +156,8 @@ function Detail() {
             <div className="garis"></div>
             <div className="isi-profil">
               <div className="isi-profil-text">
-                <h1>Kos dikelola oleh Rasyid</h1>
+                <h1>Kos dikelola oleh {product.nama_pemilik}
+                </h1>
                 <p>
                   <span>Online</span> 2 Hari yang lalu
                 </p>
@@ -170,14 +222,15 @@ function Detail() {
             <div className="spesifikasi">
               <h1>Spesifikasi Tipe Kamar</h1>
               <div className="isi-spesifikasi">
-                <div className="isi-spesifikasi1">
+                <p>{product.spesifikasi_kamar}</p>
+                {/* <div className="isi-spesifikasi1">
                   <img src={spek} alt="" />
                   <p>3 x 3 meter</p>
                 </div>
                 <div className="isi-spesifikasi2">
                   <Icon icon="icons8:electrical" color="#404040" height="30" />
                   <p>Tidak termasuk listrik</p>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="garis"></div>
@@ -185,7 +238,8 @@ function Detail() {
             <div className="fasilitas-kamar">
               <h1>Fasilitas Kamar</h1>
               <div className="isi-fasilitas">
-                <div className="fasilitas-kiri">
+                <p>{product.fasilitas_kamar}</p>
+                {/* <div className="fasilitas-kiri">
                   <div className="isi-fasilitas1">
                     <img src={bulat} alt="" />
                     <p>AC</p>
@@ -216,7 +270,7 @@ function Detail() {
                     <img src={bulat} alt="" />
                     <p>Kursi</p>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -251,7 +305,8 @@ function Detail() {
             <div className="aturan">
               <h1>Peraturan khusus tipe kamar ini</h1>
               <div className="isi-aturan">
-                <div className="aturan1">
+                <p>{product.peraturan_kamar}</p>
+                {/* <div className="aturan1">
                   <img src={bulat} alt="" />
                   <p>Tipe ini bisa diisi maks. 1 orang/ kamar</p>
                 </div>
@@ -266,7 +321,7 @@ function Detail() {
                 <div className="aturan1">
                   <img src={bulat} alt="" />
                   <p>Tidak boleh membawa lawan jenis</p>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -442,7 +497,8 @@ function Detail() {
             <div className="fasilitas-umum">
               <h1>Fasilitas Umum</h1>
               <div className="isi-fasilitas-umum">
-                <div className="umum1">
+                <p>{product.fasilitas_umum}</p>
+                {/* <div className="umum1">
                   <img src={bulat} alt="" />
                   <p>Wifi</p>
                 </div>
@@ -453,7 +509,7 @@ function Detail() {
                 <div className="umum1">
                   <img src={bulat} alt="" />
                   <p>Penjaga kos</p>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="garis"></div>
@@ -489,9 +545,9 @@ function Detail() {
               <div className="isi-maps">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.131730049922!2d110.84026577494669!3d-6.753785593242736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70db068724fae7%3A0x7610925ddad70c54!2sSMK%20Raden%20Umar%20Said!5e0!3m2!1sid!2sid!4v1685755925925!5m2!1sid!2sid"
-                  allowfullscreen=""
+                  allowFullScreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
 
                 <div className="maps-button">
@@ -682,58 +738,20 @@ function Detail() {
 
             <div className="garis"></div>
 
-            
+
           </div>
-            <div className="con-content2-right">
-  <div className="harga">
-    <div className="isi-harga-detail">
-        <div className="nominal">
-        <p>Rp2.350.000</p>
-        <h1>
-            Rp2.232.500 <span>/Bulan</span>
-        </h1>
+          <div className="con-content2-right">
+            <HargaProduct
+              harga={product.harga_kos}
+              nama_kos={product.nama_kos}
+            />
+            {/* <PromoProduct /> */}
+          </div>
         </div>
+        <ScrollUp to='detail' />
+      </div>
 
-        <div className="tanggal-mulai">
-        <div className="mulai-kos">
-            <p>Mulai kos</p>
-            <Icon icon="mdi:calendar" color="#303030" height="20" />
-        </div>
-
-        <div className="perbulan">
-            <p>Perbulan</p>
-            <Icon icon="gridicons:dropdown" color="#303030" height="20" />
-        </div>
-        </div>
-            <div className="button-harga-detail">
-
-        <button className="tanya-pemilik">
-        <p>Tanya Pemilik</p>
-        </button>
-        <button className="ajukan-sewa" onClick={() => navigate('/pembayaran')} >
-        <p>Ajukan Sewa</p>
-        </button>
-            </div>
-    </div>
-  </div>
-
-  <div className="promo">
-    <div className="isi-promo">
-      <Icon icon="teenyicons:gift-solid" color="#404040" height="20" />
-      <h1>Promo Yang Tersedia</h1>
-      <h4>Chat untuk tanyakan promo terbaru yang tersedia</h4>
-      <p>04 May 2023 - 31 May 2023</p>
-    </div>
-    <a href="#">Lihat Selengkapnya</a>
-  </div>
-</div>
-
-
-        </div>
-        <ScrollUp/>
-        </div>
-        
-        <Footer/>
+      <Footer />
     </div>
   )
 }

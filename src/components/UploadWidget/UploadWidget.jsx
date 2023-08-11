@@ -6,14 +6,14 @@ const UploadWidget = ({ onFileSelect, onRemove }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileSelect = (event) => {
-    const previewFile = event.target.files[0];
-    const file = event.target.files;
-    const filesArray = Array.from(file);
-    // setSelectedFile(URL.createObjectURL(file));
-    // onFileSelect(file);
-    setSelectedFile(URL.createObjectURL(previewFile));
-    onFileSelect(filesArray);
-    console.log(filesArray)
+    // const previewFile = event.target.files[0];
+    const file = event.target.files[0];
+    // const filesArray = Array.from(file);
+    setSelectedFile(URL.createObjectURL(file));
+    onFileSelect(file);
+    // setSelectedFile(URL.createObjectURL(previewFile));
+    // onFileSelect(filesArray);
+    // console.log(file)
   };
 
   const handleRemove = () => {

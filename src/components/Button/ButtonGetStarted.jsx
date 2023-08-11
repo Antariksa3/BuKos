@@ -22,9 +22,7 @@ const ButtonGetStarted = () => {
         <div className="buttonGetStarted">
             <div className="background-glass-button">
                 <RouterLink to="/listkos" className='button-start'>
-                    <button
-                        className='button-start'
-                    >Mulai Sekarang</button>
+                    <button className='button-start'>Mulai Sekarang</button>
                 </RouterLink>
                 {/* {modal && (
                     <div className="modal-start">

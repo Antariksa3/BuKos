@@ -13,6 +13,9 @@ import Dashboard from './pages/owner/dashboard';
 import OwnerDetailPage from './pages/owner/ownerDetail';
 import DaftarKos from './pages/owner/daftarKos';
 import { AuthProvider } from './utils/auth/authContext';
+import PostReview from './pages/postReview';
+import PostReviewTest from './pages/postReviewTest';
+import PaymentPage from './pages/payment';
 
 // const ProtectedProfile = () => {
 //   return (
@@ -53,7 +56,8 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/listkos' element={<ListKos />} />
-          <Route path='/detail' element={<Detail />} />
+          {/* <Route path='/detail' element={<Detail />} /> */}
+          <Route path="/detail/:productId" element={<Detail />} />
 
           {/* <Route
           path='/profile/*'
@@ -84,10 +88,13 @@ const App = () => {
           {/* </Route> */}
 
           {/* <Route path='/profile/*' element={<ProtectedProfile />} />
-        <Route path='/dashboard/*' element={<ProtectedDashboard />} /> */}
-          {/* <Route path='/profile/*' element={<Profile />} />
+        <Route path='/dashboard/*' element={<ProtectedDashboard />} />
+          <Route path='/profile/*' element={<Profile />} />
         <Route path='/dashboard/*' element={<Dashboard />} /> */}
           <Route path='/pembayaran' element={<Pembayaran />} />
+          <Route path='/payment/:productId' element={<PaymentPage />} />
+          <Route path='/post-review' element={<PostReview />} />
+          <Route path='/post-review-test' element={<PostReviewTest />} />
           <Route path='/test' element={<OwnerDetailPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>

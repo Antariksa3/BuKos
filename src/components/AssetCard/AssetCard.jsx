@@ -1,5 +1,6 @@
 import React from 'react'
 import './AssetCard.css'
+import { Link as RouterLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
@@ -23,7 +24,10 @@ const AssetCard = (asset) => {
                     <p>Rp{formattedPrice}/<span>Bulan</span></p>
                 </div>
             </div>
-            <button>Detail</button>
+            <RouterLink to={`/detail/${asset.id}`}>
+                <button>Detail</button>
+            </RouterLink>
+            {/* <ButtonDetail productID={asset.id} button='Lebih Rinci' /> */}
         </div>
     )
 }

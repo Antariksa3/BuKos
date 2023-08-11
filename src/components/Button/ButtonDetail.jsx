@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom'
 
 const ButtonDetail = (props) => {
     return (
-        <RouterLink to='/detail'>
+        <RouterLink to={`/detail/${props.productID}`}>
             <div className="buttonDetail">
                 <button className='button-detail'>{props.button}</button>
             </div>

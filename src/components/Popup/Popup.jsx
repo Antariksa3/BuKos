@@ -13,7 +13,7 @@ const Popup = ({ type, message, onClose }) => {
         onClose();
         if (type === 'success') {
             // navigate('/login');
-            navigate('/login', { state: { role: selectedRole } });
+            // navigate('/login', { state: { role: selectedRole } });
         }
     };
 

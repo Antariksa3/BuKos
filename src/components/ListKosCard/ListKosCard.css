@@ -32,6 +32,8 @@
     height: 200px;
     border-radius: 1rem;
     transition: .5s all ease-in-out;
+    position: relative;
+    display: inline-block;
 }
 
 /* .listkos-kos-image:hover {
@@ -103,6 +105,37 @@
 .listkos-price span {
     font-size: 1rem;
     font-weight: 500;
+}
+
+.listkos-favorite {
+    transform: translateY(-264px);
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 8px;
+}
+
+.favorite-button {
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Membuat tombol berbentuk lingkaran */
+}
+
+/* .favorite-icon {
+    color: #ff0000;
+    font-size: 16px;
+} */
+
+
+.favorite-button:hover .favorite-icon {
+    color: #ff6b6b;
 }
 
 /*=============== BREAKPOINTS ===============*/
