@@ -96,7 +96,7 @@ const NavBar = () => {
                         <a href="#" className='nav-link' onClick={closeMenu}>Layanan</a>
                     </li>
                     <li className='nav-item'>
-                        <a href="#" className='nav-link' onClick={closeMenu}>Syarat & Ketentuan</a>
+                        <a href="#" className='nav-link' onClick={() => navigate('/syarat&ketentuan/infoumum')}>Syarat & Ketentuan</a>
                     </li>
                     {isLoggedIn ? (
                         <li className='nav-item'>

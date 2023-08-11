@@ -1,0 +1,23 @@
+.infoumum {
+    margin: 20px 100px;
+    max-width: 1000px;
+}
+
+.infoumum h1 {
+    color: #303030;
+font-family: 'Poppins';
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: 40px; /* 125% */
+}
+
+.infoumum p {
+    color: #404040;
+font-family: 'Lato';
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 28px; /* 140% */
+}
+

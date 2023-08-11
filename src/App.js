@@ -9,6 +9,8 @@ import NotFoundPage from './pages/notFound';
 import Detail from './pages/detail';
 import Profile from './pages/profile/profile';
 import Pembayaran from './pages/pembayaran';
+import SyaratKetentuan from './pages/syaratKetentuan';
+import HubungiCs from './pages/hubungiCs';
 import Dashboard from './pages/owner/dashboard';
 import OwnerDetailPage from './pages/owner/ownerDetail';
 import DaftarKos from './pages/owner/daftarKos';
@@ -58,6 +60,8 @@ const App = () => {
           <Route path='/listkos' element={<ListKos />} />
           {/* <Route path='/detail' element={<Detail />} /> */}
           <Route path="/detail/:productId" element={<Detail />} />
+          <Route path='/syarat&ketentuan/*' element={<SyaratKetentuan/>}/>
+          <Route path='/hubungics' element={<HubungiCs/>}/>
 
           {/* <Route
           path='/profile/*'
