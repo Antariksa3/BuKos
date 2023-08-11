@@ -1,7 +1,7 @@
 // import Library
 import React, { Suspense, useEffect, useState } from 'react'
 import { useNavigate, Link as RouterLink } from 'react-router-dom'
-import { getProduct } from '../../api/api'
+import { getProduct, getProductOwner } from '../../api/api'
 
 // import Styles
 
@@ -19,14 +19,27 @@ const AssetCard = React.lazy(() => import('../../components/AssetCard/AssetCard'
 const KosSaya = () => {
   const navigate = useNavigate()
   const [products, setProduct] = useState([])
+  const token = localStorage.getItem('token');
+  const [assets, setAsset] = useState([])
   const [dataLoaded, setDataLoaded] = useState(false)
 
   useEffect(() => {
-    getProduct().then((product) => {
-      setProduct(product)
-      setDataLoaded(true)
-    })
+    getProduct()
+      .then((product) => {
+        setProduct(product)
+        setDataLoaded(true)
+      })
   }, [])
+
+  useEffect(() => {
+    getProductOwner(token)
+      .then((product) => {
+        setAsset(product)
+        setDataLoaded(true)
+      })
+  }, [token])
+
+  console.log(assets)
 
   const AssetList = () => {
     if (!dataLoaded) {
@@ -44,7 +57,7 @@ const KosSaya = () => {
       );
     }
 
-    return products.map((product, i) => {
+    return assets.map((product, i) => {
       return (
         <Suspense key={i} fallback={<AssetCardShimmer />}>
           <AssetCard
@@ -54,6 +67,7 @@ const KosSaya = () => {
             lokasi={product.lokasi_kos}
             harga={product.harga_kos}
             gambar={`http://127.0.0.1:8000/${product.foto_kos}`}
+            id={product.id}
           />
         </Suspense>
       )
@@ -63,13 +77,37 @@ const KosSaya = () => {
   return (
     <div className="isi-page-profile-kanan">
       <header className='dashboard-assets-header'>
-        <h2>Kosan Saya</h2>
+        <h2>Asset Saya</h2>
         <RouterLink to="/daftar_kos" className=''>Daftarkan Kos</RouterLink>
       </header>
       <div className="isi-profil-kanan">
-        <div className="list-assets">
-          <AssetList />
-        </div>
+        {assets.length === 0 ? (
+          <div>
+            <div className="title-isi-profil-kanan">
+              <h1>Kamu Belum Menyewa Kos</h1>
+              <p>Yuk, sewa di BuKos atau masukkan kode dari pemilik kos untuk aktifkan halaman ini! Coba cara ngekos modern dengan manfaat berikut ini.</p>
+            </div>
+            <div className="list-isi-profil-kanan">
+              <div className="tagihan-dan-kontrak">
+                <img src={Tagihan} alt="" height={50} />
+                <p>Tagihan dan kontrak sewa tercatat rapi</p>
+              </div>
+              <div className="tagihan-dan-kontrak">
+                <img src={Keamanan} alt="" height={50} />
+                <p>BuKos menjaga keamanan transaksi</p>
+              </div>
+              <div className="tagihan-dan-kontrak">
+                <img src={Cashless} alt="" height={45} />
+                <p>Cashless, dengan beragam metode pembayaran</p>
+              </div>
+            </div>
+            <button className="button-riwayat-booking" onClick={() => navigate('/listkos')}>Mulai Jelajahi Kos</button>
+          </div>
+        ) : (
+          <div className="list-assets">
+            <AssetList />
+          </div>
+        )}
       </div>
     </div>
   )

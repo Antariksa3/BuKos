@@ -36,7 +36,7 @@ function SidebarOwner() {
       getOwnerDetail(token)
         .then((ownerDetail) => {
           // Set data nama Owner dari ownerDetail ke state
-          console.log('Data Pemilik:', ownerDetail.data);
+          // console.log('Data Pemilik:', ownerDetail.data);
           setNamaOwner(ownerDetail.data.name);
         })
         .catch((error) => {
@@ -65,7 +65,7 @@ function SidebarOwner() {
           <NavLink to={"kos_saya"}>
             <div className="kosan-saya">
               <img src={KostSaya} alt="" />
-              <p>Kos Saya</p>
+              <p>Asset Saya</p>
             </div>
           </NavLink>
 

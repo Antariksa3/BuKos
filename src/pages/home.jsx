@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow } from 'swiper'
 import { Link as ScrollLink } from 'react-scroll'
 import { useEffect, useState } from 'react'
-import { getReviewUser, api } from '../api/api'
+import { getReviewUser, api, getNewestProduct } from '../api/api'
 
 // import Styles
 import '../App.css'
@@ -35,6 +35,31 @@ import benefit1 from '../assets/images/benefit1.svg'
 const Home = () => {
     // const navigate = useNavigate()
     const [reviewsUser, setReviewsUser] = useState([])
+    // const [products, setProduct] = useState([])
+
+    // useEffect(() => {
+    //     getNewestProduct()
+    //         .then((newestProducts) => {
+    //             setProduct(newestProducts)
+    //         })
+    // }, [])
+
+    // const NewestProductList = () => {
+    //     return products.map((product, i) => {
+    //         return (
+    //             <PopularCard
+    //                 foto_pemilik={`http://127.0.0.1:8000/${product.foto_pemilik}`}
+    //                 pemilik={product.nama_pemilik}
+    //                 nama_kos={product.nama_kos}
+    //                 lokasi={product.lokasi_kos}
+    //                 harga={product.harga_kos}
+    //                 gambar={`http://127.0.0.1:8000/${product.foto_kos}`}
+    //                 id={product.id}
+    //                 key={i}
+    //             />
+    //         )
+    //     })
+    // }
 
     useEffect(() => {
         getReviewUser().then((review) => {
@@ -63,8 +88,9 @@ const Home = () => {
                     <SwiperSlide key={i}>
                         <ReviewCard
                             user={review.nama_review}
-                            icon={faThumbsUp}
+                            // icon={faThumbsUp}
                             review={review.review_desc}
+                            gambar={`http://127.0.0.1:8000/${review.profil_review}`}
                         />
                     </SwiperSlide>
                 ))}
@@ -105,7 +131,7 @@ const Home = () => {
                         <div className="benefit-cards">
                             <BenefitCard icon={faHouseUser} benefitText='Mencari kos lebih mudah' />
                             <BenefitCard icon={faCommentDots} benefitText='Chat sebelum menyewa' />
-                            <BenefitCard icon={faRupiahSign} benefitText='Pembayaran lebih muda' />
+                            <BenefitCard icon={faRupiahSign} benefitText='Pembayaran lebih mudah' />
                         </div>
                         <ButtonMore button='Lebih Lanjut' />
                     </div>
@@ -121,6 +147,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="popular-cards">
+                        {/* <NewestProductList /> */}
                         <PopularCard />
                         <PopularCard />
                         <PopularCard />

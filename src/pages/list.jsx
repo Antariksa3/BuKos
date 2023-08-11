@@ -2,6 +2,7 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { getProduct, searchAndFilterProducts } from '../api/api'
 import { FaExclamationCircle } from 'react-icons/fa';
+import { api } from '../api/api';
 
 // import Styles
 import '../App.css'
@@ -27,6 +28,7 @@ const ListKos = () => {
     const [searching, setSearching] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedType, setSelectedType] = useState('');
+    const [selectedAddress, setSelectedAddress] = useState('');
     const [productNotFound, setProductNotFound] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -63,6 +65,8 @@ const ListKos = () => {
                         lokasi={product.lokasi_kos}
                         harga={product.harga_kos}
                         gambar={`http://127.0.0.1:8000/${product.foto_kos}`}
+                        id={product.id}
+                        favorite={product.favorite}
                     />
                 </Suspense>
             )
@@ -98,7 +102,7 @@ const ListKos = () => {
         try {
             setSearching(true);
             setLoading(true);
-            const filteredProducts = await searchAndFilterProducts(searchQuery, selectedType);
+            const filteredProducts = await searchAndFilterProducts(searchQuery, selectedType, selectedAddress);
             // console.log(filteredProducts);
             setProduct(filteredProducts.data);
             setProductNotFound(filteredProducts.data === null);
@@ -117,7 +121,26 @@ const ListKos = () => {
         try {
             setSearching(true);
             setLoading(true);
-            const filteredProducts = await searchAndFilterProducts(searchQuery, type);
+            const filteredProducts = await searchAndFilterProducts(searchQuery, type, selectedAddress);
+            // console.log(filteredProducts);
+            setProduct(filteredProducts.data);
+            setProductNotFound(filteredProducts.data === null);
+        } catch (error) {
+            // Handle error here, if necessary
+        } finally {
+            setSearching(false);
+            setLoading(false);
+        }
+    };
+
+    const handleFilterByAddress = async (event) => {
+        const address = event.target.value;
+        setSelectedAddress(address);
+
+        try {
+            setSearching(true);
+            setLoading(true);
+            const filteredProducts = await searchAndFilterProducts(searchQuery, selectedType, address);
             // console.log(filteredProducts);
             setProduct(filteredProducts.data);
             setProductNotFound(filteredProducts.data === null);
@@ -135,6 +158,7 @@ const ListKos = () => {
             setLoading(true);
             setSearchQuery('');
             setSelectedType('');
+            setSelectedAddress('');
             const products = await getProduct(); // Menggunakan getProduct untuk mengatur ulang ke seluruh produk
             setProduct(products);
             setProductNotFound(false); // Atur productNotFound kembali ke false
@@ -154,16 +178,22 @@ const ListKos = () => {
                     <div className={fixed ? 'list-filter list-fixed' : 'list-filter'}>
                         <div className="filter-location">
                             <label htmlFor="">Pilih Lokasi</label>
-                            <select name="" id="location" className='select-location'>
-                                {/* <option value="0">Semua Desa</option> */}
-                                <option value="1">Bacin</option>
-                                <option value="2">Besito</option>
-                                <option value="3">Demaan</option>
-                                <option value="4">Jepang</option>
-                                <option value="5">Getas</option>
-                                <option value="6">Ngembal</option>
-                                <option value="7">Nganguk</option>
-                                <option value="8">Purwosari</option>
+                            <select
+                                name=""
+                                id="location"
+                                className='select-location'
+                                value={selectedAddress}
+                                onChange={handleFilterByAddress}
+                            >
+                                <option value="">Semua Desa</option>
+                                <option value="Bacin">Bacin</option>
+                                <option value="Besito">Besito</option>
+                                <option value="Demaan">Demaan</option>
+                                <option value="Jepang">Jepang</option>
+                                <option value="Getas">Getas</option>
+                                <option value="Ngembal">Ngembal</option>
+                                <option value="Nganguk">Nganguk</option>
+                                <option value="Purwosari">Purwosari</option>
                             </select>
                         </div>
                         <div className="filter-type">

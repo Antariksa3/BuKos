@@ -56,7 +56,7 @@ const NavBar = () => {
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
         const userRole = localStorage.getItem('userRole');
-        console.log(userRole)
+        // console.log(userRole)
         if (userRole === 'user') {
             setDropdownRoute('/profile/kosansaya');
         } else if (userRole === 'owner') {

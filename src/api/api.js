@@ -5,6 +5,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
 export const api = () => {
     return 'http://127.0.0.1:8000/api'
+    // return 'https://bukos.my.id/api'
 }
 
 export const getReviewUser = async () => {
@@ -18,10 +19,41 @@ export const getProduct = async () => {
     return productList.data.product
 }
 
-export const searchAndFilterProducts = async (q, types = "") => {
-    const searchTypes = await axios.get(`${apiUrl}/api/product/search?Search=${q}&Filter=${types}`);
+export const getNewestProduct = async () => {
+    const newestProduct = await axios.get(`${apiUrl}/api/allproduct?limit=6&sort=created_at`);
+    console.log({ newestProduct: newestProduct })
+    return newestProduct.data.product
+}
+
+export const getProductDetail = async (productId, token) => {
+    // const endpoint = `${apiUrl}/api/getoneproduct/${productId}`
+    // const headers = {
+    //     Authorization: `Bearer ${token}`,
+    // };
+    // const productDetail = await axios.get(endpoint, { headers })
+    const productDetail = await axios.get(`${apiUrl}/api/getoneproduct/${productId}`)
+    // console.log({ productDetail: productDetail.data.data })
+    return productDetail.data.data
+}
+
+export const getFavoriteProduct = async (token) => {
+    const headers = {
+        Authorization: `Bearer ${token}`,
+    };
+    const productFavorite = await axios.get(`${apiUrl}/api/getfavorite`, { headers })
+    return productFavorite.data.favorites
+}
+
+export const searchAndFilterProducts = async (q, types = "", address = "") => {
+    const params = new URLSearchParams();
+    if (q) params.append('Search', q);
+    if (types) params.append('Filter_kos', types);
+    if (address) params.append('Filter_desa', address);
+
+    // const searchTypes = await axios.get(`${apiUrl}/api/product/search?Search=${q}&Filter_kos=${types}&Filter_desa=Jepang`);
+    const searchTypes = await axios.get(`${apiUrl}/api/product/search?${params}`);
     return searchTypes.data;
-};
+}
 
 export const getOwnerDetail = async (token) => {
     try {
@@ -36,7 +68,7 @@ export const getOwnerDetail = async (token) => {
         console.error('Error fetching owner detail:', error);
         throw error;
     }
-};
+}
 
 export const getUserDetail = async (token) => {
     try {
@@ -51,19 +83,13 @@ export const getUserDetail = async (token) => {
         console.error('Error fetching owner detail:', error);
         throw error;
     }
-};
+}
 
-// export const getUserData = async (token) => {
-//     try {
-//         const user = await axios.get(`${apiUrl}/api/user/`, {
-//             headers: {
-//                 Authorization: `Bearer ${token}`,
-//             },
-//         });
-//         console.log({ userList: user.data }); // Menampilkan data user di console (opsional)
-//         return user.data; // Mengembalikan data user dari permintaan ke server
-//     } catch (error) {
-//         // console.error('Error fetching user data:', error);
-//         throw error;
-//     }
-// }
+export const getProductOwner = async (token) => {
+    const headers = {
+        Authorization: `Bearer ${token}`,
+    };
+    const productOwner = await axios.get(`${apiUrl}/api/productowner`, { headers })
+    // return productOwner.data.product
+    return productOwner.data?.product ?? [];
+}
