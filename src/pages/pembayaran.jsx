@@ -1,22 +1,30 @@
+// import Library
 import React, { useState } from "react";
-import "../assets/styles/pembayaran.css";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
+
+// import Styles
+import "../assets/styles/pembayaran.css";
+
+// import Components
 import Lainnya from "../components/Lainnya/lainnya";
-import Navbar from "../components/Navbar/Navbar";
 import BoxJenis from "../components/BoxJenis/BoxJenis";
-import Img1 from "../assets/images/BgFjxmDl-540x720.jpg.png";
 import CardPembayaran from "../components/CardPembayaran/CardPembayaran";
 import Timeline from "../components/TimeLine/TimeLine";
 import IncrementDecrement from "../components/IncrementDecrement/IncrementDecrement";
 import CheckBox from "../components/CheckBox/CheckBox";
 import UploadWidget from "../components/UploadWidget/UploadWidget";
+import NavbarDetail from "../components/Navbar/NavbarDetail";
+
+// import Assets
+import Img1 from "../assets/images/BgFjxmDl-540x720.jpg.png";
+
 
 function Pembayaran() {
   const navigate = useNavigate();
   return (
     <div>
-      <Navbar />
+      <NavbarDetail />
       <div className="konten-pembayaran">
         <div className="pembayaran-kiri">
           <div className="isi-atas-pembayaran-kiri">

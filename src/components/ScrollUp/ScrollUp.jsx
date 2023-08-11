@@ -1,12 +1,13 @@
 import './ScrollUp.css'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { Link as ScrollLink } from 'react-scroll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faAngleUp} from '@fortawesome/free-solid-svg-icons'
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
 
-const ScrollUp = () => {
+const ScrollUp = (scrollUp) => {
     const [scroll, setScroll] = useState(false)
-    const changeScroll = () =>{
-        if (window.scrollY >= 50){
+    const changeScroll = () => {
+        if (window.scrollY >= 50) {
             setScroll(true)
         } else {
             setScroll(false)
@@ -15,12 +16,12 @@ const ScrollUp = () => {
 
     window.addEventListener('scroll', changeScroll)
 
-    return(
-        <>
-            <a href="#" className={scroll ? 'scrollup show-scroll' : 'scrollup'}>
+    return (
+        <div>
+            <ScrollLink to={scrollUp.to} className={scroll ? 'scrollup show-scroll' : 'scrollup'} spy={true} smooth={true} offset={-50} duration={250}>
                 <FontAwesomeIcon icon={faAngleUp} />
-            </a>
-        </>
+            </ScrollLink>
+        </div>
     )
 }
 

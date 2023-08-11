@@ -4,19 +4,19 @@ import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import reviewUser from '../../assets/images/reviewUser1.svg'
 
-
-const ReviewCard = (props) =>{
-    return(
+const ReviewCard = (props) => {
+    return (
         <div className="review-card">
-            <FontAwesomeIcon icon={faQuoteLeft} className='review-quote'/>
-            <h4>{props.review}</h4>
+            <FontAwesomeIcon icon={faQuoteLeft} className='review-quote' />
+            <h4 className='review-desc'>{props.review}</h4>
             <span></span>
             <div className="review-user">
                 <div className="review-user-profile">
-                    <img src={reviewUser} alt="" />
+                    {/* <img src={reviewUser} className='review-user-profile-pict' /> */}
+                    <img src={props.gambar} className='review-user-profile-pict' alt='review-profil' />
                     <h4>{props.user}</h4>
                 </div>
-                <FontAwesomeIcon icon={props.icon} className='review-like'/>
+                {/* <FontAwesomeIcon icon={props.icon} className='review-like' /> */}
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../CardPembayaran/CardPembayaran.css'
 import { Icon } from '@iconify/react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import BoxJenis from '../BoxJenis/BoxJenis'
 import Img1 from '../../assets/images/BgFjxmDl-540x720.jpg.png'
 

@@ -5,7 +5,7 @@ import '../../pagination.js'
 function Pagination() {
   return (
     <div>
-      <div class="pagination">
+      <div className="pagination">
     <ul></ul>
   </div>
     </div>

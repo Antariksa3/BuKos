@@ -1,58 +1,112 @@
+// import Library
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios'
+import { useState } from 'react'
+import { api } from '../api/api'
+
+// import Styles
 import '../App.css';
 import '../assets/styles/login.css';
+
+// import Components
+import TextField from '../components/TextField/TextField';
+import ButtonRegister from '../components/Button/ButtonRegister';
+
+// import Assets
 import img1 from '../assets/images/img1.svg';
 import logo1 from '../assets/images/logo1.svg';
 import logo2 from '../assets/images/logo2.svg';
-import TextField from '../components/TextField/TextField';
-import ButtonRegister from '../components/Button/ButtonRegister';
-import { useNavigate } from 'react-router-dom';
-import apiurl from '../api'
-import axios from 'axios'
-import { useState } from 'react';
+import Popup from '../components/Popup/Popup';
 
-const Login = () =>{
+const Login = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const {
-    //     register,
-    //     handleSubmit,
-    //     formState: { errors },
-    // } = useForm();
+    const location = useLocation();
+    const selectedRole = location.state ? location.state.role : '';
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [errors, setErrors] = useState({});
 
-    const onSubmit = async (data) => {
-        // e.preventDefault()
-        const formData = new FormData();
-        formData.append("email", data.email);
-        formData.append("password", data.password);
-        await axios({
-            method: "post",
-            url: apiurl() + "login",
-            data: formData,
-            headers: {
-            "Content-Type": "multipart/form-data",
-            },
-        })
-            .then((response) => {
-            console.log(response);
-            localStorage.setItem("token", response.data.data.token);
-            navigate("/");
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    const handleValidation = () => {
+        let formIsValid = true;
+        const newErrors = {};
+
+        // Validasi email
+        if (!email) {
+            formIsValid = false;
+            newErrors.email = 'Email atau nomor handphone harus diisi';
+        }
+
+        // Validasi password
+        if (!password) {
+            formIsValid = false;
+            newErrors.password = 'Password harus diisi';
+        }
+
+        setErrors(newErrors);
+        return formIsValid;
     };
 
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
-    return(
+        let endpoint = '/login';
+
+        if (selectedRole === 'user') {
+            endpoint = '/user/login';
+        } else if (selectedRole === 'owner') {
+            endpoint = '/owner/login';
+        }
+
+        try {
+            const response = await axios.post(api() + endpoint, {
+                email: email,
+                password: password,
+            });
+            console.log(response)
+            const token = response.data.data.token;
+            localStorage.setItem('token', token);
+            // console.log(token)
+            const userRole = response.data.data.role;
+            localStorage.setItem('userRole', userRole);
+            // console.log(userRole)
+            navigate('/', { state: { role: selectedRole } });
+        } catch (error) {
+            console.log(error);
+            setShowErrorPopup(true);
+            // if (error.response && error.response.status === 403) {
+            //     const errorMessage = error.response.data.message;
+            //     if (errorMessage === 'Email not found') {
+            //         // Tampilkan popup error untuk kasus "email tidak ditemukan"
+            //         setShowErrorPopup(true);
+            //         setErrorMessage('Email tidak ditemukan. Silakan cek kembali email Anda.');
+            //     } else if (errorMessage === 'Access forbidden for this role') {
+            //         // Tampilkan popup error untuk kasus "akses tidak diizinkan untuk role ini"
+            //         setShowErrorPopup(true);
+            //         setErrorMessage('Akses tidak diizinkan untuk peran ini.');
+            //     }
+            // } else {
+            //     // Menampilkan popup error umum jika terjadi kesalahan lain selain 403
+            //     setShowErrorPopup(true);
+            //     setErrorMessage('Terjadi kesalahan saat login. Silakan coba lagi.');
+            // }
+        }
+    };
+
+    const handleErrorPopupClose = () => {
+        setShowErrorPopup(false);
+    };
+
+    return (
         <div className="wrapper">
             <div className="left">
                 <img src={logo1} className='logo1' alt='logo1' />
                 <div className="image">
-                    <img src={img1} className='img1' alt='img1'/>
+                    <img src={img1} className='img1' alt='img1' />
                     <h1>Temukan Kost Yang <br /> Nyaman Dengan BuKos</h1>
                 </div>
-                <button className='button-back' onClick={()=> navigate('/')}>Kembali</button>
+                <button className='button-back' onClick={() => navigate('/')}>Kembali</button>
             </div>
             <div className="right">
                 <div className="form-login">
@@ -60,14 +114,38 @@ const Login = () =>{
                     <h1>Selamat Datang Kembali</h1>
                     <h4>Selamat datang kembali! <br /> Silakan login dengan akun yang Anda Daftarkan</h4>
                     <br />
-                    <form onSubmit={onSubmit}>
-                        <TextField htmlFor='email' label='Email atau Nomor Handphone' type='email' name='email' inputId='email' placeholder='Email atau Nomor Handphone'   />
-                        <TextField htmlFor='password' label='Password' type='password' name='password' inputId='password' placeholder='Minimal 8 Karakter'  />
+                    <form onSubmit={handleLogin}>
+                        <TextField
+                            htmlFor='email'
+                            label='Email'
+                            type='email'
+                            inputId='email'
+                            placeholder='Masukkan Email'
+                            onChange={(e) => setEmail(e.target.value)}
+                            error={errors.email}
+                        />
+                        <TextField
+                            htmlFor='password'
+                            label='Password'
+                            type='password'
+                            inputId='password'
+                            placeholder='Minimal 8 Karakter'
+                            onChange={(e) => setPassword(e.target.value)}
+                            error={errors.password}
+                        />
                         <ButtonRegister button="Login" />
                     </form>
-                    <h4>Belum punya akun? <span onClick={() => navigate('/register')}>Daftar disini</span></h4>
+                    <h4>Belum punya akun? <span onClick={() => navigate('/register', { state: { role: selectedRole } })}>Daftar disini</span></h4>
                 </div>
             </div>
+            {showErrorPopup && (
+                <Popup
+                    type="error"
+                    message="Silakan cek kembali email dan password anda."
+                    // message={errorMessage}
+                    onClose={handleErrorPopupClose}
+                />
+            )}
         </div>
     )
 }
