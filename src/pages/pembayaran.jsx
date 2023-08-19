@@ -1,5 +1,5 @@
 // import Library
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,9 +18,26 @@ import NavbarDetail from "../components/Navbar/NavbarDetail";
 
 // import Assets
 import Img1 from "../assets/images/BgFjxmDl-540x720.jpg.png";
+import { getUserDetail } from "../api/api";
 
 
-function Pembayaran() {
+const Pembayaran = () => {
+  const [userData, setUserData] = useState(null)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      getUserDetail(token)
+        .then((userDetail) => {
+          setUserData(userDetail)
+        })
+    } else {
+      console.log('Token tidak ditemukan. Anda belum login atau token telah kadaluarsa.');
+    }
+  }, []);
+
+  console.log(userData)
+
   const navigate = useNavigate();
   return (
     <div>
@@ -169,40 +186,40 @@ function Pembayaran() {
 
           <div className="durasi_ngekos">
 
-              <div className="durasi_kos_title">
-                <h3>Durasi Kos</h3>
-                <p>Durasi dapat disesuaikan di kemudian hari</p>
-                <IncrementDecrement/>
-              </div>
+            <div className="durasi_kos_title">
+              <h3>Durasi Kos</h3>
+              <p>Durasi dapat disesuaikan di kemudian hari</p>
+              <IncrementDecrement />
+            </div>
 
           </div>
 
-        <div className="garis-pembatas-card"></div>
+          <div className="garis-pembatas-card"></div>
 
-              <div className="tanggal_ngekos">
-              <div className="biaya_sewa_pembayaran">
-            <div className="biaya_sewa_title">
-              <h3>Tanggal mulai kos</h3>
-              <a href="#">Ubah</a>
-            </div>
-            <div className="isi_biaya_sewa">
-              <p> 
-                Rabu, 14 Juni 2024
-              </p>
+          <div className="tanggal_ngekos">
+            <div className="biaya_sewa_pembayaran">
+              <div className="biaya_sewa_title">
+                <h3>Tanggal mulai kos</h3>
+                <a href="#">Ubah</a>
+              </div>
+              <div className="isi_biaya_sewa">
+                <p>
+                  Rabu, 14 Juni 2024
+                </p>
 
+              </div>
             </div>
           </div>
-              </div>
 
-              <button class="button-riwayat-booking" onClick={() => navigate('/')}>Ajukan sewa</button>
+          <button class="button-riwayat-booking" onClick={() => navigate('/')}>Ajukan sewa</button>
 
         </div>
         <div className="pembayaran-kanan">
-          <CardPembayaran />
+          {/* <CardPembayaran /> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default Pembayaran;
+export default Pembayaran

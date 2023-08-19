@@ -23,6 +23,7 @@ const PostReview = () => {
         // setSelectedFilePemilik(URL.createObjectURL(file));
         setFotoReview(file);
     };
+    // console.log(fotoReview)
 
     const handleFotoUserRemove = () => {
         // setSelectedFilePemilik(URL.createObjectURL(file));
@@ -56,18 +57,20 @@ const PostReview = () => {
             formData.append('profile_review', fotoReview);
             formData.append('review_desc', reviewDesc);
 
-            const response = await axios.post(api() + '/addreview', formData,
-                // {
-                //     nama_review: namaReview,
-                //     profile_review: fotoReview,
-                //     review_desc: reviewDesc,
-                // },
+            const response = await axios.post(api() + '/addreview',
+                //  formData,
+                {
+                    nama_review: namaReview,
+                    profile_review: fotoReview,
+                    review_desc: reviewDesc,
+                },
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'Authorization': `Bearer ${token}`,
                     },
-                });
+                }
+            );
 
             console.log('Response:', response.data);
 
@@ -115,26 +118,6 @@ const PostReview = () => {
                             <label htmlFor="">Masukkan Review Anda</label>
                             <input type="text" value={reviewDesc} onChange={(e) => setReviewDesc(e.target.value)} placeholder="Tulis Review Anda Disini" />
                         </div>
-                        {/* <input
-                            type="text"
-                            name="nama_review"
-                            placeholder="Nama Anda"
-                            value={reviewData.nama_review}
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="text"
-                            name="profil_review"
-                            placeholder="URL Foto Profil Anda"
-                            value={reviewData.profil_review}
-                            onChange={handleInputChange}
-                        />
-                        <textarea
-                            name="review_desc"
-                            placeholder="Tulis review Anda di sini..."
-                            value={reviewData.review_desc}
-                            onChange={handleInputChange}
-                        ></textarea> */}
                         <button type="submit">
                             <Icon icon="mdi:send" color="#fff" height="24" />
                             Kirim Review

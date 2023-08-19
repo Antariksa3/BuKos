@@ -115,10 +115,11 @@
 .isi-profil-kanan {
     display: flex;
     flex-direction: column;
-    padding: 10px 0px;
+    /* padding: 10px 0px; */
     gap: 20px;
     justify-content: center;
     max-height: 600px;
+    align-items: center;
 }
 
 .title-isi-profil-kanan {
@@ -245,8 +246,8 @@
 }
 
 .card-riwayat-atas img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 8px;
 }
 

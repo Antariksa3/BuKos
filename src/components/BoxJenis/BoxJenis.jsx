@@ -2,10 +2,10 @@ import React from 'react'
 import '../BoxJenis/BoxJenis.css'
 import Img1 from '../../assets/images/BgFjxmDl-540x720.jpg.png'
 
-function Jenis() {
+const Jenis = (props) => {
   return (
     <div className="isi-box-jenis">
-        <p>Perempuan</p>
+      <p>{props.tipe_kamar}</p>
     </div>
   )
 }
