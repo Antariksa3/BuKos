@@ -1,0 +1,20 @@
+.button1{
+    padding: 0 10rem;
+  }
+  
+  .button-input{
+    padding: .75rem 1rem;
+    width: 100%;
+    border-radius: .75rem;
+    color: #fff;
+    background-color: #834BFF;
+    border-style: none;
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .button-input:hover{
+    background-color: #7130ff;
+  }

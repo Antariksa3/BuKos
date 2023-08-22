@@ -1,6 +1,7 @@
 .wrapper {
     display: flex;
     max-height: 100vh;
+    overflow-y: hidden;
 }
 
 .left {
@@ -63,8 +64,8 @@
 .form-login span{
     color: #0085FF;
     cursor: pointer;
-    transition: 0.5s;
-    -webkit-transition: 0.5s;
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
 }
 
 .form-login span:hover{
@@ -79,7 +80,7 @@
     border-style: none;
     align-items: center;
     cursor: pointer;
-    transition: all .5s;
+    transition: all .5s ease-in-out;
     margin: 5rem 3rem ;
 }
 

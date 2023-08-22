@@ -1,0 +1,118 @@
+.isi-hubungics {
+    padding: 100px 100px 50px;
+}
+
+.title-cs {
+    margin-bottom: 50px;
+}
+
+.title-cs h1 {
+    color: #303030;
+font-family: 'Poppins';
+font-size: 60px;
+font-style: normal;
+font-weight: 700;
+line-height: 40px; /* 125% */
+margin-bottom: 30px;
+}
+
+.title-cs p{
+    color: #404040;
+    font-family: 'Poppins';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+}
+
+.pilihan-cs {
+    display: flex;
+    gap: 30px;
+}
+
+.hubungi-wa {
+    width: 430px;
+height: 200px;
+padding: 40px 27px;
+align-items: center;
+
+border-radius: 30px;
+background: #FFF;
+box-shadow: 0px 5px 25px -8px rgba(29, 29, 29, 0.25);
+}
+
+.hubungi-wa h2 {
+    color: #2A323C;
+font-family: 'Poppins';
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-bottom: -15px;
+margin-top: 5px;
+}
+
+.layanan-pengaduan-konsumen {
+    margin-top: 100px;
+}
+
+.layanan-pengaduan-konsumen h3 {
+    color: #404040;
+font-family: 'Lato';
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 24px; /* 171.429% */
+margin: 0px;
+}
+
+.hubungi-chat {
+    width: 430px;
+height: 200px;
+padding: 40px 27px;
+align-items: center;
+
+border-radius: 30px;
+background: #FFF;
+box-shadow: 0px 5px 25px -8px rgba(29, 29, 29, 0.25);
+}
+
+.hubungi-chat h2 {
+    color: #2A323C;
+font-family: 'Poppins';
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-bottom: -15px;
+margin-top: 5px;
+}
+
+.layanan-wa {
+    display: flex;
+    flex-direction: column;
+}
+
+.nomor-wa {
+    margin-top: -20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.layanan-wa p {
+    color: #404040;
+    font-family: 'Lato';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 150% */
+    max-width: 500px;
+}
+
+.nomor-wa {
+    margin-top: -20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

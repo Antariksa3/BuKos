@@ -1,0 +1,40 @@
+.filter-search-wrapper {
+    background-color: #f1f1f1;
+    width: 100%;
+    border-radius: .5rem;
+    height: 3rem;
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+.filter-input-container {
+    position: relative;
+}
+
+.filter-input {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    font-size: 1rem;
+    width: 100%;
+    margin-left: .5rem;
+}
+
+.filter-input:focus {
+    outline: none;
+}
+
+.clear-input-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    color: #834BFF;
+    cursor: pointer;
+}
+
+.clear-input-icon:hover {
+    color: #FF3A57;
+}
