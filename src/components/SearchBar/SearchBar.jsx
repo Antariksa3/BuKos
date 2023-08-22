@@ -12,6 +12,7 @@ const SearchBar = () => {
             </div>
                 <button type="submit" className='search-button'>Cari</button>
         </div>
+        
     )
 }
 

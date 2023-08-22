@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 /* 
 Font Weight
-300 - Light
 400 - Reguler
 500 - Medium
 600 - Semibold
@@ -18,5 +17,4 @@ Font Weight
   font-family: 'Poppins', sans-serif;
   /* overflow-y: hidden; */
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }

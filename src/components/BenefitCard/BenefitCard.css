@@ -1,189 +1,29 @@
-.benefit-card {
+.benefit-card{
     background-color: #f4f4f4;
     width: 200px;
     height: 180px;
     border-radius: 1rem;
     padding: 2rem 1.5rem;
-    transition: .5s ease-in-out;
+    transition: .3s;
+    margin-right: 1.5rem;
 }
 
-.benefit-card h4 {
+.benefit-card h4{
     color: #0C0C1D;
     font-weight: 600;
-    transition: .3s ease-in-out;
+    transition: .5s;
 }
 
-.icon {
+.icon{
     width: 40px;
     height: 40px;
 }
 
-.benefit-card:hover {
+.benefit-card:hover{
     background-color: #0C0C1D;
     color: white;
-    transform: scale(1.05);
 }
-
-.benefit-card:hover h4 {
+.benefit-card:hover h4{
+    /* background-color: #0C0C1D; */
     color: white;
-}
-
-/*=============== BREAKPOINTS ===============*/
-
-/* Gaya-gaya sebelumnya */
-
-/* Media Query 320px */
-@media screen and (max-width: 320px) {
-
-    /* Gaya-gaya di breakpoint 320px */
-
-    .benefit-card {
-        width: 100%;
-        height: auto;
-        padding: 1rem;
-        margin-bottom: .5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-        padding-top: 1rem;
-    }
-
-    .benefit-card h4 {
-        font-size: 1.25rem;
-        text-align: center;
-        margin-top: 1rem;
-        margin-bottom: 0;
-    }
-}
-
-/* Media Query 480px */
-@media screen and (min-width: 321px) and (max-width: 480px) {
-
-    /* Gaya-gaya di breakpoint 480px */
-    .benefit-card {
-        width: 100%;
-        height: auto;
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .benefit-card h4 {
-        font-size: 16px;
-    }
-}
-
-/* Media Query 768px */
-@media screen and (min-width: 481px) and (max-width: 768px) {
-
-    /* Gaya-gaya di breakpoint 768px */
-    .benefit-card {
-        width: 100%;
-        height: auto;
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .benefit-card h4 {
-        font-size: 16px;
-    }
-}
-
-/* Media Query 1024px */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-
-    /* Gaya-gaya di breakpoint 1024px */
-    .benefit-card {
-        width: 50%;
-        height: auto;
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .benefit-card h4 {
-        font-size: 18px;
-    }
-}
-
-/* Media Query 1280px */
-@media screen and (min-width: 1025px) and (max-width: 1280px) {
-
-    /* Gaya-gaya di breakpoint 1280px */
-    .benefit-card {
-        width: 33.33%;
-        height: auto;
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .benefit-card h4 {
-        font-size: 18px;
-    }
-}
-
-/* Media Query 1440px */
-@media screen and (min-width: 1281px) and (max-width: 1440px) {
-
-    /* Gaya-gaya di breakpoint 1440px */
-    .benefit-card {
-        width: 25%;
-        height: auto;
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .benefit-card h4 {
-        font-size: 20px;
-    }
-}
-
-/* Media Query paling besar */
-@media screen and (min-width: 1441px) {
-
-    /* Gaya-gaya di media query paling besar */
-    .benefit-card {
-        width: 20%;
-        height: auto;
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .benefit-card h4 {
-        font-size: 20px;
-    }
 }

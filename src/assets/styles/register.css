@@ -60,47 +60,13 @@
     font-weight: 400;
 }
 
-.error-message{
-    color: #f44336;
-    margin-left: 10rem;
-}
-
-.login-now{
+.form-register span{
     color: #0085FF;
     cursor: pointer;
-    transition: 0.5s ease-in-out;
-    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
 }
 
-.login-now:hover{
-
+.form-register span:hover{
     text-decoration: underline;
-}
-
-.popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.popup-enter {
-    opacity: 0;
-}
-
-.popup-enter-active {
-    opacity: 1;
-    transition: opacity 300ms;
-}
-
-.popup-exit {
-    opacity: 1;
-}
-
-.popup-exit-active {
-    opacity: 0;
-    transition: opacity 300ms;
 }
