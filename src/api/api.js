@@ -4,8 +4,8 @@ const apiUrl = process.env.REACT_APP_API_URL;
 const apiKey = process.env.REACT_APP_API_KEY;
 
 export const api = () => {
-    return 'http://127.0.0.1:8000/api'
-    // return 'https://bukos.my.id/api'
+    // return 'http://127.0.0.1:8000/api'
+    return 'https://bukos.my.id/api'
 }
 
 export const getReviewUser = async () => {
@@ -43,6 +43,7 @@ export const getFavoriteProduct = async (token) => {
     const productFavorite = await axios.get(`${apiUrl}/api/getfavorite`, { headers })
     return productFavorite.data.favorites
 }
+
 
 export const searchAndFilterProducts = async (q, types = "", address = "") => {
     const params = new URLSearchParams();

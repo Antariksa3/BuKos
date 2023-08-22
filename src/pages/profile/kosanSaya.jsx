@@ -56,7 +56,7 @@ const KosanSaya = () => {
             nama_kos={favorite.nama_kos}
             lokasi={favorite.lokasi_kos}
             harga={favorite.harga_kos}
-            gambar={`http://127.0.0.1:8000/${favorite.foto_kos}`}
+            gambar={`https://bukos.my.id/${favorite.foto_kos}`}
             id={favorite.id}
           />
         </Suspense>

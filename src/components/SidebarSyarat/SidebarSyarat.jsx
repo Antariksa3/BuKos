@@ -1,11 +1,11 @@
 import React from 'react'
 import './SidebarSyarat.css'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import KostSaya from '../../assets/images/ic_kost_o.svg'
-import HistoryBooking from '../../assets/images/ic_waiting-list_o.svg'
-import HistoryKos from '../../assets/images/ic_history-kost_o.svg'
-import HistoryTransaksi from '../../assets/images/ic_history-transaction_o.svg'
-import VerifAkun from '../../assets/images/ic_verifikasi-akun_o.svg'
+import KostSaya from '../../assets/icons/ic_kost_o.svg'
+import HistoryBooking from '../../assets/icons/ic_waiting-list_o.svg'
+import HistoryKos from '../../assets/icons/ic_history-kost_o.svg'
+import HistoryTransaksi from '../../assets/icons/ic_history-transaction_o.svg'
+import VerifAkun from '../../assets/icons/ic_verifikasi-akun_o.svg'
 
 
 
