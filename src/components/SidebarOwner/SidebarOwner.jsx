@@ -106,7 +106,6 @@ function SidebarOwner() {
 
           <a onClick={handleLogout}>
             <div className="logout-button">
-              {/* <img src={SettingAkun} alt="" /> */}
               <FontAwesomeIcon icon={faArrowRightFromBracket} flip="horizontal" style={{ color: "#ffffff", }} />
               <p>Logout</p>
             </div>

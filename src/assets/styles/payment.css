@@ -1,0 +1,80 @@
+.payment-container {
+    background-color: #f2f2f2;
+}
+
+.payment-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 100px;
+}
+
+.payment-form {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 474px;
+}
+
+.payment-card {
+    flex: 1;
+    background-color: white;
+    /* padding: 20px; */
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.proceed-button {
+    background-color: #834BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+    display: block;
+    margin: auto;
+}
+
+.proceed-button:hover {
+    background-color: #6A2FCC;
+}
+
+.payment-form-group {
+    margin-bottom: 20px;
+}
+
+.payment-form-group label {
+    font-weight: 600;
+}
+
+.payment-form-group p {
+    color: #1e1e1e;
+    font-weight: 500;
+    margin: 0;
+}
+
+.payment-form-group input,
+.payment-form-group textarea,
+.payment-form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    border: 2px solid #CDD6E1;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: .2s ease-in-out;
+}
+
+.payment-form-group input:active {
+    border: 2px solid #834bff;
+}
+
+.payment-form-group textarea {
+    resize: vertical;
+}

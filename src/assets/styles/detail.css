@@ -290,10 +290,20 @@
   background: #834bff;
   border-radius: 4px;
   transition: .2s ease-in-out;
+  cursor: pointer;
 }
 
 .ajukan-sewa:hover {
   background-color: #7130ff;
+}
+
+.ajukan-sewa.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.ajukan-sewa.disabled:hover {
+  background-color: #ccc;
 }
 
 .promo {
@@ -516,6 +526,13 @@
   width: 56px;
   height: 56px;
   margin-right: 20px;
+}
+
+.isi-profil-foto img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
 }
 
 .keuntungan h1 {

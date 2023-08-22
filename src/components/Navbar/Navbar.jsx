@@ -54,7 +54,7 @@ const NavBar = () => {
     window.addEventListener('scroll', changeColor)
 
     const toggleDropdown = () => {
-        setDropdownOpen(!dropdownOpen);
+        // setDropdownOpen(!dropdownOpen);
         const userRole = localStorage.getItem('userRole');
         // console.log(userRole)
         if (userRole === 'user') {
@@ -101,8 +101,10 @@ const NavBar = () => {
                     {isLoggedIn ? (
                         <li className='nav-item'>
                             <div className="dropdown">
-                                <img src={profileImage} alt="Profile" className="profile-image" onClick={toggleDropdown} />
-                                {dropdownOpen && (
+                                <RouterLink to={dropdownRoute} onClick={toggleDropdown} className="dropdown-link">
+                                    <img src={profileImage} alt="Profile" className="profile-image" onClick={toggleDropdown} />
+                                </RouterLink>
+                                {/* {dropdownOpen && (
                                     <div className="dropdown-content open">
                                         <RouterLink to={dropdownRoute} onClick={toggleDropdown} className="dropdown-link">
                                             Profile
@@ -111,7 +113,7 @@ const NavBar = () => {
                                             Logout
                                         </button>
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         </li>
                     ) : (

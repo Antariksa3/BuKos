@@ -61,12 +61,12 @@ const KosSaya = () => {
       return (
         <Suspense key={i} fallback={<AssetCardShimmer />}>
           <AssetCard
-            // foto_pemilik={`http://127.0.0.1:8000/${product.foto_pemilik}`}
+            // foto_pemilik={`${process.env.REACT_APP_API_URL}/${product.foto_pemilik}`}
             // pemilik={product.nama_pemilik}
             nama_kos={product.nama_kos}
             lokasi={product.lokasi_kos}
             harga={product.harga_kos}
-            gambar={`http://127.0.0.1:8000/${product.foto_kos}`}
+            gambar={`${process.env.REACT_APP_API_URL}/${product.foto_kos}`}
             id={product.id}
           />
         </Suspense>

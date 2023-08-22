@@ -51,12 +51,12 @@ const KosanSaya = () => {
       return (
         <Suspense key={i} fallback={<AssetCardShimmer />}>
           <AssetCard
-            // foto_pemilik={`http://127.0.0.1:8000/${favorite.foto_pemilik}`}
+            // foto_pemilik={`${process.env.REACT_APP_API_URL}/${favorite.foto_pemilik}`}
             // pemilik={favorite.nama_pemilik}
             nama_kos={favorite.nama_kos}
             lokasi={favorite.lokasi_kos}
             harga={favorite.harga_kos}
-            gambar={`https://bukos.my.id/${favorite.foto_kos}`}
+            gambar={`${process.env.REACT_APP_API_URL}/${favorite.foto_kos}`}
             id={favorite.id}
           />
         </Suspense>
@@ -71,7 +71,7 @@ const KosanSaya = () => {
       </header>
       <div className="isi-profil-kanan">
         {favProduct.length > 0 ? (
-          <div div className="list-assets">
+          <div className="list-assets">
             <FavList />
           </div>
 

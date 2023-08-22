@@ -22,6 +22,8 @@ import HistoryTransaksi from '../../assets/icons/ic_history-transaction_o.svg'
 import VerifAkun from '../../assets/icons/ic_verifikasi-akun_o.svg'
 import SettingAkun from '../../assets/icons/ic_setting-gear.svg'
 import { getUserDetail } from '../../api/api'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 
 function Sidebar() {
@@ -33,7 +35,7 @@ function Sidebar() {
     if (token) {
       getUserDetail(token)
         .then((userDetail) => {
-          console.log('Data Pemilik:', userDetail.name);
+          console.log('Data Pemilik:', userDetail);
           setNamaUser(userDetail.name);
         })
         .catch((error) => {
@@ -43,6 +45,14 @@ function Sidebar() {
       console.log('Token tidak ditemukan. Anda belum login atau token telah kadaluarsa.');
     }
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
+    // window.location.reload();
+    navigate('/');
+  };
+
   return (
     <div className="isi-page-profile-kiri">
 
@@ -56,7 +66,7 @@ function Sidebar() {
           <NavLink to={"kosansaya"}>
             <div className="kosan-saya">
               <img src={KostSaya} alt="" />
-              <p>Kos Saya</p>
+              <p>Favorit Saya</p>
             </div>
           </NavLink>
 
@@ -67,12 +77,12 @@ function Sidebar() {
             </div>
           </NavLink>
 
-          <NavLink to={"riwayatkos"}>
+          {/* <NavLink to={"riwayatkos"}>
             <div className="kosan-saya">
               <img src={HistoryKos} alt="" />
               <p>Riwayat Kos</p>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink to={"riwayattransaksi"}>
             <div className="kosan-saya">
@@ -95,6 +105,12 @@ function Sidebar() {
             </div>
           </NavLink>
 
+          <a onClick={handleLogout}>
+            <div className="logout-button">
+              <FontAwesomeIcon icon={faArrowRightFromBracket} flip="horizontal" style={{ color: "#ffffff", }} />
+              <p>Logout</p>
+            </div>
+          </a>
 
         </div>
       </div>

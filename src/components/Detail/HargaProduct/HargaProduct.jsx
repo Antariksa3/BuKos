@@ -4,13 +4,18 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { Link as RouterLink } from 'react-router-dom'
 
-const HargaProduct = ({ nama_kos, harga }) => {
+const HargaProduct = ({ nama_kos, harga, productID }) => {
     const formattedPrice = harga.toLocaleString('id-ID');
     const [fixedPosition, setFixedPosition] = useState(false)
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [showDurasiOptions, setShowDurasiOptions] = useState(false);
-    const [selectedDurasi, setSelectedDurasi] = useState('1');
+    // const [selectedDurasi, setSelectedDurasi] = useState('1');
+    const [isDateSelected, setIsDateSelected] = useState(false);
+    const storedSelectedDurasi = localStorage.getItem('selectedDurasi');
+    const initialSelectedDurasi = storedSelectedDurasi ? storedSelectedDurasi : '1';
+    const [selectedDurasi, setSelectedDurasi] = useState(initialSelectedDurasi);
+
     const pemilikPhoneNumber = '%2B6287820025877';
 
     const toggleDurasiOptions = () => {
@@ -21,6 +26,7 @@ const HargaProduct = ({ nama_kos, harga }) => {
     const handleDurasiChange = (e) => {
         setSelectedDurasi(e.target.value);
         setShowDurasiOptions(false)
+        localStorage.setItem('selectedDurasi', e.target.value);
     };
 
     const durasiOptions = [
@@ -53,7 +59,10 @@ const HargaProduct = ({ nama_kos, harga }) => {
 
     const handleDateChange = date => {
         setSelectedDate(date);
-        setShowCalendar(false)
+        setIsDateSelected(true);
+        const dateString = date.toISOString();
+        localStorage.setItem('selectedDate', dateString);
+        setShowCalendar(false);
     };
 
     return (
@@ -66,12 +75,7 @@ const HargaProduct = ({ nama_kos, harga }) => {
                 <div className="isi-harga-detail">
                     <div className="nominal">
                         <p>Rp2.350.000</p>
-                        <h1>
-                            {/* Rp2.232.500  */}
-                            {/* {props.harga} */}
-                            {formattedPrice}
-                            <span>/Bulan</span>
-                        </h1>
+                        <h1>{formattedPrice}<span>/Bulan</span></h1>
                     </div>
 
                     <div className="tanggal-mulai">
@@ -120,9 +124,15 @@ const HargaProduct = ({ nama_kos, harga }) => {
                             <Icon icon='mdi:whatsapp' color="#25d366" height="24" />
                             <p>Tanya Pemilik</p>
                         </button>
-                        <RouterLink to='/pembayaran'>
-                            <button className="ajukan-sewa">Ajukan Sewa</button>
+                        <RouterLink to={isDateSelected ? `/payment/${productID}` : '#'}>
+                            <button className={`ajukan-sewa ${isDateSelected ? '' : 'disabled'}`} disabled={!isDateSelected}>
+                                Ajukan Sewa
+                            </button>
                         </RouterLink>
+
+                        {/* <RouterLink to={`/payment/${productID}`}>
+                            <button className="ajukan-sewa">Ajukan Sewa</button>
+                        </RouterLink> */}
                         {
                             /* <button className="ajukan-sewa" onClick={() => navigate('/pembayaran')} >
                                 <p>Ajukan Sewa</p>
