@@ -1,7 +1,12 @@
-// import Library
-import React, { useState } from "react";
-import { Icon } from "@iconify/react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { api, getProductDetail, getUserDetail } from '../api/api';
+import { useParams, useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer/Footer';
+import '../assets/styles/payment.css'
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
+import { Icon } from '@iconify/react';
 
 // import Styles
 import "../assets/styles/pembayaran.css";
@@ -17,11 +22,138 @@ import UploadWidget from "../components/UploadWidget/UploadWidget";
 import NavbarDetail from "../components/Navbar/NavbarDetail";
 
 // import Assets
+import close from '../assets/icons/close.svg'
 import Img1 from "../assets/images/BgFjxmDl-540x720.jpg.png";
 
 
-function Pembayaran() {
-  const navigate = useNavigate();
+const Pembayaran = () => {
+  const { productId } = useParams();
+    const [product, setProduct] = useState(null);
+    const [snapToken, setSnapToken] = useState('');
+    const token = localStorage.getItem('token');
+    const [selectedDate, setSelectedDate] = useState(null)
+    const [userData, setUserData] = useState({})
+    const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            getUserDetail(token)
+                .then((userDetail) => {
+                    setUserData(userDetail)
+                })
+        } else {
+            console.log('Token tidak ditemukan. Anda belum login atau token telah kadaluarsa.');
+        }
+    }, []);
+
+    // console.log(userData)
+
+    useEffect(() => {
+        getProductDetail(productId)
+            .then((product) => {
+                setProduct(product);
+                console.log(product);
+            })
+            .catch(error => {
+                console.error('Error fetching product detail:', error.message);
+            });
+    }, [productId]);
+
+    const handlePayment = async (e) => {
+        e.preventDefault();
+
+        const storedDurasi = localStorage.getItem('selectedDurasi');
+
+        const params = {
+            name: userData ? userData.name : '',
+            phone: userData ? userData.phone : '',
+            qty: parseInt(storedDurasi),
+            harga_kos: product ? product.harga_kos : 0,
+            product_id: product ? product.id : 0,
+            tipe_kamar: product ? product.tipe_kamar : null,
+        };
+
+        try {
+            const response = await axios.post(api() + '/checkout', params, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+            });
+            const { snapToken } = response.data;
+            setSnapToken(snapToken);
+            console.log(response)
+            setShowModal(true);
+
+        } catch (error) {
+            console.error('Error processing payment:', error.message);
+        }
+    };
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
+    useEffect(() => {
+        const scriptSnap = document.createElement('script');
+
+        scriptSnap.type = 'text/javascript';
+        scriptSnap.src = "https://app.sandbox.midtrans.com/snap/snap.js";
+        scriptSnap.setAttribute('data-client-key', 'SB-Mid-client-Mkh96hcK0ChFAs2J');
+
+        document.head.appendChild(scriptSnap);
+
+        return () => {
+            document.head.removeChild(scriptSnap);
+        }
+    }, []);
+
+    useEffect(() => {
+      if (snapToken) {
+          const scriptFunctionSnap = document.createElement('script');
+
+          scriptFunctionSnap.type = 'text/javascript';
+          scriptFunctionSnap.innerHTML = `
+              var payButton = document.getElementById('pay-button');
+              payButton.addEventListener('click', function () {
+                  snap.pay('${snapToken}', 
+                  {
+                      onSuccess: function(result){
+                          console.log("Payment success:", result);
+                          window.location.href = 'https://bukos.my.id/finish';
+                      },
+                      onPending: function(result){
+                          console.log("Payment pending:", result);
+                      },
+                      onError: function(result){
+                          console.log("Payment error:", result);
+                      }
+                  }
+                  );
+              });
+          `;
+
+          document.body.appendChild(scriptFunctionSnap);
+
+          return () => {
+              document.body.removeChild(scriptFunctionSnap);
+          }
+      }
+  }, [snapToken]);
+
+    useEffect(() => {
+        const selectedDateFromStorage = localStorage.getItem('selectedDate');
+        if (selectedDateFromStorage) {
+            const parsedDate = new Date(selectedDateFromStorage);
+            setSelectedDate(parsedDate);
+        }
+    }, []);
+
+
+    const navigate = useNavigate();
+
+    
   return (
     <div>
       <NavbarDetail />
@@ -49,16 +181,16 @@ function Pembayaran() {
           <div className="informasi-penyewa">
             <div className="title-informasi-penyewa">
               <h2>Informasi penyewa</h2>
-              <a href="/profile">Ubah</a>
+              {/* <a href="/profile">Ubah</a> */}
             </div>
             <div className="isi-informasi-penyewa">
               <div className="isi-informasi-penyewa1">
                 <h4>Nama Penyewa</h4>
-                <p>Sinatrya Rasyid Fawwaz</p>
+                <p>{userData.name}</p>
               </div>
               <div className="isi-informasi-penyewa1">
                 <h4>Nomor HP</h4>
-                <p>0895636453</p>
+                <p>{userData.phone}</p>
               </div>
               <div className="isi-informasi-penyewa1">
                 <h4>Jenis Kelamin</h4>
@@ -137,7 +269,7 @@ function Pembayaran() {
                 <span>Dibayar sebulan sekali</span>
               </p>
 
-              <h3>Rp 2.000.000</h3>
+              Rp {product ? product.harga_kos : 0}
             </div>
           </div>
           <div className="garis-pembatas-card"></div>
@@ -146,7 +278,7 @@ function Pembayaran() {
             <div className="totalan_title">
               <h3>Total biaya Sewa</h3>
               <h3>
-                Rp 2.000.000 <span>Per Bulan</span>
+              Rp {product ? product.harga_kos : 0}<span>Per Bulan</span>
               </h3>
             </div>
           </div>
@@ -161,7 +293,7 @@ function Pembayaran() {
               <p>
                 Pembayaran Penuh
                 <br />
-                <span>Rp. 2.000.000</span>
+                Rp {product ? product.harga_kos : 0}
               </p>
             </div>
           </div>
@@ -169,40 +301,65 @@ function Pembayaran() {
 
           <div className="durasi_ngekos">
 
-              <div className="durasi_kos_title">
-                <h3>Durasi Kos</h3>
-                <p>Durasi dapat disesuaikan di kemudian hari</p>
-                <IncrementDecrement/>
-              </div>
+            <div className="durasi_kos_title">
+              <h3>Durasi Kos</h3>
+              <p>Durasi dapat disesuaikan di kemudian hari</p>
+              <IncrementDecrement />
+            </div>
 
           </div>
 
-        <div className="garis-pembatas-card"></div>
+          <div className="garis-pembatas-card"></div>
 
-              <div className="tanggal_ngekos">
-              <div className="biaya_sewa_pembayaran">
-            <div className="biaya_sewa_title">
-              <h3>Tanggal mulai kos</h3>
-              <a href="#">Ubah</a>
-            </div>
-            <div className="isi_biaya_sewa">
-              <p> 
-                Rabu, 14 Juni 2024
-              </p>
+          <div className="tanggal_ngekos">
+            <div className="biaya_sewa_pembayaran">
+              <div className="biaya_sewa_title">
+                <h3>Tanggal mulai kos</h3>
+                <a href="#">Ubah</a>
+              </div>
+              <div className="isi_biaya_sewa">
+                <p>
+                {selectedDate ? format(selectedDate, "EEEE, d MMMM yyyy", { locale: id }) : 'Pilih tanggal'}
+                </p>
 
+              </div>
             </div>
           </div>
-              </div>
 
-              <button class="button-riwayat-booking" onClick={() => navigate('/')}>Ajukan sewa</button>
+          <button onClick={handlePayment} type="submit" className='button-riwayat-booking'>Lanjutkan Pembayaran</button>
 
         </div>
         <div className="pembayaran-kanan">
-          <CardPembayaran />
+        <CardPembayaran
+                        // tipe_kamar={product.tipe_kamar}
+                        // lokasi={product.lokasi_kos}
+                        // nama={product.nama_kos}
+                        // alamat={product.alamat_kos}
+                        // harga_kos={product.harga_kos}
+
+                        tipe_kamar={product ? product.tipe_kamar : 'Tipe Kamar Default'}
+                        lokasi={product ? product.lokasi_kos : 'Lokasi Default'}
+                        nama={product ? product.nama_kos : 'Nama Kos Default'}
+                        alamat={product ? product.alamat_kos : 'Alamat Kos Default'}
+                        harga_kos={product ? product.harga_kos : 0}
+                        durasi={localStorage.getItem('selectedDurasi')}
+                        image={`${process.env.REACT_APP_API_URL}/${product ? product.foto_kos : 'default_image.jpg'}`}
+                    />
         </div>
+      {showModal && (
+                <div className="custom-modal">
+                    <div onClick={toggleModal} className="overlay-login"></div>
+                    <div className="modal-content">
+                        <h2>Konfirmasi Pembayaran</h2>
+                        <p>Apakah Anda yakin ingin melanjutkan pembayaran?</p>
+                        <button type="button" id='pay-button' className='proceed-button'>Bayar</button>
+                        <button className="close-modal" onClick={toggleModal} ><img src={close} alt="close" /></button>
+                    </div>
+                </div>
+            )}
       </div>
     </div>
   );
 }
 
-export default Pembayaran;
+export default Pembayaran

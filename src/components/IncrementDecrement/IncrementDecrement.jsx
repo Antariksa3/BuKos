@@ -20,7 +20,7 @@ function IncrementDecrement() {
     <div className="increment-decrement">
       <div className="button-group">
         <button onClick={handleDecrement}>-</button>
-      <h2>{count}</h2>
+      <h2>{localStorage.getItem('selectedDurasi') || 'Nilai Durasi Default'}</h2>
         <button onClick={handleIncrement}>+</button>
       </div>
     </div>

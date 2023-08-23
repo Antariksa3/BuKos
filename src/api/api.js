@@ -4,8 +4,8 @@ const apiUrl = process.env.REACT_APP_API_URL;
 const apiKey = process.env.REACT_APP_API_KEY;
 
 export const api = () => {
-    return 'http://127.0.0.1:8000/api'
-    // return 'https://bukos.my.id/api'
+    // return 'http://127.0.0.1:8000/api'
+    return 'https://bukos.my.id/api'
 }
 
 export const getReviewUser = async () => {
@@ -25,14 +25,8 @@ export const getNewestProduct = async () => {
     return newestProduct.data.product
 }
 
-export const getProductDetail = async (productId, token) => {
-    // const endpoint = `${apiUrl}/api/getoneproduct/${productId}`
-    // const headers = {
-    //     Authorization: `Bearer ${token}`,
-    // };
-    // const productDetail = await axios.get(endpoint, { headers })
+export const getProductDetail = async (productId) => {
     const productDetail = await axios.get(`${apiUrl}/api/getoneproduct/${productId}`)
-    // console.log({ productDetail: productDetail.data.data })
     return productDetail.data.data
 }
 
@@ -44,13 +38,12 @@ export const getFavoriteProduct = async (token) => {
     return productFavorite.data.favorites
 }
 
+
 export const searchAndFilterProducts = async (q, types = "", address = "") => {
     const params = new URLSearchParams();
     if (q) params.append('Search', q);
     if (types) params.append('Filter_kos', types);
     if (address) params.append('Filter_desa', address);
-
-    // const searchTypes = await axios.get(`${apiUrl}/api/product/search?Search=${q}&Filter_kos=${types}&Filter_desa=Jepang`);
     const searchTypes = await axios.get(`${apiUrl}/api/product/search?${params}`);
     return searchTypes.data;
 }
@@ -92,4 +85,13 @@ export const getProductOwner = async (token) => {
     const productOwner = await axios.get(`${apiUrl}/api/productowner`, { headers })
     // return productOwner.data.product
     return productOwner.data?.product ?? [];
+}
+
+export const getTransaction = async (token) => {
+    const headers = {
+        Authorization: `Bearer ${token}`
+    };
+    const detailTransaction = await axios.get(`${apiUrl}/api/transactions`, { headers })
+    // console.log(detailTransaction.data.transactions)
+    return detailTransaction.data.transactions
 }
