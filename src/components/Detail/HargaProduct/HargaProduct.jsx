@@ -124,7 +124,7 @@ const HargaProduct = ({ nama_kos, harga, productID }) => {
                             <Icon icon='mdi:whatsapp' color="#25d366" height="24" />
                             <p>Tanya Pemilik</p>
                         </button>
-                        <RouterLink to={isDateSelected ? `/payment/${productID}` : '#'}>
+                        <RouterLink to={isDateSelected ? `/pembayaran/${productID}` : '#'}>
                             <button className={`ajukan-sewa ${isDateSelected ? '' : 'disabled'}`} disabled={!isDateSelected}>
                                 Ajukan Sewa
                             </button>

@@ -162,10 +162,10 @@ const PaymentPage = () => {
                             {/* <p>3 Bulan</p> */}
                             <p>{localStorage.getItem('selectedDurasi') || 'Nilai Durasi Default'} Bulan</p>
                         </div>
-                        <button onClick={handlePayment} type="submit" className='proceed-button'>Lanjutkan Pembayaran</button>
                         {/* <button type="button" id='pay-button' className='proceed-button'>Proceed to Payment</button> */}
                     </form>
                 </div>
+                        
                 <div className="payment-card">
                     <CardPembayaran
                         // tipe_kamar={product.tipe_kamar}
@@ -184,6 +184,7 @@ const PaymentPage = () => {
                     />
                 </div>
             </div>
+                        <button onClick={handlePayment} type="submit" className='proceed-button'>Lanjutkan Pembayaran</button>
             {showModal && (
                 <div className="custom-modal">
                     <div onClick={toggleModal} className="overlay-login"></div>
