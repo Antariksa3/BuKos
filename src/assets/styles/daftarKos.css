@@ -8,7 +8,7 @@
 }
 
 .daftar-kos-container {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     /* margin: 20px; */
     padding: 20px;
@@ -63,6 +63,17 @@
 .form-group input,
 .form-group textarea,
 .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    border: 2px solid #CDD6E1;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: .2s ease-in-out;
+}
+
+.input-harga {
     width: 100%;
     padding: 10px;
     font-size: 16px;

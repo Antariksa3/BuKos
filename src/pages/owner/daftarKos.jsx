@@ -9,6 +9,7 @@ import ScrollUp from '../../components/ScrollUp/ScrollUp'
 import Popup from '../../components/Popup/Popup';
 import logo from '../../assets/images/logo2.svg'
 import '../../assets/styles/daftarKos.css'
+import MapOwner from '../../components/MapComponent/MapOwner';
 
 const DaftarKos = () => {
     const navigate = useNavigate()
@@ -16,18 +17,21 @@ const DaftarKos = () => {
     const [fotoPemilik, setFotoPemilik] = useState(null);
     const [namaPemilik, setNamaPemilik] = useState('');
     const [namaKos, setNamaKos] = useState('');
+    const [kecamatanKos, setKecamatanKos] = useState('');
     const [lokasiKos, setLokasiKos] = useState('');
     const [alamatKos, setAlamatKos] = useState('');
     const [hargaKos, setHargaKos] = useState('');
     const [spesifikasiKamar, setSpesifikasiKamar] = useState('');
     const [fasilitasKamar, setFasilitasKamar] = useState('');
     const [fasilitasUmum, setFasilitasUmum] = useState('');
-    const [peraturanKamar, setPeraturanKamar] = useState('');
+    // const [peraturanKamar, setPeraturanKamar] = useState('');
     const [peraturanKos, setPeraturanKos] = useState('');
     const [tipeKamar, setTipeKamar] = useState('');
     const [popupType, setPopupType] = useState(null);
     const [popupMessage, setPopupMessage] = useState('');
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [latitude, setLatitude] = useState(-6.753652);
+    const [longitude, setLongitude] = useState(110.842876);
 
     const handleFotoKosSelect = (file) => {
         // setSelectedFileKos(URL.createObjectURL(file));
@@ -60,6 +64,9 @@ const DaftarKos = () => {
         setIsPopupOpen(true);
     };
 
+    const latitudeString = latitude.toFixed(6);
+    const longitudeString = longitude.toFixed(6);
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
@@ -75,15 +82,18 @@ const DaftarKos = () => {
                 foto_pemilik: fotoPemilik,
                 nama_pemilik: namaPemilik,
                 nama_kos: namaKos,
+                kecamatan: kecamatanKos,
                 lokasi_kos: lokasiKos,
                 alamat_kos: alamatKos,
                 harga_kos: hargaKos,
                 spesifikasi_kamar: spesifikasiKamar,
                 fasilitas_kamar: fasilitasKamar,
                 fasilitas_umum: fasilitasUmum,
-                peraturan_kamar: peraturanKamar,
+                // peraturan_kamar: peraturanKamar,
                 peraturan_kos: peraturanKos,
                 tipe_kamar: tipeKamar,
+                latitude: latitudeString,
+                longitude: longitudeString,
             }, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -123,11 +133,6 @@ const DaftarKos = () => {
                     <form onSubmit={handleFormSubmit} className='daftar-kos-form'>
                         <div className="form-columns">
                             <div className="form-column">
-                                {/* Foto Kos */}
-                                <div className="form-group">
-                                    <label htmlFor="">Foto Kos</label>
-                                    <UploadWidget onFileSelect={handleFotoKosSelect} onRemove={handleFotoKosRemove} preview={fotoKos} />
-                                </div>
                                 {/* Nama Pemilik */}
                                 <div className="form-group">
                                     <label htmlFor="">Nama Pemilik</label>
@@ -152,6 +157,22 @@ const DaftarKos = () => {
                                     </select>
                                     {/* <input type="text" value={lokasiKos} onChange={(e) => setLokasiKos(e.target.value)} /> */}
                                 </div>
+                                <div className="form-group">
+                                    <label htmlFor="">Kecamatan Kos</label>
+                                    <select value={kecamatanKos}
+                                        // onChange={(e) => setKecamatanKos(e.target.value)}
+                                        onChange={(e) => e.target.value !== '' ? setKecamatanKos(e.target.value) : null}
+                                    >
+                                        <option value="">Pilih Kecamatan Kos</option>
+                                        <option value="Bae">Bae</option>
+                                        <option value="Gebog">Gebog</option>
+                                        <option value="Kota Kudus">Kota Kudus</option>
+                                        <option value="Jati">Jati</option>
+                                        <option value="Mejobo">Mejobo</option>
+                                        <option value="Kota">Kota</option>
+                                    </select>
+                                    {/* <input type="text" value={lokasiKos} onChange={(e) => setLokasiKos(e.target.value)} /> */}
+                                </div>
                                 {/* Spesifikasi Kamar */}
                                 <div className="form-group">
                                     <label htmlFor="">Spesifikasi Kamar</label>
@@ -163,18 +184,29 @@ const DaftarKos = () => {
                                     <input type="text" value={fasilitasUmum} onChange={(e) => setFasilitasUmum(e.target.value)} />
                                 </div>
                                 {/* Peraturan Kos */}
+                                {/* <div className="form-group">
+                                    <label htmlFor="">Peraturan Kamar</label>
+                                    <input type="text" value={peraturanKamar} onChange={(e) => setPeraturanKamar(e.target.value)} />
+                                </div> */}
+                                {/* Alamat Kos */}
                                 <div className="form-group">
-                                    <label htmlFor="">Peraturan Kos</label>
-                                    <input type="text" value={peraturanKos} onChange={(e) => setPeraturanKos(e.target.value)} />
+                                    <label htmlFor="">Alamat Kos</label>
+                                    <textarea
+                                        rows="4"
+                                        cols="50"
+                                        type="text"
+                                        value={alamatKos}
+                                        onChange={(e) => setAlamatKos(e.target.value)}
+                                    />
+                                </div>
+                                {/* Foto Kos */}
+                                <div className="form-group">
+                                    <label htmlFor="">Foto Kos</label>
+                                    <UploadWidget onFileSelect={handleFotoKosSelect} onRemove={handleFotoKosRemove} preview={fotoKos} />
                                 </div>
                             </div>
 
                             <div className="form-column">
-                                {/* Foto Pemilik */}
-                                <div className="form-group">
-                                    <label htmlFor="">Foto Pemilik</label>
-                                    <UploadWidget onFileSelect={handleFotoPemilikSelect} onRemove={handleFotoPemilikRemove} preview={fotoPemilik} />
-                                </div>
                                 {/* Nama Kos */}
                                 <div className="form-group">
                                     <label htmlFor="">Nama Kos</label>
@@ -184,16 +216,14 @@ const DaftarKos = () => {
                                 <div className="form-group">
                                     <label htmlFor="">Harga Kos(per bulan)</label>
                                     <input type="number" value={hargaKos} onChange={(e) => setHargaKos(e.target.value)} />
+                                    {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                        <span>Rp</span>
+                                    </div> */}
                                 </div>
                                 {/* Fasilitas Kamar */}
                                 <div className="form-group">
                                     <label htmlFor="">Fasilitas Kamar</label>
                                     <input type="text" value={fasilitasKamar} onChange={(e) => setFasilitasKamar(e.target.value)} />
-                                </div>
-                                {/* Peraturan Kamar */}
-                                <div className="form-group">
-                                    <label htmlFor="">Peraturan Kamar</label>
-                                    <input type="text" value={peraturanKamar} onChange={(e) => setPeraturanKamar(e.target.value)} />
                                 </div>
                                 {/* Tipe Kamar */}
                                 <div className="form-group">
@@ -210,13 +240,30 @@ const DaftarKos = () => {
                                     </select>
                                     {/* <input type="text" value={tipeKamar} onChange={(e) => setTipeKamar(e.target.value)} /> */}
                                 </div>
+                                {/* Peraturan Kos */}
+                                <div className="form-group">
+                                    <label htmlFor="">Peraturan Kos</label>
+                                    <textarea
+                                        rows="4"
+                                        cols="50"
+                                        type="text"
+                                        value={peraturanKos}
+                                        onChange={(e) => setPeraturanKos(e.target.value)} />
+                                </div>
+                                {/* Foto Pemilik */}
+                                <div className="form-group">
+                                    <label htmlFor="">Foto Pemilik</label>
+                                    <UploadWidget onFileSelect={handleFotoPemilikSelect} onRemove={handleFotoPemilikRemove} preview={fotoPemilik} />
+                                </div>
                             </div>
                         </div>
 
-                        {/* Alamat Kos */}
                         <div className="form-group">
-                            <label htmlFor="">Alamat Kos</label>
-                            <input type="text" value={alamatKos} onChange={(e) => setAlamatKos(e.target.value)} />
+                            <label htmlFor="">Lokasi Kos (Latitude dan Longitude Kos)</label>
+                            <MapOwner
+                                setLongitude={setLongitude}
+                                setLatitude={setLatitude}
+                            />
                         </div>
 
                         {/* Tombol Submit */}

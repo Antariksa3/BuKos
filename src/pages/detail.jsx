@@ -26,6 +26,7 @@ import pp from '../assets/images/pp.png';
 import bulat from '../assets/images/logo-bulat.png';
 import spek from '../assets/icons/lebar-ruang.png';
 import pasutri from '../assets/icons/pasutri.png';
+import MapDetail from '../components/MapComponent/MapDetail';
 
 const Detail = () => {
 
@@ -147,10 +148,10 @@ const Detail = () => {
                     <Icon icon="wpf:like" color={isFavorite ? 'red' : '#383746'} height="15" />
                     <p>Favorit</p>
                   </button>
-                  <div className="share">
+                  {/* <div className="share">
                     <Icon icon="ic:sharp-share" color="#383746" height="17" />
                     <p>Share</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="garis"></div>
@@ -544,12 +545,17 @@ const Detail = () => {
                   </p>
                 </div>
                 <div className="isi-maps">
-                  <iframe
+                  <MapDetail
+                    latitude={product.latitude}
+                    longitude={product.longitude}
+                  />
+
+                  {/* <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.131730049922!2d110.84026577494669!3d-6.753785593242736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70db068724fae7%3A0x7610925ddad70c54!2sSMK%20Raden%20Umar%20Said!5e0!3m2!1sid!2sid!4v1685755925925!5m2!1sid!2sid"
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
+                  ></iframe> */}
 
                   <div className="maps-button">
                     <button className="button-tempat-terdekat">

@@ -44,6 +44,15 @@
     background-color: #6A2FCC;
 }
 
+.proceed-button.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.proceed-button.disabled:hover {
+    background-color: #ccc;
+}
+
 .payment-form-group {
     margin-bottom: 20px;
 }

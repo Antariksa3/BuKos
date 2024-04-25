@@ -35,31 +35,33 @@ import benefit1 from '../assets/images/benefit1.svg'
 const Home = () => {
     // const navigate = useNavigate()
     const [reviewsUser, setReviewsUser] = useState([])
-    // const [products, setProduct] = useState([])
+    const [products, setProduct] = useState([])
 
-    // useEffect(() => {
-    //     getNewestProduct()
-    //         .then((newestProducts) => {
-    //             setProduct(newestProducts)
-    //         })
-    // }, [])
+    useEffect(() => {
+        getNewestProduct()
+            .then((newestProducts) => {
+                setProduct(newestProducts)
+            })
+    }, [])
 
-    // const NewestProductList = () => {
-    //     return products.map((product, i) => {
-    //         return (
-    //             <PopularCard
-    //                 foto_pemilik={`http://127.0.0.1:8000/${product.foto_pemilik}`}
-    //                 pemilik={product.nama_pemilik}
-    //                 nama_kos={product.nama_kos}
-    //                 lokasi={product.lokasi_kos}
-    //                 harga={product.harga_kos}
-    //                 gambar={`http://127.0.0.1:8000/${product.foto_kos}`}
-    //                 id={product.id}
-    //                 key={i}
-    //             />
-    //         )
-    //     })
-    // }
+    const NewestProductList = () => {
+        const approvedProducts = products.filter((product) => product.approved === "1" || product.approved === 1);
+
+        return approvedProducts.map((product, i) => {
+            return (
+                <PopularCard
+                    foto_pemilik={`${process.env.REACT_APP_API_URL}/${product.foto_pemilik}`}
+                    pemilik={product.nama_pemilik}
+                    nama_kos={product.nama_kos}
+                    lokasi={product.lokasi_kos}
+                    harga={product.harga_kos}
+                    gambar={`${process.env.REACT_APP_API_URL}/${product.foto_kos}`}
+                    id={product.id}
+                    key={i}
+                />
+            )
+        })
+    }
 
     useEffect(() => {
         getReviewUser().then((review) => {
@@ -140,20 +142,20 @@ const Home = () => {
             <div className="popular section" id='popular'>
                 <div className="popular-content">
                     <div className="popular-header">
-                        <h2>Kos Terpopuler</h2>
+                        <h2>Kos Terbaru</h2>
                         <div className="popular-search">
                             <ButtonSeeAll button='Lihat Semua' />
                             {/* <SearchBar1 /> */}
                         </div>
                     </div>
                     <div className="popular-cards">
-                        {/* <NewestProductList /> */}
+                        <NewestProductList />
+                        {/* <PopularCard />
                         <PopularCard />
                         <PopularCard />
                         <PopularCard />
                         <PopularCard />
-                        <PopularCard />
-                        <PopularCard />
+                        <PopularCard /> */}
                     </div>
                 </div>
             </div>

@@ -82,10 +82,10 @@ const KosSaya = () => {
       </header>
       <div className="isi-profil-kanan">
         {assets.length === 0 ? (
-          <div>
+          <>
             <div className="title-isi-profil-kanan">
-              <h1>Kamu Belum Menyewa Kos</h1>
-              <p>Yuk, sewa di BuKos atau masukkan kode dari pemilik kos untuk aktifkan halaman ini! Coba cara ngekos modern dengan manfaat berikut ini.</p>
+              <h1>Kamu Belum Mendaftarkan Kos</h1>
+              <p>Yuk, daftarkan kos kamu di BuKos! Coba cara ngekos modern dengan manfaat berikut ini.</p>
             </div>
             <div className="list-isi-profil-kanan">
               <div className="tagihan-dan-kontrak">
@@ -101,8 +101,8 @@ const KosSaya = () => {
                 <p>Cashless, dengan beragam metode pembayaran</p>
               </div>
             </div>
-            <button className="button-riwayat-booking" onClick={() => navigate('/listkos')}>Mulai Jelajahi Kos</button>
-          </div>
+            <button className="button-riwayat-booking" onClick={() => navigate('/daftar_kos')}>Daftarkan Sekarang</button>
+          </>
         ) : (
           <div className="list-assets">
             <AssetList />

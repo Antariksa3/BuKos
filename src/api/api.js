@@ -1,12 +1,13 @@
 import axios from "axios"
 
 const apiUrl = process.env.REACT_APP_API_URL;
-const apiKey = process.env.REACT_APP_API_KEY;
 
-export const api = () => {
-    return 'http://127.0.0.1:8000/api'
-    // return 'https://bukos.my.id/api'
-}
+export const api = () => `${apiUrl}/api`;
+
+// export const api = () => {
+//     return 'http://127.0.0.1:8000/api'
+//     return 'https://bukos.my.id/api'
+// }
 
 export const getReviewUser = async () => {
     const review = await axios.get(`${apiUrl}/api/review`)
@@ -15,14 +16,14 @@ export const getReviewUser = async () => {
 
 export const getProduct = async () => {
     const productList = await axios.get(`${apiUrl}/api/allproduct`)
-    // console.log({ productList: productList })
+    console.log({ productList: productList.data.product })
     return productList.data.product
 }
 
 export const getNewestProduct = async () => {
-    const newestProduct = await axios.get(`${apiUrl}/api/allproduct?limit=6&sort=created_at`);
-    console.log({ newestProduct: newestProduct })
-    return newestProduct.data.product
+    const newestProduct = await axios.get(`${apiUrl}/api/product-terbaru`);
+    console.log(newestProduct.data.ProductTerbaru)
+    return newestProduct.data.ProductTerbaru
 }
 
 export const getProductDetail = async (productId) => {
@@ -38,11 +39,12 @@ export const getFavoriteProduct = async (token) => {
     return productFavorite.data.favorites
 }
 
-export const searchAndFilterProducts = async (q, types = "", address = "") => {
+export const searchAndFilterProducts = async (q, types = "", address = "", kecamatan = "") => {
     const params = new URLSearchParams();
-    if (q) params.append('Search', q);
+    if (q) params.append('search_product', q);
     if (types) params.append('Filter_kos', types);
-    if (address) params.append('Filter_desa', address);
+    if (address) params.append('search_desa', address);
+    if (kecamatan) params.append('Filter_kecamatan', kecamatan);
     const searchTypes = await axios.get(`${apiUrl}/api/product/search?${params}`);
     return searchTypes.data;
 }
@@ -86,11 +88,20 @@ export const getProductOwner = async (token) => {
     return productOwner.data?.product ?? [];
 }
 
-export const getTransaction = async (token) => {
+export const getUserTransaction = async (token) => {
     const headers = {
         Authorization: `Bearer ${token}`
     };
-    const detailTransaction = await axios.get(`${apiUrl}/api/transactions`, { headers })
-    // console.log(detailTransaction.data.transactions)
-    return detailTransaction.data.transactions
+    const detailUserTransaction = await axios.get(`${apiUrl}/api/transactions`, { headers })
+    // console.log(detailUserTransaction.data.transactions)
+    return detailUserTransaction.data.transactions
+}
+
+export const getOwnerTransaction = async (token) => {
+    const headers = {
+        Authorization: `Bearer ${token}`
+    };
+    const detailOwnerTransaction = await axios.get(`${apiUrl}/api/orders/owners`, { headers })
+    // console.log(detailOwnerTransaction.data.data)
+    return detailOwnerTransaction.data.data
 }

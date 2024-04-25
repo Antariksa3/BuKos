@@ -70,12 +70,12 @@ function Sidebar() {
             </div>
           </NavLink>
 
-          <NavLink to={"riwayatbooking"}>
+          {/* <NavLink to={"riwayatbooking"}>
             <div className="kosan-saya">
               <img src={HistoryBooking} alt="" />
               <p>Riwayat dan Draft Booking</p>
             </div>
-          </NavLink>
+          </NavLink> */}
 
           {/* <NavLink to={"riwayatkos"}>
             <div className="kosan-saya">

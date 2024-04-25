@@ -2,20 +2,24 @@ import { Icon } from '@iconify/react'
 import React, { useState } from 'react'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import close from '../../../assets/icons/close.svg'
 
 const HargaProduct = ({ nama_kos, harga, productID }) => {
-    const formattedPrice = harga.toLocaleString('id-ID');
+    const navigate = useNavigate()
+    const numericPrice = parseFloat(harga);
+    const formattedPrice = numericPrice.toLocaleString('id-ID');
     const [fixedPosition, setFixedPosition] = useState(false)
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [showDurasiOptions, setShowDurasiOptions] = useState(false);
-    // const [selectedDurasi, setSelectedDurasi] = useState('1');
     const [isDateSelected, setIsDateSelected] = useState(false);
     const storedSelectedDurasi = localStorage.getItem('selectedDurasi');
     const initialSelectedDurasi = storedSelectedDurasi ? storedSelectedDurasi : '1';
     const [selectedDurasi, setSelectedDurasi] = useState(initialSelectedDurasi);
-
+    const [modal, setModal] = useState(false);
+    const [role, setRole] = useState('');
+    const userRole = localStorage.getItem('userRole');
     const pemilikPhoneNumber = '%2B6287820025877';
 
     const toggleDurasiOptions = () => {
@@ -44,7 +48,7 @@ const HargaProduct = ({ nama_kos, harga, productID }) => {
     };
 
     const fixed = () => {
-        if (window.scrollY >= 570) {
+        if (window.scrollY >= 630) {
             setFixedPosition(true)
         } else {
             setFixedPosition(false)
@@ -65,6 +69,16 @@ const HargaProduct = ({ nama_kos, harga, productID }) => {
         setShowCalendar(false);
     };
 
+    const isUserLoggedIn = localStorage.getItem('token') !== null;
+    const toggleModal = () => {
+        setModal(!modal);
+    };
+
+    const handleRoleSelection = (selectedRole) => {
+        setRole(selectedRole);
+        navigate('/login', { state: { role: selectedRole } });
+    };
+
     return (
         <div className={fixedPosition ? 'harga-fixed' : ''}>
 
@@ -74,7 +88,7 @@ const HargaProduct = ({ nama_kos, harga, productID }) => {
             >
                 <div className="isi-harga-detail">
                     <div className="nominal">
-                        <p>Rp2.350.000</p>
+                        {/* <p>Rp2.350.000</p> */}
                         <h1>{formattedPrice}<span>/Bulan</span></h1>
                     </div>
 
@@ -119,25 +133,72 @@ const HargaProduct = ({ nama_kos, harga, productID }) => {
                         </div>
                     )}
                     <div className="button-harga-detail">
-
                         <button className="tanya-pemilik" onClick={redirectToWhatsApp}>
                             <Icon icon='mdi:whatsapp' color="#25d366" height="24" />
                             <p>Tanya Pemilik</p>
                         </button>
-                        <RouterLink to={isDateSelected ? `/payment/${productID}` : '#'}>
+
+                        {isUserLoggedIn ? (
+                            userRole === 'user' ? (
+                                <RouterLink to={isDateSelected ? `/payment/${productID}` : '#'}>
+                                    <button className={`ajukan-sewa ${isDateSelected ? '' : 'disabled'}`} disabled={!isDateSelected}>
+                                        Ajukan Sewa
+                                    </button>
+                                </RouterLink>
+                            ) : (
+                                <button className="ajukan-sewa">
+                                    Edit
+                                </button>
+                            )
+                        ) : (
+                            <button className="ajukan-sewa" onClick={toggleModal}>
+                                Ajukan Sewa
+                            </button>
+                        )}
+                        {/* {isUserLoggedIn ? (
+                            { userRole === 'user' ? (
+                                <RouterLink to={isDateSelected ? `/payment/${productID}` : '#'}>
+                                    <button className={`ajukan-sewa ${isDateSelected ? '' : 'disabled'}`} disabled={!isDateSelected}>
+                                        Ajukan Sewa
+                                    </button>
+                                </RouterLink>
+                            ) : (
+                                <button className="edit-sewa">
+                                    Edit
+                                </button>
+                            )}
+                                    // <RouterLink to={isDateSelected ? `/payment/${productID}` : '#'}>
+                                    //     <button className={`ajukan-sewa ${isDateSelected ? '' : 'disabled'}`} disabled={!isDateSelected}>
+                                    //         Ajukan Sewa
+                                    //     </button>
+                                    // </RouterLink>
+                        ) : (
+                        <button className="ajukan-sewa" onClick={toggleModal}>
+                            Ajukan Sewa
+                        </button>
+                                )} */}
+                        {modal && (
+                            <div className="modal">
+                                <div onClick={toggleModal} className="overlay-login"></div>
+                                <div className="modal-content">
+                                    <h2>Masuk ke Bukos</h2>
+                                    <p>Saya ingin masuk sebagai</p>
+                                    <div className='login-role-selection' onClick={() => handleRoleSelection('user')}>
+                                        <p>Pencari Kos</p>
+                                    </div>
+                                    <div className='login-role-selection' onClick={() => handleRoleSelection('owner')}>
+                                        <p>Pemilik Kos</p>
+                                    </div>
+                                    <button className="close-modal" onClick={toggleModal} ><img src={close} alt="close" /></button>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* <RouterLink to={isDateSelected ? `/payment/${productID}` : '#'}>
                             <button className={`ajukan-sewa ${isDateSelected ? '' : 'disabled'}`} disabled={!isDateSelected}>
                                 Ajukan Sewa
                             </button>
-                        </RouterLink>
-
-                        {/* <RouterLink to={`/payment/${productID}`}>
-                            <button className="ajukan-sewa">Ajukan Sewa</button>
                         </RouterLink> */}
-                        {
-                            /* <button className="ajukan-sewa" onClick={() => navigate('/pembayaran')} >
-                                <p>Ajukan Sewa</p>
-                            </button> */
-                        }
                     </div>
                 </div>
             </div>

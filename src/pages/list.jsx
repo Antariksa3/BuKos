@@ -7,6 +7,7 @@ import { api } from '../api/api';
 // import Styles
 import '../App.css'
 import '../assets/styles/list.css'
+import 'react-select-search/style.css'
 
 // import Components
 import Footer from '../components/Footer/Footer'
@@ -16,6 +17,7 @@ import FilterSearch from '../components/SearchBar/FilterSearch'
 import ScrollUp from '../components/ScrollUp/ScrollUp'
 import ListKosCardShimmer from '../components/ListKosCardShimmer/ListKosCardShimmer'
 import ButtonSearch from '../components/Button/ButtonSearch'
+import SelectSearch from 'react-select-search';
 
 // import Assets
 
@@ -29,8 +31,10 @@ const ListKos = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedType, setSelectedType] = useState('');
     const [selectedAddress, setSelectedAddress] = useState('');
+    const [selectedKecamatan, setSelectedKecamatan] = useState('');
     const [productNotFound, setProductNotFound] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [selectedDesa, setSelectedDesa] = useState('');
 
     useEffect(() => {
         getProduct().then((product) => {
@@ -55,7 +59,9 @@ const ListKos = () => {
             );
         }
 
-        return products.map((product, i) => {
+        const approvedProducts = products.filter((product) => product.approved === "1" || product.approved === 1);
+
+        return approvedProducts.map((product, i) => {
             return (
                 <Suspense key={i} fallback={<ListKosCardShimmer />}>
                     <ListKosCard
@@ -102,7 +108,7 @@ const ListKos = () => {
         try {
             setSearching(true);
             setLoading(true);
-            const filteredProducts = await searchAndFilterProducts(searchQuery, selectedType, selectedAddress);
+            const filteredProducts = await searchAndFilterProducts(searchQuery, selectedType, selectedAddress, selectedKecamatan);
             // console.log(filteredProducts);
             setProduct(filteredProducts.data);
             setProductNotFound(filteredProducts.data === null);
@@ -121,7 +127,7 @@ const ListKos = () => {
         try {
             setSearching(true);
             setLoading(true);
-            const filteredProducts = await searchAndFilterProducts(searchQuery, type, selectedAddress);
+            const filteredProducts = await searchAndFilterProducts(searchQuery, type, selectedAddress, selectedKecamatan);
             // console.log(filteredProducts);
             setProduct(filteredProducts.data);
             setProductNotFound(filteredProducts.data === null);
@@ -133,14 +139,33 @@ const ListKos = () => {
         }
     };
 
-    const handleFilterByAddress = async (event) => {
+    const handleFilterByDesa = async (event) => {
         const address = event.target.value;
         setSelectedAddress(address);
 
         try {
             setSearching(true);
             setLoading(true);
-            const filteredProducts = await searchAndFilterProducts(searchQuery, selectedType, address);
+            const filteredProducts = await searchAndFilterProducts(searchQuery, selectedType, address, selectedKecamatan);
+            // console.log(filteredProducts);
+            setProduct(filteredProducts.data);
+            setProductNotFound(filteredProducts.data === null);
+        } catch (error) {
+            // Handle error here, if necessary
+        } finally {
+            setSearching(false);
+            setLoading(false);
+        }
+    };
+
+    const handleFilterByKecamatan = async (event) => {
+        const kecamatan = event.target.value;
+        setSelectedKecamatan(kecamatan);
+
+        try {
+            setSearching(true);
+            setLoading(true);
+            const filteredProducts = await searchAndFilterProducts(searchQuery, selectedType, selectedAddress, kecamatan);
             // console.log(filteredProducts);
             setProduct(filteredProducts.data);
             setProductNotFound(filteredProducts.data === null);
@@ -170,6 +195,23 @@ const ListKos = () => {
         }
     };
 
+    const handleDesaChange = (value) => {
+        setSelectedDesa(value);
+        handleFilterByDesa({ target: { value } });
+    };
+
+    const options = [
+        { name: 'Semua Desa', value: '' },
+        { name: 'Bacin', value: 'Bacin' },
+        { name: 'Besito', value: 'Besito' },
+        { name: 'Demaan', value: 'Demaan' },
+        { name: 'Jepang', value: 'Jepang' },
+        { name: 'Getas', value: 'Getas' },
+        { name: 'Ngembal', value: 'Ngembal' },
+        { name: 'Nganguk', value: 'Nganguk' },
+        { name: 'Purwosari', value: 'Purwosari' },
+    ];
+
     return (
         <>
             <NavbarList />
@@ -177,13 +219,38 @@ const ListKos = () => {
                 <div className="list-content">
                     <div className={fixed ? 'list-filter list-fixed' : 'list-filter'}>
                         <div className="filter-location">
-                            <label htmlFor="">Pilih Lokasi</label>
+                            <label htmlFor="">Pilih Kecamatan</label>
+                            <select
+                                name=""
+                                id="location"
+                                className='select-location'
+                                value={selectedKecamatan}
+                                onChange={handleFilterByKecamatan}
+                            >
+                                <option value="">Semua Kecamatan</option>
+                                <option value="Bae">Bae</option>
+                                <option value="Gebog">Gebog</option>
+                                <option value="Kota Kudus">Kota Kudus</option>
+                                <option value="Jati">Jati</option>
+                                <option value="Mejobo">Mejobo</option>
+                            </select>
+                        </div>
+                        <div className="filter-location">
+                            <label htmlFor="">Pilih Desa</label>
+                            {/* <SelectSearch
+                                options={options}
+                                value={selectedDesa}
+                                onChange={handleDesaChange}
+                                placeholder="Cari desa..."
+                                search
+                                className={'selected-search'}
+                            /> */}
                             <select
                                 name=""
                                 id="location"
                                 className='select-location'
                                 value={selectedAddress}
-                                onChange={handleFilterByAddress}
+                                onChange={handleFilterByDesa}
                             >
                                 <option value="">Semua Desa</option>
                                 <option value="Bacin">Bacin</option>
@@ -205,7 +272,7 @@ const ListKos = () => {
                                 value={selectedType}
                                 onChange={handleFilterByType}
                             >
-                                <option value="">Semua</option>
+                                <option value="">Semua Tipe</option>
                                 <option value="Putra">Khusus Putra</option>
                                 <option value="Putri">Khusus Putri</option>
                                 <option value="Campuran">Campuran</option>

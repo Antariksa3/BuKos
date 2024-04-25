@@ -14,7 +14,7 @@
 }
 
 .list-kost {
-    padding: 8rem 100px;
+    padding: 8rem 0;
 }
 
 .list-cards {
@@ -31,6 +31,10 @@
     padding-top: 10rem;
 }
 
+.list-content {
+    padding: 0 100px;
+}
+
 .list-filter {
     background-color: #fff;
     display: flex;
@@ -38,23 +42,18 @@
     padding: 1.5rem 2rem;
     border-radius: .5rem;
     box-shadow: 0px 10px 15px 5px rgba(29, 29, 29, 0.2);
-    -webkit-box-shadow: 0px 10px 15px 5px rgba(29, 29, 29, 0.2);
-    -moz-box-shadow: 0px 10px 15px 5px rgba(29, 29, 29, 0.2);
     margin-bottom: 2rem;
     column-gap: 2rem;
     transition: all .3s ease-in-out;
     z-index: 998;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
+    justify-content: center;
 }
 
 .list-filter.list-fixed {
     position: fixed;
     border-radius: 0px 0px .5rem .5rem;
-    top: 10%;
-    width: 1230px;
+    top: 9%;
+    width: calc(100% - 200px);
     justify-content: center;
     /*background-color: #834BFF;*/
 }
@@ -99,7 +98,7 @@
 }
 
 .select-location {
-    width: 20rem;
+    width: 15rem;
     height: 3rem;
 }
 
@@ -139,6 +138,57 @@
     font-size: 24px;
     font-weight: bold;
     margin-top: 16px;
+}
+
+.select-search-input {
+    background: #fff;
+    color: black;
+    border: 2px solid #834BFF;
+}
+
+.selected-search-input {
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    display: block;
+    height: 48px;
+    width: 100%;
+    padding: 0 40px 0 16px;
+    border-radius: 8px;
+    border: 2px solid #834BFF;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.selected-search-options {
+    /* position: absolute;
+    z-index: 2;
+    top: 58px;
+    right: 0;
+    left: 0; */
+    border-radius: 3px;
+    /* display: none; */
+}
+
+.selected-search-options li {
+    list-style: none;
+}
+
+.selected-search-option {
+    display: block;
+    height: 42px;
+    width: 100%;
+    padding: 0 16px;
+    background: var(--select-search-background);
+    border: none;
+    outline: none;
+    font-family: var(--select-search-font);
+    color: var(--select-search-text);
+    font-size: 16px;
+    text-align: left;
+    letter-spacing: 0.01rem;
+    cursor: pointer;
+    -webkit-font-smoothing: antialiased;
 }
 
 @media screen and (max-width: 768px) {

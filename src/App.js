@@ -18,6 +18,7 @@ import { AuthProvider } from './utils/auth/authContext';
 import PostReview from './pages/postReview';
 import PostReviewTest from './pages/postReviewTest';
 import PaymentPage from './pages/payment';
+import MapComponent from './components/MapComponent/MapComponent';
 
 // const ProtectedProfile = () => {
 //   return (
@@ -99,7 +100,7 @@ const App = () => {
           <Route path='/payment/:productId' element={<PaymentPage />} />
           <Route path='/post-review' element={<PostReview />} />
           <Route path='/post-review-test' element={<PostReviewTest />} />
-          <Route path='/test' element={<OwnerDetailPage />} />
+          <Route path='/test' element={<MapComponent />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </AuthProvider>

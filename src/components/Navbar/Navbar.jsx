@@ -54,7 +54,7 @@ const NavBar = () => {
     window.addEventListener('scroll', changeColor)
 
     const toggleDropdown = () => {
-        // setDropdownOpen(!dropdownOpen);
+        setDropdownOpen(!dropdownOpen);
         const userRole = localStorage.getItem('userRole');
         // console.log(userRole)
         if (userRole === 'user') {
@@ -83,14 +83,14 @@ const NavBar = () => {
         navigate('/login', { state: { role: selectedRole } });
     };
 
-
     return (
         <nav className={color ? 'nav fixed' : 'nav'}>
             <a href="/" className='nav-logo'><img src={logo} alt="logo" /></a>
             <div className={`nav-menu ${menuOpen ? 'show-menu' : ''}`}>
                 <ul className='nav-list'>
                     <li className='nav-item'>
-                        <ScrollLink to="popular" spy={true} smooth={true} offset={-50} duration={500} className='nav-link' onClick={closeMenu}>Cari Kos</ScrollLink>
+                        <a href="/listkos" className='nav-link'>Cari Kos</a>
+                        {/* <ScrollLink to="popular" spy={true} smooth={true} offset={-50} duration={500} className='nav-link' onClick={closeMenu}>Cari Kos</ScrollLink> */}
                     </li>
                     <li className='nav-item'>
                         <a href="#" className='nav-link' onClick={closeMenu}>Layanan</a>
@@ -101,10 +101,11 @@ const NavBar = () => {
                     {isLoggedIn ? (
                         <li className='nav-item'>
                             <div className="dropdown">
-                                <RouterLink to={dropdownRoute} onClick={toggleDropdown} className="dropdown-link">
+                                <img src={profileImage} alt="Profile" className="profile-image" onClick={toggleDropdown} />
+                                {/* <RouterLink to={dropdownRoute} onClick={toggleDropdown} className="dropdown-link">
                                     <img src={profileImage} alt="Profile" className="profile-image" onClick={toggleDropdown} />
-                                </RouterLink>
-                                {/* {dropdownOpen && (
+                                </RouterLink> */}
+                                {dropdownOpen && (
                                     <div className="dropdown-content open">
                                         <RouterLink to={dropdownRoute} onClick={toggleDropdown} className="dropdown-link">
                                             Profile
@@ -113,7 +114,7 @@ const NavBar = () => {
                                             Logout
                                         </button>
                                     </div>
-                                )} */}
+                                )}
                             </div>
                         </li>
                     ) : (

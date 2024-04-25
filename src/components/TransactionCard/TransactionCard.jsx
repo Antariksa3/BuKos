@@ -3,16 +3,24 @@ import img1 from "../../assets/images/BgFjxmDl-540x720.jpg.png";
 
 import './TransactionCard.css'
 
-const TransactionCard = () => {
+const TransactionCard = (props) => {
+    const numericPrice = parseFloat(props.total_price);
+    const formattedPrice = numericPrice.toLocaleString('id-ID');
+
     return (
         <div className="card-transaksi">
             <div className="card-transaksi-atas">
-                <img src={img1} alt="" />
-                <div className="isi-card-transaksi-atas">
-                    <h3>Kost Singgahsini MnV Co-Living Tipe B Bendungan
-                        Hilir Jakarta Pusat 482539SH</h3>
-                    <p>Tersedia 2 kamar - <span>Campur</span></p>
-                    <h4>Rp. 1.000.000 Per Bulan</h4>
+                <img src={props.gambar_kos} alt="" />
+                <div className="isi-card-riwayat-atas">
+                    {/* <h4>Kost Singgahsini MnV Co-Living Tipe B Bendungan
+                    Hilir Jakarta Pusat 482539SH</h4> */}
+                    <h4>{props.nama_kos}</h4>
+                    <p>{props.tipe_kos}</p>
+                    {/* <p>Tersedia 2 kamar - <span>Campur</span></p> */}
+                    {/* <h4>Rp. 1.000.000 Per Bulan</h4> */}
+                    <h4>Rp. {formattedPrice} Selama {props.qty} Bulan</h4>
+                    {/* <h4>Selama {props.qty} Bulan</h4> */}
+                    <h4>{props.status}</h4>
                 </div>
             </div>
             <div className="card-transaksi-bawah">
