@@ -1,7 +1,7 @@
 // import Library
 import React, { useEffect, useState, Suspense } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getProductDetail, getTransaction } from '../../api/api'
+import { getProductDetail, getUserTransaction } from '../../api/api'
 
 // import Styles
 
@@ -24,7 +24,7 @@ const RiwayatTransaksi = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    getTransaction(token)
+    getUserTransaction(token)
       .then((trans) => {
         setDetailTrans(trans);
         ProductDetails(trans);
@@ -100,7 +100,7 @@ const RiwayatTransaksi = () => {
             <TransList />
           </div>
         ) : (
-          <div>
+          <>
             <div className="title-isi-profil-kanan">
               <h1>Riwayat Transaksi</h1>
               <p>Yuk, sewa di BuKos atau masukkan kode dari pemilik kos untuk aktifkan halaman ini! Coba cara ngekos modern dengan manfaat berikut ini.</p>
@@ -122,7 +122,7 @@ const RiwayatTransaksi = () => {
             <div className="button-isi-profil">
               <button onClick={() => navigate('/listkos')}>Mulai cari dan sewa kos</button>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>

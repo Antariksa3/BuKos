@@ -93,5 +93,9 @@
 
 /* Media Query paling besar */
 @media screen and (min-width: 1441px) {
+
     /* Gaya-gaya di media query paling besar */
+    .list-kos-card-shimmer {
+        width: 292px;
+    }
 }

@@ -18,6 +18,9 @@ const PaymentPage = () => {
     const [selectedDate, setSelectedDate] = useState(null)
     const [userData, setUserData] = useState({})
     const [showModal, setShowModal] = useState(false);
+    const [userDataLoaded, setUserDataLoaded] = useState(false);
+    const [productDataLoaded, setProductDataLoaded] = useState(false);
+    const [paymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -25,6 +28,7 @@ const PaymentPage = () => {
             getUserDetail(token)
                 .then((userDetail) => {
                     setUserData(userDetail)
+                    setUserDataLoaded(true)
                 })
         } else {
             console.log('Token tidak ditemukan. Anda belum login atau token telah kadaluarsa.');
@@ -37,6 +41,7 @@ const PaymentPage = () => {
         getProductDetail(productId)
             .then((product) => {
                 setProduct(product);
+                setProductDataLoaded(true);
                 console.log(product);
             })
             .catch(error => {
@@ -69,6 +74,7 @@ const PaymentPage = () => {
             setSnapToken(snapToken);
             console.log(response)
             setShowModal(true);
+            setPaymentButtonDisabled(true);
 
         } catch (error) {
             console.error('Error processing payment:', error.message);
@@ -77,6 +83,10 @@ const PaymentPage = () => {
 
     const toggleModal = () => {
         setShowModal(!showModal);
+
+        if (!showModal) {
+            setPaymentButtonDisabled(false);
+        }
     };
 
     useEffect(() => {
@@ -162,22 +172,24 @@ const PaymentPage = () => {
                             {/* <p>3 Bulan</p> */}
                             <p>{localStorage.getItem('selectedDurasi') || 'Nilai Durasi Default'} Bulan</p>
                         </div>
-                        {/* <button type="button" id='pay-button' className='proceed-button'>Proceed to Payment</button> */}
+                        <button
+                            onClick={handlePayment}
+                            type="submit"
+                            // className='proceed-button'
+                            className={`proceed-button ${(!userDataLoaded || !productDataLoaded || paymentButtonDisabled) ? 'disabled' : ''}`}
+                            disabled={!userDataLoaded || !productDataLoaded || paymentButtonDisabled}
+                        >
+                            Lanjutkan Pembayaran
+                        </button>
                     </form>
                 </div>
                         
                 <div className="payment-card">
                     <CardPembayaran
-                        // tipe_kamar={product.tipe_kamar}
-                        // lokasi={product.lokasi_kos}
-                        // nama={product.nama_kos}
-                        // alamat={product.alamat_kos}
-                        // harga_kos={product.harga_kos}
-
-                        tipe_kamar={product ? product.tipe_kamar : 'Tipe Kamar Default'}
-                        lokasi={product ? product.lokasi_kos : 'Lokasi Default'}
-                        nama={product ? product.nama_kos : 'Nama Kos Default'}
-                        alamat={product ? product.alamat_kos : 'Alamat Kos Default'}
+                        tipe_kamar={product ? product.tipe_kamar : 'Tipe Kamar Kos...'}
+                        lokasi={product ? product.lokasi_kos : 'Lokasi Kos...'}
+                        nama={product ? product.nama_kos : 'Nama Kos...'}
+                        alamat={product ? product.alamat_kos : 'Alamat Kos...'}
                         harga_kos={product ? product.harga_kos : 0}
                         durasi={localStorage.getItem('selectedDurasi')}
                         image={`${process.env.REACT_APP_API_URL}/${product ? product.foto_kos : 'default_image.jpg'}`}
@@ -191,7 +203,7 @@ const PaymentPage = () => {
                     <div className="modal-content">
                         <h2>Konfirmasi Pembayaran</h2>
                         <p>Apakah Anda yakin ingin melanjutkan pembayaran?</p>
-                        <button type="button" id='pay-button' className='proceed-button'>Bayar</button>
+                        <button type="button" id='pay-button' className='proceed-button' onClick={() => setShowModal(false)}>Bayar</button>
                         <button className="close-modal" onClick={toggleModal} ><img src={close} alt="close" /></button>
                     </div>
                 </div>

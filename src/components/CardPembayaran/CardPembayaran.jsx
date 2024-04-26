@@ -6,9 +6,10 @@ import BoxJenis from '../BoxJenis/BoxJenis'
 import Img1 from '../../assets/images/BgFjxmDl-540x720.jpg.png'
 
 const CardPembayaran = (props) => {
-  const formattedPrice = props.harga_kos.toLocaleString('id-ID');
+  const numericPrice = parseFloat(props.harga_kos);
+  const formattedPrice = numericPrice.toLocaleString('id-ID');
+  // const formattedPrice = props.harga_kos.toLocaleString('id-ID');
   const totalBiayaSewa = props.harga_kos * parseInt(props.durasi);
-
 
   return (
     <div className="card-page-pembayaran">

@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 const AssetCard = (asset) => {
-    const formattedPrice = asset.harga.toLocaleString('id-ID');
+    const numericPrice = parseFloat(asset.harga);
+    const formattedPrice = numericPrice.toLocaleString('id-ID');
+    // const formattedPrice = asset.harga.toLocaleString('id-ID');
 
     return (
         <div className='asset-card'>

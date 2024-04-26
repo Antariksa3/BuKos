@@ -12,14 +12,9 @@ import Tagihan from "../../assets/icons/ic_booking_succeed.png";
 import Keamanan from "../../assets/icons/ic_payment.png";
 import Cashless from "../../assets/icons/ic_disbursement_funds.png";
 import img1 from "../../assets/images/BgFjxmDl-540x720.jpg.png";
-import { getTransaction } from '../../api/api';
 
 const RiwayatBooking = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   getTransaction(token)
-  // }, [])
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

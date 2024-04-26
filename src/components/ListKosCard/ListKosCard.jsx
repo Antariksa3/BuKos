@@ -11,11 +11,16 @@ import { api } from '../../api/api'
 import { useParams } from 'react-router-dom'
 
 const ListKosCard = (product) => {
-    const formattedPrice = product.harga.toLocaleString('id-ID');
-    // const [isFavorite, setIsFavorite] = useState(false);
-    const [isFavorite, setIsFavorite] = useState(product.favorite);
+    const numericPrice = parseFloat(product.harga);
+    const formattedPrice = numericPrice.toLocaleString('id-ID');
+    // const formattedPrice = product.harga.toLocaleString('id-ID');
+    // const [isFavorite, setIsFavorite] = useState(product.favorite);
+    const parseFavorite = (favoriteValue) => {
+        return favoriteValue === "1";
+    };
+    const [isFavorite, setIsFavorite] = useState(parseFavorite(product.favorite));
+
     const token = localStorage.getItem('token');
-    // const { productId } = useParams();
 
     const productId = product.id;
 
