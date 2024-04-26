@@ -28,7 +28,7 @@
     "react-scroll": "^1.8.9",
     "react-select-search": "^4.1.6",
     "react-transition-group": "^4.4.5",
-    "swiper": "^9.3.1",
+    "swiper": "^9.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -96,7 +96,7 @@ const App = () => {
         <Route path='/dashboard/*' element={<ProtectedDashboard />} />
           <Route path='/profile/*' element={<Profile />} />
         <Route path='/dashboard/*' element={<Dashboard />} /> */}
-          <Route path='/pembayaran' element={<Pembayaran />} />
+          <Route path='/pembayaran/:productId' element={<Pembayaran />} />
           <Route path='/payment/:productId' element={<PaymentPage />} />
           <Route path='/post-review' element={<PostReview />} />
           <Route path='/post-review-test' element={<PostReviewTest />} />

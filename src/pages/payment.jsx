@@ -183,6 +183,7 @@ const PaymentPage = () => {
                         </button>
                     </form>
                 </div>
+                        
                 <div className="payment-card">
                     <CardPembayaran
                         tipe_kamar={product ? product.tipe_kamar : 'Tipe Kamar Kos...'}
@@ -195,6 +196,7 @@ const PaymentPage = () => {
                     />
                 </div>
             </div>
+                        <button onClick={handlePayment} type="submit" className='proceed-button'>Lanjutkan Pembayaran</button>
             {showModal && (
                 <div className="custom-modal">
                     <div onClick={toggleModal} className="overlay-login"></div>

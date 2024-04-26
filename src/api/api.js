@@ -39,6 +39,7 @@ export const getFavoriteProduct = async (token) => {
     return productFavorite.data.favorites
 }
 
+
 export const searchAndFilterProducts = async (q, types = "", address = "", kecamatan = "") => {
     const params = new URLSearchParams();
     if (q) params.append('search_product', q);

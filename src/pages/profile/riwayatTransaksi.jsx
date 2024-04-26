@@ -6,6 +6,7 @@ import { getProductDetail, getUserTransaction } from '../../api/api'
 // import Styles
 
 // import Components
+import Pagination from "../../components/Pagination/Pagination";
 
 // import Assets
 import Tagihan from '../../assets/icons/ic_booking_succeed.png'
@@ -125,7 +126,7 @@ const RiwayatTransaksi = () => {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default RiwayatTransaksi

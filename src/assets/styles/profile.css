@@ -300,7 +300,9 @@
 
 
 .button-riwayat-booking {
+  width: 100%;
   padding: 8px 8px;
+  margin-top: 30px;
   border: none;
   background: none;
   border-radius: 5px;
@@ -310,7 +312,6 @@
   color: #834BFF;
   transition: all 500ms;
   font-size: 15px;
-  position: relative;
   overflow: hidden;
   outline: 2px solid #834BFF;
 }
